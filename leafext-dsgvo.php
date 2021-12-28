@@ -15,7 +15,7 @@ define('LEAFEXT_DSGVO_PLUGIN_URL', WP_PLUGIN_URL . '/' . basename (LEAFEXT_DSGVO
 
 // Passe diesen Text an.
 function leafext_okay() {
-  $zustimmungstext = esc_attr( get_option( 'leafext_dsgvo' ) );
+  $zustimmungstext = get_option( 'leafext_dsgvo' );
   if ( ! $zustimmungstext ) {
     $zustimmungstext =
       'Bei der Verwendung der Karten werden Inhalte von Drittservern geladen. '.
