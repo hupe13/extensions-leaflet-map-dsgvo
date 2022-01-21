@@ -29,7 +29,7 @@ function leafext_dsgvo_init(){
 	$page = $section_group;
 	add_settings_section(
 		$settings_section,
-		'DSGVO',
+		'',
 		'leafext_dsgvo_help',
 		$page
 	);
@@ -40,23 +40,38 @@ function leafext_dsgvo_init(){
 		'Text',
 		'leafext_dsgvo_form',
 		$page,
-		$settings_section
+		$settings_section,
+	);
+
+	add_settings_field(
+		"leafext_dsgvo_mapurl",
+		'Map URL',
+		'leafext_dsgvo_form_mapurl',
+		$page,
+		$settings_section,
 	);
 }
 add_action( 'admin_init', 'leafext_dsgvo_init' );
 
 function leafext_dsgvo_form() {
 	$setting = leafext_okay();
-	echo '<textarea name="leafext_dsgvo" type="textarea" cols="80" rows="5">';
+	echo '<textarea name="leafext_dsgvo[text]" type="textarea" cols="80" rows="5">';
 	echo $setting;
 	echo '</textarea>';
+}
+
+function leafext_dsgvo_form_mapurl() {
+	$setting = get_option( 'leafext_dsgvo' );
+	echo '<input type="url" size="80" name="leafext_dsgvo[mapurl]" value="'.$setting['mapurl'].'" /><p>URL to Background Image</p>';
 }
 
 // Sanitize and validate input. Accepts an array, return a sanitized array.
 function leafext_validate_dsgvo($options) {
 	if (isset($_POST['submit'])) {
-		$dsgvo_text = wp_kses_normalize_entities ( $options );
-		return $dsgvo_text;
+		//var_dump($options); wp_die();
+		$options['text'] = wp_kses_normalize_entities ( $options['text'] );
+		$options['mapurl'] = sanitize_text_field ( $options['mapurl'] );
+		return $options;
 	}
 	if (isset($_POST['delete'])) delete_option('leafext_dsgvo');
 	return false;
@@ -64,15 +79,10 @@ function leafext_validate_dsgvo($options) {
 
 // Erklaerung / Hilfe
 function leafext_dsgvo_help() {
-	echo '<p>'.
-	"Laut DSGVO muss der Nutzer aktiv zustimmen,
-	wenn Inhalte von Drittservern geladen werden sollen.
-	Das Wordpress-Plugin Extensions for Leaflet Map
-	lädt Inhalte von den definierten Tile-Servern sowie unpkg.com.
-	Dieses kleine Snippet holt die Zustimmung des Nutzers zum Laden der Karten ein.
-	Du kannst hier den Text anpassen und es auf eigene Verantwortung verwenden.
-	".
-	'</p>';
+	$text = file_get_contents( LEAFEXT_DSGVO_PLUGIN_DIR . "/readme.md" );
+	echo '<div style="width:75%">'.$text.'</div>';
+	echo '<h3>Einstellungen / Settings</h3>';
+	echo '<p>Teste es in einem privaten Browserfenster. / Test it in a private browser window.';
 }
 
 // Draw the menu page itself

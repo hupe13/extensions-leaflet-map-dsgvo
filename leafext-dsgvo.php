@@ -1,9 +1,10 @@
 <?php
 /**
  * Plugin Name: DSGVO Snippet for Extensions for Leaflet Map
- * Plugin URI:  https://github.com/hupe13/leafext-dsgvo
  * Description: DSGVO Snippet for Extensions for Leaflet Map
- * Version:     1.0
+ * Plugin URI:  https://github.com/hupe13/leafext-dsgvo
+ * GitHub Plugin URI: https://github.com/hupe13/leafext-dsgvo
+ * Version:     2.0
  * Author:      hupe13
 **/
 
@@ -13,16 +14,17 @@ defined( 'ABSPATH' ) or die();
 define('LEAFEXT_DSGVO_PLUGIN_DIR', plugin_dir_path(__FILE__)); // /pfad/wp-content/plugins/plugin/
 define('LEAFEXT_DSGVO_PLUGIN_URL', WP_PLUGIN_URL . '/' . basename (LEAFEXT_DSGVO_PLUGIN_DIR)); // https://url/wp-content/plugins/plugin/
 
-// Passe diesen Text an.
+// Passe diesen Text im Admin Interface an.
 function leafext_okay() {
-  $zustimmungstext = get_option( 'leafext_dsgvo' );
-  if ( ! $zustimmungstext ) {
-    $zustimmungstext =
-      'Bei der Verwendung der Karten werden Inhalte von Drittservern geladen. '.
-      'Wenn Du dem zustimmst, wird ein Cookie gesetzt und dieser Hinweis ausgeblendet. '.
-      'Wenn nicht, werden Dir keine Karten angezeigt.';
-  }
-  return $zustimmungstext;
+  $defaulttext =
+    'Bei der Verwendung der Karten werden Inhalte von Drittservern geladen. '.
+    'Wenn Du dem zustimmst, wird ein Cookie gesetzt und dieser Hinweis ausgeblendet. '.
+    'Wenn nicht, werden Dir keine Karten angezeigt.';
+  $options = get_option( 'leafext_dsgvo' );
+  if ( ! $options ) return $defaulttext;
+  if ( ! is_array ($options) ) return $options;
+  if ( $options['text'] == "" ) return $defaulttext;
+  return $options['text'];
 }
 
 function leafext_empty(){
@@ -56,6 +58,7 @@ function leafext_query_cookie( $output, $tag ) {
   }
   //
   global $leafext_okay;
+  var_dump($leafext_okay);
   if (!isset($leafext_okay)) {
     $leafext_okay = true;
     global $shortcode_tags;
@@ -96,9 +99,12 @@ function leafext_query_cookie( $output, $tag ) {
   //!isset($leafext_okay) end
   preg_match('/style="[^"]+"/', $output, $matches);
   if (count($matches) == 0) $matches[0] = ' style=".';
+  $image=LEAFEXT_DSGVO_PLUGIN_URL.'/map.png';
+  $options = get_option( 'leafext_dsgvo' );
+  if ( is_array ($options) && $options['mapurl'] != "" ) $image=$options['mapurl'];
   $output = '<div data-nosnippet '.substr($matches[0], 0, -1).
     'background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), '.
-    'url('.LEAFEXT_DSGVO_PLUGIN_URL.'/map.png); background-position: center; '.
+    'url('.$image.'); background-position: center; '.
     'border: gray 2px solid; display:flex; justify-content: center; '.
     'align-items: center;"><div style="width: 70%;">'.$text.'</div></div>';
   return $output;
