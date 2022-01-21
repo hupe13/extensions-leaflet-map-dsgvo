@@ -61,8 +61,10 @@ function leafext_dsgvo_form() {
 }
 
 function leafext_dsgvo_form_mapurl() {
-	$setting = get_option( 'leafext_dsgvo' );
-	echo '<input type="url" size="80" name="leafext_dsgvo[mapurl]" value="'.$setting['mapurl'].'" /><p>URL to Background Image</p>';
+	$image="";
+  $options = get_option( 'leafext_dsgvo' );
+  if ( is_array ($options) && $options['mapurl'] != "" ) $image=$options['mapurl'];
+	echo '<input type="url" size="80" name="leafext_dsgvo[mapurl]" value="'.$image.'" /><p>URL to Background Image</p>';
 }
 
 // Sanitize and validate input. Accepts an array, return a sanitized array.
