@@ -4,7 +4,7 @@
  * Description: DSGVO Snippet for Extensions for Leaflet Map
  * Plugin URI:  https://github.com/hupe13/leafext-dsgvo
  * GitHub Plugin URI: https://github.com/hupe13/leafext-dsgvo
- * Version:     2.0
+ * Version:     220121
  * Author:      hupe13
 **/
 
