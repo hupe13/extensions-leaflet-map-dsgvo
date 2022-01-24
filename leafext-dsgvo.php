@@ -5,7 +5,7 @@
  * Plugin URI:  https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch: main
- * Version:     220122
+ * Version:     220123
  * Author:      hupe13
 **/
 
@@ -14,6 +14,13 @@ defined( 'ABSPATH' ) or die();
 
 define('LEAFEXT_DSGVO_PLUGIN_DIR', plugin_dir_path(__FILE__)); // /pfad/wp-content/plugins/plugin/
 define('LEAFEXT_DSGVO_PLUGIN_URL', WP_PLUGIN_URL . '/' . basename (LEAFEXT_DSGVO_PLUGIN_DIR)); // https://url/wp-content/plugins/plugin/
+
+// Add settings to plugin page
+function leafext_add_action_dsgvo_links ( $actions ) {
+  $actions[] = '<a href="'. esc_url( get_admin_url(null, 'admin.php?page='. dirname( plugin_basename( __FILE__ ) ) ) ) .'">'. esc_html__( "Settings").'</a>';
+  return $actions;
+}
+add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'leafext_add_action_dsgvo_links' );
 
 // Passe diesen Text im Admin Interface an.
 function leafext_okay() {
