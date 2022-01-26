@@ -1,4 +1,6 @@
-<h2>DSGVO/GDPR Snippet for Extensions for Leaflet Map</h2>
+<h1>DSGVO/GDPR Snippet for Extensions for Leaflet Map</h1>
+
+<h2>Description</h2>
 
 <h3>DSGVO</h3>
 
@@ -19,7 +21,7 @@ Lade das ZIP-File herunter und installiere es auf der Pluginseite Deiner Wordpre
 
 According to the GDPR, the user must actively agree if content is to be loaded from third-party servers.
 
-The Wordpress plugin 
+The Wordpress plugin
 [Extensions for Leaflet Map](https://wordpress.org/plugins/extensions-leaflet-map/)
 loads content from the defined tile servers as well as unpkg.com.
 
