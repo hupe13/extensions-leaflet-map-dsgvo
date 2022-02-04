@@ -5,7 +5,7 @@
  * Plugin URI:  https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch: main
- * Version:     220127
+ * Version:     220204
  * Author:      hupe13
 **/
 
@@ -54,11 +54,11 @@ function leafext_setcookie() {
 add_action( 'init', 'leafext_setcookie' );
 
 function leafext_query_cookie( $output, $tag ) {
-  //var_dump($output); wp_die();
   global $leafext_cookie;
   if ( is_admin()
     || is_user_logged_in()
-    || 'leaflet-map' !== $tag
+    || ('leaflet-map' !== $tag
+      && 'sgpx' !== $tag)
     || isset($_COOKIE["leafext"])
     || $leafext_cookie
   ) {
@@ -66,7 +66,6 @@ function leafext_query_cookie( $output, $tag ) {
   }
   //
   global $leafext_okay;
-  var_dump($leafext_okay);
   if (!isset($leafext_okay)) {
     $leafext_okay = true;
     global $shortcode_tags;
@@ -90,6 +89,7 @@ function leafext_query_cookie( $output, $tag ) {
     foreach ($shortcodes as $shortcode => $value) {
       if ( $shortcode !== 'leaflet-map' ) {
         if ( strpos($shortcode, "leaflet") !== false || in_array($shortcode,$leafext) ) {
+          //$text=$text.var_dump($shortcode);
           remove_shortcode( $shortcode);
           add_shortcode($shortcode,'leafext_empty');
         }
@@ -107,11 +107,18 @@ function leafext_query_cookie( $output, $tag ) {
   //!isset($leafext_okay) end
   preg_match('/style="[^"]+"/', $output, $matches);
   if (count($matches) == 0) $matches[0] = ' style=".';
-  $image=LEAFEXT_DSGVO_PLUGIN_URL.'/map.png';
-  $options = get_option( 'leafext_dsgvo' );
-  if ( is_array ($options) && $options['mapurl'] != "" ) $image=$options['mapurl'];
+  $options = get_option( 'leafext_dsgvo');
+  if (! $options) {
+    $image=LEAFEXT_DSGVO_PLUGIN_URL.'/map.png';
+  } else if ( !is_array($options)) {
+    $image = $options;
+  } else if ( $options['mapurl'] != "") {
+    $image = $options['mapurl'];
+  } else {
+    $image = LEAFEXT_DSGVO_PLUGIN_URL.'/map.png';
+  }
   $output = '<div data-nosnippet '.substr($matches[0], 0, -1).
-    'background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), '.
+    ';background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), '.
     'url('.$image.'); background-position: center; '.
     'border: gray 2px solid; display:flex; justify-content: center; '.
     'align-items: center;"><div style="width: 70%;">'.$text.'</div></div>';

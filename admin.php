@@ -83,10 +83,22 @@ function leafext_validate_dsgvo($options) {
 function leafext_dsgvo_help() {
 	$text = file_get_contents( LEAFEXT_DSGVO_PLUGIN_DIR . "/readme.md" );
 	//[Extensions for Leaflet Map](https://de.wordpress.org/plugins/extensions-leaflet-map/)
-	$suchmuster = '/\[(.+)\]\((.+)\)/i';
-	$ersetzung = '<a href="${2}">${1}</a>';
+	$suchmuster = array(
+		'/\[(.+)\]\((.+)\)/i',
+		'/(### )(.*)/',
+		'/(## )(.*)/',
+		'/(# )(.*)/',
+		'/  /',
+	);
+	$ersetzung = array(
+		'<a href="${2}">${1}</a>',
+		'<h3>${2}</h3>',
+		'<h2>${2}</h2>',
+		'<h1>${2}</h1>',
+		'<br>',
+	);
  	$text = preg_replace($suchmuster, $ersetzung, $text);
-	echo '<div style="width:75%">'.$text.'</div>';
+	echo '<div style="width:80%">'.$text.'</div>';
 	echo '<h3>Einstellungen / Settings</h3>';
 	echo '<p>Teste es in einem privaten Browserfenster. / Test it in a private browser window.';
 }
