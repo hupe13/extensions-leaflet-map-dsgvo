@@ -50,6 +50,14 @@ function leafext_dsgvo_init(){
 		$page,
 		$settings_section,
 	);
+
+	add_settings_field(
+		"leafext_dsgvo_cookie",
+		'Cookie Livetime',
+		'leafext_dsgvo_form_cookie',
+		$page,
+		$settings_section,
+	);
 }
 add_action( 'admin_init', 'leafext_dsgvo_init' );
 
@@ -67,10 +75,18 @@ function leafext_dsgvo_form_mapurl() {
 	echo '<input type="url" size="80" name="leafext_dsgvo[mapurl]" value="'.$image.'" /><p>URL to Background Image</p>';
 }
 
+function leafext_dsgvo_form_cookie() {
+	$cookie = "365";
+  $options = get_option( 'leafext_dsgvo' );
+  if ( is_array ($options) && isset($options['cookie']) ) $cookie = $options['cookie'];
+	echo '<input type="number" size="3" max="365" name="leafext_dsgvo[cookie]" placeholder="'.$cookie.'">';
+}
+
 // Sanitize and validate input. Accepts an array, return a sanitized array.
 function leafext_validate_dsgvo($options) {
 	if (isset($_POST['submit'])) {
 		//var_dump($options); wp_die();
+		if ($options['cookie'] == "0" || $options['cookie'] == "" ) return false;
 		$options['text'] = wp_kses_normalize_entities ( $options['text'] );
 		$options['mapurl'] = sanitize_text_field ( $options['mapurl'] );
 		return $options;

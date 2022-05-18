@@ -1,7 +1,4 @@
-###  220127
+###  220518
 
-* WordPress 5.9
-
-###  220123
-
-* Admin settings
+* WordPress 6
+* Cookie livetime

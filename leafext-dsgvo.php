@@ -5,7 +5,7 @@
  * Plugin URI:  https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch: main
- * Version:     220204
+ * Version:     220518
  * Author:      hupe13
 **/
 
@@ -46,7 +46,10 @@ function leafext_setcookie() {
   if ( $request_method == 'post' && !empty($_POST["leafext_button"])) {
     //array(1) { ["leafext_button"]=> string(4) "Okay" }
     if ( $_POST["leafext_button"] == "Okay" ) {
-      setcookie ("leafext", 1, time()+3600*24*365, "/", $_SERVER['HTTP_HOST'], true, true);
+      $cookie = "365";
+      $options = get_option( 'leafext_dsgvo' );
+      if ( is_array ($options) && isset($options['cookie']) ) $cookie = $options['cookie'];
+      setcookie ("leafext", 1, time()+3600*24*$cookie, "/", $_SERVER['HTTP_HOST'], true, true);
       $leafext_cookie = true;
     }
   }
