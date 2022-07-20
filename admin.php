@@ -86,7 +86,7 @@ function leafext_dsgvo_form_cookie() {
 function leafext_validate_dsgvo($options) {
 	if (isset($_POST['submit'])) {
 		//var_dump($options); wp_die();
-		if ($options['cookie'] == "0" || $options['cookie'] == "" ) return false;
+		if ($options['cookie'] == "0" || $options['cookie'] == "" ) $options['cookie'] = "365";
 		$options['text'] = wp_kses_normalize_entities ( $options['text'] );
 		$options['mapurl'] = sanitize_text_field ( $options['mapurl'] );
 		return $options;
