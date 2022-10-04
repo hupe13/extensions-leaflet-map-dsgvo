@@ -58,6 +58,14 @@ function leafext_dsgvo_init(){
 		$page,
 		$settings_section,
 	);
+
+	add_settings_field(
+		"leafext_dsgvo_count",
+		'Should the text be displayed on each map of the page or only on the first map?',
+		'leafext_dsgvo_form_count',
+		$page,
+		$settings_section,
+	);
 }
 add_action( 'admin_init', 'leafext_dsgvo_init' );
 
@@ -82,6 +90,17 @@ function leafext_dsgvo_form_cookie() {
 	echo '<input type="number" size="3" max="365" name="leafext_dsgvo[cookie]" placeholder="'.$cookie.'">';
 }
 
+function leafext_dsgvo_form_count() {
+  $options = get_option( 'leafext_dsgvo' );
+	$count = ( is_array ($options) && isset($options['count']) ) ? filter_var($options['count'],FILTER_VALIDATE_BOOLEAN) : false;
+	echo '<input type="radio" name="leafext_dsgvo[count]" value="1" ';
+	echo $count ? 'checked' : '' ;
+	echo '> each map &nbsp;&nbsp; ';
+	echo '<input type="radio" name="leafext_dsgvo[count]" value="0" ';
+	echo (!$count) ? 'checked' : '' ;
+	echo '> only first ';
+}
+
 // Sanitize and validate input. Accepts an array, return a sanitized array.
 function leafext_validate_dsgvo($options) {
 	if (isset($_POST['submit'])) {
@@ -89,6 +108,7 @@ function leafext_validate_dsgvo($options) {
 		if ($options['cookie'] == "0" || $options['cookie'] == "" ) $options['cookie'] = "365";
 		$options['text'] = wp_kses_normalize_entities ( $options['text'] );
 		$options['mapurl'] = sanitize_text_field ( $options['mapurl'] );
+		$options['count'] = $options['count'];
 		return $options;
 	}
 	if (isset($_POST['delete'])) delete_option('leafext_dsgvo');

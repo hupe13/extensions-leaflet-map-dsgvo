@@ -69,6 +69,15 @@ function leafext_query_cookie( $output, $tag ) {
   }
   //
   global $leafext_okay;
+
+  $form = '<form action="" method="post">';
+  $form = $form.leafext_okay();
+  $form = $form.
+    '<p class="submit" style="display:flex; justify-content: center; align-items: center;">
+    <input type="submit" value="Okay" name="leafext_button" /></p>
+    </form>';
+  $options = get_option( 'leafext_dsgvo');
+
   if (!isset($leafext_okay)) {
     $leafext_okay = true;
     global $shortcode_tags;
@@ -88,6 +97,8 @@ function leafext_query_cookie( $output, $tag ) {
       'placementstrategies',
       'sgpx',
       'zoomhomemap',
+      'leaflet-extramarker',
+      'extramarker',
     );
     foreach ($shortcodes as $shortcode => $value) {
       if ( $shortcode !== 'leaflet-map' ) {
@@ -98,19 +109,19 @@ function leafext_query_cookie( $output, $tag ) {
         }
       }
     }
-    $text = '<form action="" method="post">';
-    $text = $text.leafext_okay();
-    $text = $text.
-      '<p class="submit" style="display:flex; justify-content: center; align-items: center;">
-      <input type="submit" value="Okay" name="leafext_button" /></p>
-      </form>';
+    $text = $form;
   } else {
-    $text = "";
+    $count = ( is_array ($options) && isset($options['count']) ) ? filter_var($options['count'],FILTER_VALIDATE_BOOLEAN) : false;
+    if ($count) {
+      $text = $form;
+    } else {
+      $text = "";
+    }
   }
   //!isset($leafext_okay) end
   preg_match('/style="[^"]+"/', $output, $matches);
   if (count($matches) == 0) $matches[0] = ' style=".';
-  $options = get_option( 'leafext_dsgvo');
+
   if (! $options) {
     $image=LEAFEXT_DSGVO_PLUGIN_URL.'/map.png';
   } else if ( !is_array($options)) {
@@ -120,6 +131,8 @@ function leafext_query_cookie( $output, $tag ) {
   } else {
     $image = LEAFEXT_DSGVO_PLUGIN_URL.'/map.png';
   }
+
+  if (isset($options['mapurl']))
   $output = '<div data-nosnippet '.substr($matches[0], 0, -1).
     ';background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), '.
     'url('.$image.'); background-position: center; '.
