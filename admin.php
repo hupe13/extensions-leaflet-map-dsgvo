@@ -61,7 +61,7 @@ function leafext_dsgvo_init(){
 
 	add_settings_field(
 		"leafext_dsgvo_count",
-		'Should the text be displayed on each map of the page or only on the first map?',
+		'Soll der Text auf jeder Karte der Seite angezeigt werden oder nur auf der ersten Karte? / Should the text be displayed on each map of the page or only on the first map?',
 		'leafext_dsgvo_form_count',
 		$page,
 		$settings_section,
