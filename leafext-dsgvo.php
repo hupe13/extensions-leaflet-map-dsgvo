@@ -5,7 +5,7 @@
  * Plugin URI:  https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch: main
- * Version:     221005
+ * Version:     221007
  * Author:      hupe13
 **/
 
@@ -132,7 +132,6 @@ function leafext_query_cookie( $output, $tag ) {
     $image = LEAFEXT_DSGVO_PLUGIN_URL.'/map.png';
   }
 
-  if (isset($options['mapurl']))
   $output = '<div data-nosnippet '.substr($matches[0], 0, -1).
     ';background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), '.
     'url('.$image.'); background-position: center; '.
