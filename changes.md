@@ -1,3 +1,7 @@
+###  221010
+
+* dequeue leaflet-map
+
 ###  221007
 
 * ein oder mehrere Formulare auf der Seite

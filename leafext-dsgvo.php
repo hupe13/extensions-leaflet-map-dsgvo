@@ -5,7 +5,7 @@
  * Plugin URI:  https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch: main
- * Version:     221007
+ * Version:     221010
  * Author:      hupe13
 **/
 
@@ -97,7 +97,6 @@ function leafext_query_cookie( $output, $tag ) {
       'placementstrategies',
       'sgpx',
       'zoomhomemap',
-      'leaflet-extramarker',
       'extramarker',
     );
     foreach ($shortcodes as $shortcode => $value) {
@@ -107,6 +106,11 @@ function leafext_query_cookie( $output, $tag ) {
           remove_shortcode( $shortcode);
           add_shortcode($shortcode,'leafext_empty');
         }
+      } else {
+        wp_dequeue_style('leaflet_stylesheet');
+        wp_dequeue_script('wp_leaflet_map');
+        wp_deregister_style('leaflet_stylesheet');
+        wp_deregister_script('wp_leaflet_map');
       }
     }
     $text = $form;
