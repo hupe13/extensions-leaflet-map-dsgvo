@@ -53,7 +53,7 @@ function leafext_dsgvo_init(){
 
 	add_settings_field(
 		"leafext_dsgvo_cookie",
-		'Cookie Livetime',
+		'Cookie Lifetime',
 		'leafext_dsgvo_form_cookie',
 		$page,
 		$settings_section,
@@ -61,7 +61,7 @@ function leafext_dsgvo_init(){
 
 	add_settings_field(
 		"leafext_dsgvo_count",
-		'Soll der Text auf jeder Karte der Seite angezeigt werden oder nur auf der ersten Karte? / Should the text be displayed on each map of the page or only on the first map?',
+		__('Should the text be displayed on each map of the page or only on the first map?','extensions-leaflet-map-dsgvo'),
 		'leafext_dsgvo_form_count',
 		$page,
 		$settings_section,
@@ -80,7 +80,7 @@ function leafext_dsgvo_form_mapurl() {
 	$image="";
   $options = get_option( 'leafext_dsgvo' );
   if ( is_array ($options) && $options['mapurl'] != "" ) $image=$options['mapurl'];
-	echo '<input type="url" size="80" name="leafext_dsgvo[mapurl]" value="'.$image.'" /><p>URL to Background Image</p>';
+	echo '<input type="url" size="80" name="leafext_dsgvo[mapurl]" value="'.$image.'" /><p>'.__('URL to Background Image','extensions-leaflet-map-dsgvo').'</p>';
 }
 
 function leafext_dsgvo_form_cookie() {
@@ -95,10 +95,10 @@ function leafext_dsgvo_form_count() {
 	$count = ( is_array ($options) && isset($options['count']) ) ? filter_var($options['count'],FILTER_VALIDATE_BOOLEAN) : false;
 	echo '<input type="radio" name="leafext_dsgvo[count]" value="1" ';
 	echo $count ? 'checked' : '' ;
-	echo '> each map &nbsp;&nbsp; ';
+	echo '> '.__('each map','extensions-leaflet-map-dsgvo').' &nbsp;&nbsp; ';
 	echo '<input type="radio" name="leafext_dsgvo[count]" value="0" ';
 	echo (!$count) ? 'checked' : '' ;
-	echo '> only first ';
+	echo '> '.__('only first','extensions-leaflet-map-dsgvo').' ';
 }
 
 // Sanitize and validate input. Accepts an array, return a sanitized array.
@@ -135,8 +135,8 @@ function leafext_dsgvo_help() {
 	);
  	$text = preg_replace($suchmuster, $ersetzung, $text);
 	echo '<div style="width:80%">'.$text.'</div>';
-	echo '<h3>Einstellungen / Settings</h3>';
-	echo '<p>Teste es in einem privaten Browserfenster. / Test it in a private browser window.';
+	echo '<h3>'.__('Settings','extensions-leaflet-map-dsgvo').'</h3>';
+	echo '<p>'.__('Test it in a private browser window.','extensions-leaflet-map-dsgvo');
 }
 
 // Draw the menu page itself
@@ -145,6 +145,6 @@ function leafext_dsgvo_do_page (){
 	settings_fields('leafext_dsgvo');
 	do_settings_sections( 'leafext_dsgvo' );
 	submit_button();
-	submit_button( __( 'Reset', 'extensions-leaflet-map' ), 'delete', 'delete', false);
+	submit_button( __( 'Reset', 'extensions-leaflet-map-dsgvo' ), 'delete', 'delete', false);
 	echo '</form>';
 }

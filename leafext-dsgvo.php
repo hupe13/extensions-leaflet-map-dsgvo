@@ -5,8 +5,10 @@
  * Plugin URI:  https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch: main
- * Version:     221010
+ * Version:     221015
  * Author:      hupe13
+ * Text Domain: extensions-leaflet-map-dsgvo
+ * Domain Path: /lang/
 **/
 
 // Direktzugriff auf diese Datei verhindern:
@@ -14,6 +16,14 @@ defined( 'ABSPATH' ) or die();
 
 define('LEAFEXT_DSGVO_PLUGIN_DIR', plugin_dir_path(__FILE__)); // /pfad/wp-content/plugins/plugin/
 define('LEAFEXT_DSGVO_PLUGIN_URL', WP_PLUGIN_URL . '/' . basename (LEAFEXT_DSGVO_PLUGIN_DIR)); // https://url/wp-content/plugins/plugin/
+
+// for translating a plugin
+function leafext_dsgvo_textdomain() {
+  if (get_locale() == 'de_DE') {
+    load_plugin_textdomain('extensions-leaflet-map-dsgvo', false, basename(plugin_dir_path( __FILE__ )) . '/lang/');
+  }
+}
+add_action( 'plugins_loaded', 'leafext_dsgvo_textdomain' );
 
 // Add settings to plugin page
 function leafext_add_action_dsgvo_links ( $actions ) {
@@ -24,10 +34,8 @@ add_filter( 'plugin_action_links_' . plugin_basename(__FILE__), 'leafext_add_act
 
 // Passe diesen Text im Admin Interface an.
 function leafext_okay() {
-  $defaulttext =
-    'Bei der Verwendung der Karten werden Inhalte von Drittservern geladen. '.
-    'Wenn Du dem zustimmst, wird ein Cookie gesetzt und dieser Hinweis ausgeblendet. '.
-    'Wenn nicht, werden Dir keine Karten angezeigt.';
+  $defaulttext = __(
+    'When using the maps, content is loaded from third-party servers. If you agree to this, a cookie will be set and this notice will be hidden. If not, no maps will be displayed.','extensions-leaflet-map-dsgvo');
   $options = get_option( 'leafext_dsgvo' );
   if ( ! $options ) return $defaulttext;
   if ( ! is_array ($options) ) return $options;

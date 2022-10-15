@@ -1,5 +1,9 @@
 ###  221010
 
+* Übersetzung
+
+###  221010
+
 * dequeue leaflet-map
 
 ###  221007
@@ -13,4 +17,4 @@
 ###  220518
 
 * WordPress 6
-* Cookie livetime
+* Cookie lifetime
