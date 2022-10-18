@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: DSGVO Snippet for Extensions for Leaflet Map\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-15 15:43+0000\n"
-"PO-Revision-Date: 2022-10-15 18:29+0000\n"
+"PO-Revision-Date: 2022-10-18 15:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "DSGVO Snippet for Extensions for Leaflet Map"
 msgstr ""
 
-#: admin.php:98
+#: admin.php:106
 msgid "each map"
 msgstr "auf jeder Karte"
 
@@ -32,15 +32,15 @@ msgstr ""
 msgid "hupe13"
 msgstr ""
 
-#: admin.php:101
+#: admin.php:109
 msgid "only first"
 msgstr "nur auf der ersten Karte"
 
-#: admin.php:148
+#: admin.php:164
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: admin.php:138
+#: admin.php:154
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -52,11 +52,15 @@ msgstr ""
 "Soll der Text auf jeder Karte der Seite angezeigt werden oder nur auf der "
 "ersten Karte?"
 
-#: admin.php:139
+#: admin.php:72
+msgid "Submit Button"
+msgstr "Formular absenden"
+
+#: admin.php:155
 msgid "Test it in a private browser window."
 msgstr "Teste es in einem privaten Browserfenster."
 
-#: admin.php:83
+#: admin.php:91
 msgid "URL to Background Image"
 msgstr "URL des Hintergrundbildes"
 

@@ -69,7 +69,7 @@ function leafext_dsgvo_init(){
 
 	add_settings_field(
 		"leafext_dsgvo_okay",
-		__('Okay','extensions-leaflet-map-dsgvo'),
+		__('Submit Button','extensions-leaflet-map-dsgvo'),
 		'leafext_dsgvo_form_okay',
 		$page,
 		$settings_section,

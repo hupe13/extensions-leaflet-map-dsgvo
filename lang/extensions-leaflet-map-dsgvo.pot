@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DSGVO Snippet for Extensions for Leaflet Map\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-15 18:28+0000\n"
+"POT-Creation-Date: 2022-10-18 15:53+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "DSGVO Snippet for Extensions for Leaflet Map"
 msgstr ""
 
-#: admin.php:98
+#: admin.php:106
 msgid "each map"
 msgstr ""
 
@@ -33,15 +33,15 @@ msgstr ""
 msgid "hupe13"
 msgstr ""
 
-#: admin.php:101
+#: admin.php:109
 msgid "only first"
 msgstr ""
 
-#: admin.php:148
+#: admin.php:164
 msgid "Reset"
 msgstr ""
 
-#: admin.php:138
+#: admin.php:154
 msgid "Settings"
 msgstr ""
 
@@ -51,11 +51,15 @@ msgid ""
 "map?"
 msgstr ""
 
-#: admin.php:139
+#: admin.php:72
+msgid "Submit Button"
+msgstr ""
+
+#: admin.php:155
 msgid "Test it in a private browser window."
 msgstr ""
 
-#: admin.php:83
+#: admin.php:91
 msgid "URL to Background Image"
 msgstr ""
 
