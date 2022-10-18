@@ -5,7 +5,7 @@
  * Plugin URI:  https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch: main
- * Version:     221015
+ * Version:     221018
  * Author:      hupe13
  * Text Domain: extensions-leaflet-map-dsgvo
  * Domain Path: /lang/
@@ -53,7 +53,13 @@ function leafext_setcookie() {
   $request_method = strtolower($_SERVER['REQUEST_METHOD']);
   if ( $request_method == 'post' && !empty($_POST["leafext_button"])) {
     //array(1) { ["leafext_button"]=> string(4) "Okay" }
-    if ( $_POST["leafext_button"] == "Okay" ) {
+    $options = get_option( 'leafext_dsgvo' );
+    if ( is_array ($options) && isset($options['okay']) ) {
+      $okay = $options['okay'];
+    } else {
+      $okay = "Okay";
+    }
+    if ( $_POST["leafext_button"] == $okay ) {
       $cookie = "365";
       $options = get_option( 'leafext_dsgvo' );
       if ( is_array ($options) && isset($options['cookie']) ) $cookie = $options['cookie'];
@@ -80,12 +86,16 @@ function leafext_query_cookie( $output, $tag ) {
 
   $form = '<form action="" method="post">';
   $form = $form.leafext_okay();
+  $options = get_option( 'leafext_dsgvo' );
+  if ( is_array ($options) && isset($options['okay']) ) {
+    $okay = $options['okay'];
+  } else {
+    $okay = "Okay";
+  }
   $form = $form.
     '<p class="submit" style="display:flex; justify-content: center; align-items: center;">
-    <input type="submit" value="Okay" name="leafext_button" /></p>
+    <input type="submit" value="'.$okay.'" name="leafext_button" /></p>
     </form>';
-  $options = get_option( 'leafext_dsgvo');
-
   if (!isset($leafext_okay)) {
     $leafext_okay = true;
     global $shortcode_tags;

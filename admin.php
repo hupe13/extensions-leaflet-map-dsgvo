@@ -66,6 +66,14 @@ function leafext_dsgvo_init(){
 		$page,
 		$settings_section,
 	);
+
+	add_settings_field(
+		"leafext_dsgvo_okay",
+		__('Okay','extensions-leaflet-map-dsgvo'),
+		'leafext_dsgvo_form_okay',
+		$page,
+		$settings_section,
+	);
 }
 add_action( 'admin_init', 'leafext_dsgvo_init' );
 
@@ -101,6 +109,13 @@ function leafext_dsgvo_form_count() {
 	echo '> '.__('only first','extensions-leaflet-map-dsgvo').' ';
 }
 
+function leafext_dsgvo_form_okay() {
+	$options = get_option( 'leafext_dsgvo' );
+	$okay="Okay";
+	if ( is_array ($options) && isset($options['okay']) ) $okay = $options['okay'];
+	echo '<input type="text" size="10" placeholder="'.$okay.'" name="leafext_dsgvo[okay]" value="'.esc_attr($okay).'" />';
+}
+
 // Sanitize and validate input. Accepts an array, return a sanitized array.
 function leafext_validate_dsgvo($options) {
 	if (isset($_POST['submit'])) {
@@ -109,6 +124,7 @@ function leafext_validate_dsgvo($options) {
 		$options['text'] = wp_kses_normalize_entities ( $options['text'] );
 		$options['mapurl'] = sanitize_text_field ( $options['mapurl'] );
 		$options['count'] = $options['count'];
+		$options['okay'] = wp_kses_normalize_entities ( $options['okay'] );
 		return $options;
 	}
 	if (isset($_POST['delete'])) delete_option('leafext_dsgvo');
