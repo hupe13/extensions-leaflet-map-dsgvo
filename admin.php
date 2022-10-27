@@ -8,8 +8,8 @@ function leafext_dsgvo_add_page() {
 	//Add Submenu
 	$leafext_admin_page = add_submenu_page(
 		'leaflet-map',
-		'Extensions for Leaflet Map Options DSGVO',
-		'Extensions for Leaflet Map DSGVO',
+		__('Leaflet Map Options GDPR','extensions-leaflet-map-dsgvo'),
+		__('Leaflet Map GDPR','extensions-leaflet-map-dsgvo'),
 		'manage_options',
 		$leafext_plugin_name,
 		'leafext_dsgvo_do_page'

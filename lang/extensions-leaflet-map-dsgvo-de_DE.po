@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: DSGVO Snippet for Extensions for Leaflet Map\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-15 15:43+0000\n"
-"PO-Revision-Date: 2022-10-18 15:55+0000\n"
+"PO-Revision-Date: 2022-10-27 11:46+0000\n"
 "Last-Translator: \n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -30,7 +30,15 @@ msgstr ""
 
 #. Author of the plugin
 msgid "hupe13"
-msgstr ""
+msgstr "hupe13"
+
+#: admin.php:12
+msgid "Leaflet Map GDPR"
+msgstr "Leaflet Map DSGVO"
+
+#: admin.php:11
+msgid "Leaflet Map Options GDPR"
+msgstr "Leaflet Map Options DSGVO"
 
 #: admin.php:109
 msgid "only first"
