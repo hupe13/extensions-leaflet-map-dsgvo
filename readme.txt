@@ -18,7 +18,6 @@ Dieses kleine Snippet holt die Zustimmung des Nutzers zum Laden der Karten ein.
 Du kannst den Text anpassen und es auf eigene Verantwortung verwenden.
 
 Lade das ZIP-File herunter und installiere es auf der Pluginseite Deiner Wordpress-Installation. Konfiguriere seine Einstellungen unter Leaflet Map -> Leaflet Map DSGVO.
-Um Updates zu erhalten, kannst du den [Git Updater](https://github.com/afragen/git-updater) verwenden.
 
 ### GDPR
 
@@ -31,4 +30,3 @@ You can customize the text and use it on your own responsibility.
 
 Download the ZIP file and install it on the plugin page of your WordPress installation.
 Configure its settings at Leaflet Map -> Leaflet Map GDPR.
-To get updates, you can use the [Git Updater](https://github.com/afragen/git-updater).
