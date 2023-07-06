@@ -1,3 +1,8 @@
+###  230706
+
+* Bug Cookie lifetime
+* WP 6.2
+
 ###  221027
 
 * WP 6.1

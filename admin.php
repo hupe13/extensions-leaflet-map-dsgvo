@@ -92,10 +92,15 @@ function leafext_dsgvo_form_mapurl() {
 }
 
 function leafext_dsgvo_form_cookie() {
-	$cookie = "365";
-  $options = get_option( 'leafext_dsgvo' );
-  if ( is_array ($options) && isset($options['cookie']) ) $cookie = $options['cookie'];
-	echo '<input type="number" size="3" max="365" name="leafext_dsgvo[cookie]" placeholder="'.$cookie.'">';
+	$options = get_option( 'leafext_dsgvo' );
+	if ( is_array ($options) && isset($options['cookie']) && (int)$options['cookie'] > 0 ) {
+		$cookie = $options['cookie'];
+		$form = 'value="'.$cookie.'"';
+	} else {
+		$cookie = "365";
+		$form = 'placeholder="'.$cookie.'"';
+	}
+	echo '<input type="number" size="3" max="365" name="leafext_dsgvo[cookie]" '.$form.'">';
 }
 
 function leafext_dsgvo_form_count() {
@@ -120,7 +125,7 @@ function leafext_dsgvo_form_okay() {
 function leafext_validate_dsgvo($options) {
 	if (isset($_POST['submit'])) {
 		//var_dump($options); wp_die();
-		if ($options['cookie'] == "0" || $options['cookie'] == "" ) $options['cookie'] = "365";
+		if ($options['cookie'] == "0" || $options['cookie'] == "" )	$options['cookie'] = "365";
 		$options['text'] = wp_kses_normalize_entities ( $options['text'] );
 		$options['mapurl'] = sanitize_text_field ( $options['mapurl'] );
 		$options['count'] = $options['count'];

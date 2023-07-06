@@ -5,7 +5,7 @@
  * Plugin URI:  https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch: main
- * Version:     221027
+ * Version:     230706
  * Author:      hupe13
  * Text Domain: extensions-leaflet-map-dsgvo
  * Domain Path: /lang/
