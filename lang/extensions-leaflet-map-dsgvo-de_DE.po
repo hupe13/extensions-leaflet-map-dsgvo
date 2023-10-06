@@ -3,9 +3,9 @@ msgstr ""
 "Project-Id-Version: DSGVO Snippet for Extensions for Leaflet Map\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-15 15:43+0000\n"
-"PO-Revision-Date: 2022-10-27 11:46+0000\n"
+"PO-Revision-Date: 2023-10-06 16:16+0000\n"
 "Last-Translator: \n"
-"Language-Team: Deutsch\n"
+"Language-Team: German\n"
 "Language: de_DE\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "MIME-Version: 1.0\n"
@@ -15,18 +15,22 @@ msgstr ""
 "X-Loco-Version: 2.6.2; wp-6.0.2\n"
 "X-Domain: extensions-leaflet-map-dsgvo"
 
+#: admin.php:103
+msgid "days"
+msgstr "Tage"
+
 #. Name of the plugin
 #. Description of the plugin
 msgid "DSGVO Snippet for Extensions for Leaflet Map"
-msgstr ""
+msgstr "DSGVO Snippet for Extensions for Leaflet Map"
 
-#: admin.php:106
+#: admin.php:111
 msgid "each map"
 msgstr "auf jeder Karte"
 
 #. URI of the plugin
 msgid "https://github.com/hupe13/extensions-leaflet-map-dsgvo"
-msgstr ""
+msgstr "https://github.com/hupe13/extensions-leaflet-map-dsgvo"
 
 #. Author of the plugin
 msgid "hupe13"
@@ -40,15 +44,15 @@ msgstr "Leaflet Map DSGVO"
 msgid "Leaflet Map Options GDPR"
 msgstr "Leaflet Map Options DSGVO"
 
-#: admin.php:109
+#: admin.php:114
 msgid "only first"
 msgstr "nur auf der ersten Karte"
 
-#: admin.php:164
+#: admin.php:169
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: admin.php:154
+#: admin.php:159
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -64,7 +68,7 @@ msgstr ""
 msgid "Submit Button"
 msgstr "Formular absenden"
 
-#: admin.php:155
+#: admin.php:160
 msgid "Test it in a private browser window."
 msgstr "Teste es in einem privaten Browserfenster."
 

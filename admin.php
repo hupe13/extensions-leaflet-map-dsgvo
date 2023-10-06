@@ -88,7 +88,8 @@ function leafext_dsgvo_form_mapurl() {
 	$image="";
   $options = get_option( 'leafext_dsgvo' );
   if ( is_array ($options) && $options['mapurl'] != "" ) $image=$options['mapurl'];
-	echo '<input type="url" size="80" name="leafext_dsgvo[mapurl]" value="'.$image.'" /><p>'.__('URL to Background Image','extensions-leaflet-map-dsgvo').'</p>';
+	$placeholder = ($image == "") ? LEAFEXT_DSGVO_PLUGIN_URL.'/map.png' : $image;
+	echo '<input type="url" size="80" placeholder="'.$placeholder.'" name="leafext_dsgvo[mapurl]" value="'.$image.'" /><p>'.__('URL to Background Image','extensions-leaflet-map-dsgvo').'</p>';
 }
 
 function leafext_dsgvo_form_cookie() {
@@ -100,7 +101,7 @@ function leafext_dsgvo_form_cookie() {
 		$cookie = "365";
 		$form = 'placeholder="'.$cookie.'"';
 	}
-	echo '<input type="number" size="3" max="365" name="leafext_dsgvo[cookie]" '.$form.'">';
+	echo '<input type="number" size="3" max="365" name="leafext_dsgvo[cookie]" '.$form.'"> '.__('days','extensions-leaflet-map-dsgvo');
 }
 
 function leafext_dsgvo_form_count() {

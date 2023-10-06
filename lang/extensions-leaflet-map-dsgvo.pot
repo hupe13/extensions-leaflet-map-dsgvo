@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DSGVO Snippet for Extensions for Leaflet Map\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-27 11:45+0000\n"
+"POT-Creation-Date: 2023-10-06 17:49+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -13,15 +13,19 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.2; wp-6.0.2\n"
+"X-Loco-Version: 2.6.6; wp-6.3.1\n"
 "X-Domain: extensions-leaflet-map-dsgvo"
+
+#: admin.php:104
+msgid "days"
+msgstr ""
 
 #. Name of the plugin
 #. Description of the plugin
 msgid "DSGVO Snippet for Extensions for Leaflet Map"
 msgstr ""
 
-#: admin.php:106
+#: admin.php:112
 msgid "each map"
 msgstr ""
 
@@ -41,15 +45,15 @@ msgstr ""
 msgid "Leaflet Map Options GDPR"
 msgstr ""
 
-#: admin.php:109
+#: admin.php:115
 msgid "only first"
 msgstr ""
 
-#: admin.php:164
+#: admin.php:170
 msgid "Reset"
 msgstr ""
 
-#: admin.php:154
+#: admin.php:160
 msgid "Settings"
 msgstr ""
 
@@ -63,11 +67,11 @@ msgstr ""
 msgid "Submit Button"
 msgstr ""
 
-#: admin.php:155
+#: admin.php:161
 msgid "Test it in a private browser window."
 msgstr ""
 
-#: admin.php:91
+#: admin.php:92
 msgid "URL to Background Image"
 msgstr ""
 
