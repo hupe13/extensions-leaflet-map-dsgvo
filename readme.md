@@ -1,9 +1,9 @@
 # DSGVO/GDPR Snippet for Leaflet Map and it's Extensions
 
-Tested up to: 6.3  
-License: GPLv2 or later  
-Tags: dsgvo, gdpr  
-Contributors: hupe13  
+Contributors: hupe13    
+Tags: dsgvo, gdpr   
+Tested up to: 6.4     
+License: GPLv2 or later
 
 ## Description
 
