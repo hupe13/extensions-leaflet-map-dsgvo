@@ -51,7 +51,6 @@ function leafext_setcookie() {
   $leafext_cookie = false;
   $request_method = strtolower($_SERVER['REQUEST_METHOD']);
   if ( $request_method == 'post' && !empty($_POST["leafext_button"])) {
-    check_admin_referer('leafext_dsgvo', 'leafext_dsgvo_okay');
     //array(1) { ["leafext_button"]=> string(4) "Okay" }
     $options = get_option( 'leafext_dsgvo' );
     if ( is_array ($options) && isset($options['okay']) ) {
@@ -85,7 +84,6 @@ function leafext_query_cookie( $output, $tag ) {
 global $leafext_okay;
 
 $form = '<form action="" method="post">';
-$form = $form.wp_nonce_field( 'leafext_dsgvo', 'leafext_dsgvo_okay' );
 $form = $form.leafext_okay();
 $options = get_option( 'leafext_dsgvo' );
 if ( is_array ($options) && isset($options['okay']) ) {
