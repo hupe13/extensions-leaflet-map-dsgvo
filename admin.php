@@ -90,7 +90,9 @@ function leafext_dsgvo_form_mapurl() {
 	if ( is_array ($options) && $options['mapurl'] != "" ) $image=$options['mapurl'];
 	$placeholder = ($image == "") ? LEAFEXT_DSGVO_PLUGIN_URL.'/map.png' : $image;
 	echo '<input type="url" size="80" placeholder="'.esc_textarea($placeholder).'" name="leafext_dsgvo[mapurl]" value="'.esc_url($image).
-	'" /><p>'.__('URL to Background Image','extensions-leaflet-map-dsgvo').'</p>';
+	'" /><p>';
+	esc_html_e('URL to Background Image','extensions-leaflet-map-dsgvo');
+	echo '</p>';
 }
 
 function leafext_dsgvo_form_cookie() {
@@ -102,7 +104,8 @@ function leafext_dsgvo_form_cookie() {
 		$cookie = "365";
 		$form = 'placeholder="'.$cookie.'"';
 	}
-	echo '<input type="number" size="5" min="1" max="365" name="leafext_dsgvo[cookie]" '.$form.'"> '.__('days','extensions-leaflet-map-dsgvo');
+	echo '<input type="number" size="5" min="1" max="365" name="leafext_dsgvo[cookie]" '.esc_attr($form).'> ';
+	esc_html_e('days','extensions-leaflet-map-dsgvo');
 }
 
 function leafext_dsgvo_form_count() {
@@ -110,17 +113,21 @@ function leafext_dsgvo_form_count() {
 	$count = ( is_array ($options) && isset($options['count']) ) ? filter_var($options['count'],FILTER_VALIDATE_BOOLEAN) : false;
 	echo '<input type="radio" name="leafext_dsgvo[count]" value="1" ';
 	echo $count ? 'checked' : '' ;
-	echo '> '.__('each map','extensions-leaflet-map-dsgvo').' &nbsp;&nbsp; ';
+	echo '> ';
+	esc_html_e('each map','extensions-leaflet-map-dsgvo');
+	echo ' &nbsp;&nbsp; ';
 	echo '<input type="radio" name="leafext_dsgvo[count]" value="0" ';
 	echo (!$count) ? 'checked' : '' ;
-	echo '> '.__('only first','extensions-leaflet-map-dsgvo').' ';
+	echo '> ';
+	esc_html_e('only first','extensions-leaflet-map-dsgvo');
+	echo ' ';
 }
 
 function leafext_dsgvo_form_okay() {
 	$options = get_option( 'leafext_dsgvo' );
 	$okay="Okay";
 	if ( is_array ($options) && isset($options['okay']) ) $okay = $options['okay'];
-	echo '<input type="text" size="10" placeholder="'.$okay.'" name="leafext_dsgvo[okay]" value="'.esc_attr($okay).'" />';
+	echo '<input type="text" size="10" placeholder="'.esc_textarea($okay).'" name="leafext_dsgvo[okay]" value="'.esc_textarea($okay).'" />';
 }
 
 // Sanitize and validate input. Accepts an array, return a sanitized array.
@@ -165,9 +172,14 @@ function leafext_dsgvo_help() {
 			'<br>',
 		);
 		$text = preg_replace($suchmuster, $ersetzung, $text);
-		echo '<div style="width:80%">'.$text.'</div>';
-		echo '<h3>'.__('Settings','extensions-leaflet-map-dsgvo').'</h3>';
-		echo '<p>'.__('Test it in a private browser window.','extensions-leaflet-map-dsgvo');
+		//https://wp-mix.com/allowed-html-tags-wp_kses/
+		$allowed_tags = wp_kses_allowed_html('post');
+		echo '<div style="width:80%">'.wp_kses($text,$allowed_tags).'</div>';
+		echo '<h3>';
+		esc_html_e('Settings','extensions-leaflet-map-dsgvo');
+		echo '</h3>';
+		echo '<p>';
+		esc_html_e('Test it in a private browser window.','extensions-leaflet-map-dsgvo');
 	} else {
 		echo "Error";
 	}
