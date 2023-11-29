@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DSGVO Snippet for Extensions for Leaflet Map\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-10-06 17:49+0000\n"
+"POT-Creation-Date: 2023-11-29 19:45+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -13,10 +13,14 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.6; wp-6.3.1\n"
+"X-Loco-Version: 2.6.6; wp-6.4.1\n"
 "X-Domain: extensions-leaflet-map-dsgvo"
 
-#: admin.php:104
+#: leafext-dsgvo.php:54
+msgid "Cookie Lifetime"
+msgstr ""
+
+#: admin.php:62
 msgid "days"
 msgstr ""
 
@@ -25,7 +29,7 @@ msgstr ""
 msgid "DSGVO Snippet for Extensions for Leaflet Map"
 msgstr ""
 
-#: admin.php:112
+#: admin.php:68
 msgid "each map"
 msgstr ""
 
@@ -45,37 +49,45 @@ msgstr ""
 msgid "Leaflet Map Options GDPR"
 msgstr ""
 
-#: admin.php:115
+#: leafext-dsgvo.php:45
+msgid "Okay"
+msgstr ""
+
+#: admin.php:73
 msgid "only first"
 msgstr ""
 
-#: admin.php:170
+#: admin.php:156
 msgid "Reset"
 msgstr ""
 
-#: admin.php:160
+#: admin.php:140
 msgid "Settings"
 msgstr ""
 
-#: admin.php:64
+#: leafext-dsgvo.php:59
 msgid ""
 "Should the text be displayed on each map of the page or only on the first "
 "map?"
 msgstr ""
 
-#: admin.php:72
+#: leafext-dsgvo.php:44
 msgid "Submit Button"
 msgstr ""
 
-#: admin.php:161
+#: admin.php:143
 msgid "Test it in a private browser window."
 msgstr ""
 
-#: admin.php:92
+#: leafext-dsgvo.php:39
+msgid "Text"
+msgstr ""
+
+#: leafext-dsgvo.php:49
 msgid "URL to Background Image"
 msgstr ""
 
-#: leafext-dsgvo.php:37
+#: leafext-dsgvo.php:40
 msgid ""
 "When using the maps, content is loaded from third-party servers. If you "
 "agree to this, a cookie will be set and this notice will be hidden. If not, "

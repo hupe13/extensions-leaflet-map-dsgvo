@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: DSGVO Snippet for Extensions for Leaflet Map\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-15 15:43+0000\n"
-"PO-Revision-Date: 2023-10-06 16:16+0000\n"
+"PO-Revision-Date: 2023-11-28 18:53+0000\n"
 "Last-Translator: \n"
 "Language-Team: German\n"
 "Language: de_DE\n"
@@ -15,7 +15,11 @@ msgstr ""
 "X-Loco-Version: 2.6.2; wp-6.0.2\n"
 "X-Domain: extensions-leaflet-map-dsgvo"
 
-#: admin.php:103
+#: leafext-dsgvo.php:54
+msgid "Cookie Lifetime"
+msgstr "Lebensdauer des Cookies"
+
+#: admin.php:62
 msgid "days"
 msgstr "Tage"
 
@@ -24,7 +28,7 @@ msgstr "Tage"
 msgid "DSGVO Snippet for Extensions for Leaflet Map"
 msgstr "DSGVO Snippet for Extensions for Leaflet Map"
 
-#: admin.php:111
+#: admin.php:68
 msgid "each map"
 msgstr "auf jeder Karte"
 
@@ -44,19 +48,23 @@ msgstr "Leaflet Map DSGVO"
 msgid "Leaflet Map Options GDPR"
 msgstr "Leaflet Map Options DSGVO"
 
-#: admin.php:114
+#: leafext-dsgvo.php:45
+msgid "Okay"
+msgstr "Okay"
+
+#: admin.php:73
 msgid "only first"
 msgstr "nur auf der ersten Karte"
 
-#: admin.php:169
+#: admin.php:156
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: admin.php:159
+#: admin.php:140
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: admin.php:64
+#: leafext-dsgvo.php:59
 msgid ""
 "Should the text be displayed on each map of the page or only on the first "
 "map?"
@@ -64,19 +72,23 @@ msgstr ""
 "Soll der Text auf jeder Karte der Seite angezeigt werden oder nur auf der "
 "ersten Karte?"
 
-#: admin.php:72
+#: leafext-dsgvo.php:44
 msgid "Submit Button"
 msgstr "Formular absenden"
 
-#: admin.php:160
+#: admin.php:143
 msgid "Test it in a private browser window."
 msgstr "Teste es in einem privaten Browserfenster."
 
-#: admin.php:91
+#: leafext-dsgvo.php:39
+msgid "Text"
+msgstr "Text"
+
+#: leafext-dsgvo.php:49
 msgid "URL to Background Image"
 msgstr "URL des Hintergrundbildes"
 
-#: leafext-dsgvo.php:37
+#: leafext-dsgvo.php:40
 #| msgid ""
 #| "When using the maps, content is loaded from third-party servers.\n"
 #| "    If you agree to this, a cookie will be set and this notice will be "
