@@ -1,3 +1,7 @@
+###  240106
+
+* Support Polylang and TTfP
+
 ###  231129
 
 * komplette Überarbeitung
