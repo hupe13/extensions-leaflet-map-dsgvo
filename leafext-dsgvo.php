@@ -205,7 +205,7 @@ if ( is_admin() ) {
 		$my_update_checker->setBranch( 'main' );
 
 		$setting = get_option( 'leafext_dsgvo', false );
-		if ( $setting && $setting['token'] != '' ) {
+		if ( $setting && isset($setting['token']) && $setting['token'] != '' ) {
 			// Optional: If you're using a private repository, specify the access token like this:
 			$my_update_checker->setAuthentication( $setting['token'] );
 		}
