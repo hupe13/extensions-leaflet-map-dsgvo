@@ -1,3 +1,8 @@
+###  240305
+
+* leafext cookie samesite => Strict
+* Updates with https://github.com/YahnisElsts/plugin-update-checker
+
 ###  240106
 
 * Support Polylang and TTfP

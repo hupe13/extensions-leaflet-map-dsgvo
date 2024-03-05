@@ -5,7 +5,7 @@
  * Plugin URI:  https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch: main
- * Version:     240106
+ * Version:     240305
  * Author:      hupe13
  * Text Domain: extensions-leaflet-map-dsgvo
  * Domain Path: /lang/
@@ -16,6 +16,7 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
+define( 'LEAFEXT_DSGVO_PLUGIN_FILE', __FILE__ ); // /pfad/wp-content/plugins/extensions-leaflet-map-dsgvo/leafext-dsgvo.php .
 define( 'LEAFEXT_DSGVO_PLUGIN_DIR', plugin_dir_path( __FILE__ ) ); // /pfad/wp-content/plugins/plugin/
 define( 'LEAFEXT_DSGVO_PLUGIN_NAME', basename( LEAFEXT_DSGVO_PLUGIN_DIR ) ); // extensions-leaflet-map-dsgvo
 define( 'LEAFEXT_DSGVO_PLUGIN_URL', WP_PLUGIN_URL . '/' . LEAFEXT_DSGVO_PLUGIN_NAME ); // https://url/wp-content/plugins/plugin/
@@ -23,7 +24,7 @@ define( 'LEAFEXT_DSGVO_PLUGIN_URL', WP_PLUGIN_URL . '/' . LEAFEXT_DSGVO_PLUGIN_N
 // for translating a plugin
 function leafext_dsgvo_textdomain() {
 	if ( get_locale() == 'de_DE' ) {
-		load_plugin_textdomain( 'extensions-leaflet-map-dsgvo', false, '/extensions-leaflet-map-dsgvo/lang/' );
+		load_plugin_textdomain( 'extensions-leaflet-map-dsgvo', false, '/' . LEAFEXT_DSGVO_PLUGIN_NAME . '/lang/' );
 	}
 }
 add_action( 'init', 'leafext_dsgvo_textdomain' );
@@ -33,36 +34,50 @@ function leafext_add_action_dsgvo_links( $actions ) {
 	$actions[] = '<a href="' . esc_url( get_admin_url( null, 'admin.php?page=' . LEAFEXT_DSGVO_PLUGIN_NAME ) ) . '">' . esc_html__( 'Settings' ) . '</a>';
 	return $actions;
 }
-add_filter( 'plugin_action_links_' . LEAFEXT_DSGVO_PLUGIN_NAME, 'leafext_add_action_dsgvo_links' );
+add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'leafext_add_action_dsgvo_links' );
 
 function leafext_dsgvo_params() {
-	$params = array(
-		array(
+	$params = array();
+	if ( is_main_site() ) {
+		$params[] = array(
+			'param'   => 'token',
+			'desc'    => __( 'Github Token', 'extensions-leaflet-map-dsgvo' ),
+			'default' => '',
+		);
+	} else {
+		$params[] = array(
+			'param'   => 'null',
+			'desc'    => __( 'Github Token', 'extensions-leaflet-map-dsgvo' ),
+			'default' => '',
+		);
+	}
+	if ( defined( 'LEAFEXT_PLUGIN_DIR' ) ) {
+		$params[] = array(
 			'param'   => 'text',
 			'desc'    => __( 'Text', 'extensions-leaflet-map-dsgvo' ),
 			'default' => __( 'When using the maps, content is loaded from third-party servers. If you agree to this, a cookie will be set and this notice will be hidden. If not, no maps will be displayed.', 'extensions-leaflet-map-dsgvo' ),
-		),
-		array(
+		);
+		$params[] = array(
 			'param'   => 'okay',
 			'desc'    => __( 'Submit Button', 'extensions-leaflet-map-dsgvo' ),
 			'default' => __( 'Okay', 'extensions-leaflet-map-dsgvo' ),
-		),
-		array(
+		);
+		$params[] = array(
 			'param'   => 'mapurl',
 			'desc'    => __( 'URL to Background Image', 'extensions-leaflet-map-dsgvo' ),
 			'default' => LEAFEXT_DSGVO_PLUGIN_URL . '/map.png',
-		),
-		array(
+		);
+		$params[] = array(
 			'param'   => 'cookie',
 			'desc'    => __( 'Cookie Lifetime', 'extensions-leaflet-map-dsgvo' ),
 			'default' => '365',
-		),
-		array(
+		);
+		$params[] = array(
 			'param'   => 'count',
 			'desc'    => __( 'Should the text be displayed on each map of the page or only on the first map?', 'extensions-leaflet-map-dsgvo' ),
 			'default' => false,
-		),
-	);
+		);
+	}
 	return $params;
 }
 
@@ -90,81 +105,109 @@ function leafext_setcookie() {
 
 		$settings = leafext_dsgvo_settings();
 		if ( $_POST['leafext_button'] == $settings['okay'] ) {
-			setcookie( 'leafext', 1, time() + 3600 * 24 * $settings['cookie'], '/', $server['HTTP_HOST'], true, true );
+			// https://www.php.net/manual/en/function.setcookie.php#125242
+			$arr_cookie_options = array(
+				'expires'  => time() + 3600 * 24 * $settings['cookie'],
+				'path'     => '/',
+				'domain'   => $server['HTTP_HOST'],
+				'secure'   => true,
+				'httponly' => true,
+				'samesite' => 'Strict', // None || Lax  || Strict
+			);
+			setcookie( 'leafext', 1, $arr_cookie_options );
 			$leafext_cookie = true;
 		}
 	}
 }
 add_action( 'init', 'leafext_setcookie' );
 
-function leafext_query_cookie( $output, $tag ) {
-	$text = leafext_should_interpret_shortcode( $tag, array() );
-	if ( $text != '' ) {
-		// return $text;
-		return $output;
-	} else {
-		global $leafext_cookie;
-		if (
-		is_admin()
-		|| is_user_logged_in()
-		|| ( 'leaflet-map' !== $tag && 'sgpx' !== $tag )
-		|| isset( $_COOKIE['leafext'] )
-		|| $leafext_cookie
-		) {
+if ( strpos( implode( ' ', get_option( 'active_plugins', array() ) ), '/extensions-leaflet-map.php' ) !== false ) {
+	function leafext_query_cookie( $output, $tag ) {
+		$text = leafext_should_interpret_shortcode( $tag, array() );
+		if ( $text != '' ) {
 			return $output;
-		}
-		$form     = '<form action="" method="post">';
-		$form     = $form . wp_nonce_field( 'leafext_dsgvo', 'leafext_dsgvo_okay' );
-		$settings = leafext_dsgvo_settings();
-		$form     = $form . $settings['text'];
-		$form     = $form .
-		'<p class="submit" style="display:flex; justify-content: center; align-items: center;">
-    <input type="submit" value="' . $settings['okay'] . '" name="leafext_button" /></p>
-    </form>';
-
-		global $leafext_okay;
-		// var_dump($leafext_okay);
-		if ( ! isset( $leafext_okay ) ) {
-			$leafext_okay = true;
-			wp_dequeue_style( 'leaflet_stylesheet' );
-			wp_dequeue_script( 'wp_leaflet_map' );
-			wp_deregister_style( 'leaflet_stylesheet' );
-			wp_deregister_script( 'wp_leaflet_map' );
-			$text = $form;
 		} else {
-			$count = filter_var( $settings['count'], FILTER_VALIDATE_BOOLEAN );
-			if ( $count ) {
+			global $leafext_cookie;
+			if (
+				is_admin()
+				|| is_user_logged_in()
+				|| ( 'leaflet-map' !== $tag && 'sgpx' !== $tag )
+				|| isset( $_COOKIE['leafext'] )
+				|| $leafext_cookie
+			) {
+				return $output;
+			}
+			$form     = '<form action="" method="post">';
+			$form     = $form . wp_nonce_field( 'leafext_dsgvo', 'leafext_dsgvo_okay' );
+			$settings = leafext_dsgvo_settings();
+			$form     = $form . $settings['text'];
+			$form     = $form .
+			'<p class="submit" style="display:flex; justify-content: center; align-items: center;">
+			<input type="submit" value="' . $settings['okay'] . '" name="leafext_button" /></p>
+			</form>';
+
+			global $leafext_okay;
+			// var_dump($leafext_okay);
+			if ( ! isset( $leafext_okay ) ) {
+				$leafext_okay = true;
+				wp_dequeue_style( 'leaflet_stylesheet' );
+				wp_dequeue_script( 'wp_leaflet_map' );
+				wp_deregister_style( 'leaflet_stylesheet' );
+				wp_deregister_script( 'wp_leaflet_map' );
 				$text = $form;
 			} else {
-				$text = '';
+				$count = filter_var( $settings['count'], FILTER_VALIDATE_BOOLEAN );
+				if ( $count ) {
+					$text = $form;
+				} else {
+					$text = '';
+				}
 			}
-		}
-		// !isset($leafext_okay) end
+			// !isset($leafext_okay) end
 
-		// bei sgpx leaflet wird es 2x aufgerufen.
-		if ( $tag == 'sgpx' ) {
-			$output = do_shortcode( '[leaflet-map]' );
-			$text   = $form;
-		}
-
-		preg_match( '/linear-gradient|WPLeafletMap" style="height:1px;/', $output, $matches );
-
-		if ( count( $matches ) == 0 || $tag == 'sgpx' ) {
-			preg_match( '/style="[^"]+"/', $output, $matches );
-			if ( count( $matches ) == 0 ) {
-				$matches[0] = ' style=".';
+			// bei sgpx leaflet wird es 2x aufgerufen.
+			if ( $tag == 'sgpx' ) {
+				$output = do_shortcode( '[leaflet-map]' );
+				$text   = $form;
 			}
-			$output = '<div data-nosnippet ' . substr( $matches[0], 0, -1 ) .
-			';background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), ' .
-			'url(' . $settings['mapurl'] . '); background-position: center; ' .
-			'border: gray 2px solid; display:flex; justify-content: center; ' .
-			'align-items: center;"><div style="width: 70%;">' . $text . '</div></div>';
+
+			preg_match( '/linear-gradient|WPLeafletMap" style="height:1px;/', $output, $matches );
+
+			if ( count( $matches ) == 0 || $tag == 'sgpx' ) {
+				preg_match( '/style="[^"]+"/', $output, $matches );
+				if ( count( $matches ) == 0 ) {
+					$matches[0] = ' style=".';
+				}
+				$output = '<div data-nosnippet ' . substr( $matches[0], 0, -1 ) .
+				';background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), ' .
+				'url(' . $settings['mapurl'] . '); background-position: center; ' .
+				'border: gray 2px solid; display:flex; justify-content: center; ' .
+				'align-items: center;"><div style="width: 70%;">' . $text . '</div></div>';
+			}
+			return $output;
 		}
-		return $output;
 	}
+	add_filter( 'do_shortcode_tag', 'leafext_query_cookie', 10, 2 );
 }
-add_filter( 'do_shortcode_tag', 'leafext_query_cookie', 10, 2 );
 
+use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 if ( is_admin() ) {
 	include_once LEAFEXT_DSGVO_PLUGIN_DIR . 'admin.php';
+	if ( is_main_site() ) {
+		require_once LEAFEXT_DSGVO_PLUGIN_DIR . '/pkg/plugin-update-checker/plugin-update-checker.php';
+		$my_update_checker = PucFactory::buildUpdateChecker(
+			'https://github.com/hupe13/extensions-leaflet-map-dsgvo/',
+			__FILE__,
+			LEAFEXT_DSGVO_PLUGIN_NAME
+		);
+
+		//Set the branch that contains the stable release.
+		$my_update_checker->setBranch( 'main' );
+
+		$setting = get_option( 'leafext_dsgvo', false );
+		if ( $setting && $setting['token'] != '' ) {
+			// Optional: If you're using a private repository, specify the access token like this:
+			$my_update_checker->setAuthentication( $setting['token'] );
+		}
+	}
 }
