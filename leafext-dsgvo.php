@@ -1,14 +1,16 @@
 <?php
 /**
- * Plugin Name: DSGVO Snippet for Extensions for Leaflet Map
- * Description: DSGVO Snippet for Extensions for Leaflet Map
- * Plugin URI:  https://github.com/hupe13/extensions-leaflet-map-dsgvo
+ * Plugin Name:       DSGVO Snippet for Extensions for Leaflet Map
+ * Description:       DSGVO Snippet for Extensions for Leaflet Map
+ * Plugin URI:        https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
- * Primary Branch: main
- * Version:     240305
- * Author:      hupe13
- * Text Domain: extensions-leaflet-map-dsgvo
- * Domain Path: /lang/
+ * Primary Branch:    main
+ * Version:           240305
+ * Requires PHP:      7.4
+ * Author:            hupe13
+ * Author URI:        https://leafext.de/en/
+ * Text Domain:       extensions-leaflet-map-dsgvo
+ * Domain Path:       /lang/
  *
  * @package Extensions for Leaflet Map DSGVO
  **/
@@ -16,14 +18,14 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-define( 'LEAFEXT_DSGVO_PLUGIN_FILE', __FILE__ ); // /pfad/wp-content/plugins/extensions-leaflet-map-dsgvo/leafext-dsgvo.php .
+define( 'LEAFEXT_DSGVO_PLUGIN_FILE', __FILE__ ); // /pfad/wp-content/plugins/extensions-leaflet-map-dsgvo/leafext-dsgvo.php
 define( 'LEAFEXT_DSGVO_PLUGIN_DIR', plugin_dir_path( __FILE__ ) ); // /pfad/wp-content/plugins/plugin/
 define( 'LEAFEXT_DSGVO_PLUGIN_NAME', basename( LEAFEXT_DSGVO_PLUGIN_DIR ) ); // extensions-leaflet-map-dsgvo
 define( 'LEAFEXT_DSGVO_PLUGIN_URL', WP_PLUGIN_URL . '/' . LEAFEXT_DSGVO_PLUGIN_NAME ); // https://url/wp-content/plugins/plugin/
 
 // for translating a plugin
 function leafext_dsgvo_textdomain() {
-	if ( get_locale() == 'de_DE' ) {
+	if ( get_locale() === 'de_DE' ) {
 		load_plugin_textdomain( 'extensions-leaflet-map-dsgvo', false, '/' . LEAFEXT_DSGVO_PLUGIN_NAME . '/lang/' );
 	}
 }
@@ -98,13 +100,13 @@ function leafext_setcookie() {
 	$server  = map_deep( wp_unslash( $_SERVER ), 'sanitize_text_field' );
 	$request = map_deep( wp_unslash( $_REQUEST ), 'sanitize_text_field' );
 
-	if ( $server['REQUEST_METHOD'] == 'POST' && ! empty( $_POST['leafext_button'] ) ) {
+	if ( $server['REQUEST_METHOD'] === 'POST' && ! empty( $_POST['leafext_button'] ) ) {
 		if ( ! wp_verify_nonce( $request['leafext_dsgvo_okay'], 'leafext_dsgvo' ) ) {
 			wp_die( 'invalid', 404 );
 		}
 
 		$settings = leafext_dsgvo_settings();
-		if ( $_POST['leafext_button'] == $settings['okay'] ) {
+		if ( $_POST['leafext_button'] === $settings['okay'] ) {
 			// https://www.php.net/manual/en/function.setcookie.php#125242
 			$arr_cookie_options = array(
 				'expires'  => time() + 3600 * 24 * $settings['cookie'],
@@ -124,7 +126,7 @@ add_action( 'init', 'leafext_setcookie' );
 if ( strpos( implode( ' ', get_option( 'active_plugins', array() ) ), '/extensions-leaflet-map.php' ) !== false ) {
 	function leafext_query_cookie( $output, $tag ) {
 		$text = leafext_should_interpret_shortcode( $tag, array() );
-		if ( $text != '' ) {
+		if ( $text !== '' ) {
 			return $output;
 		} else {
 			global $leafext_cookie;
@@ -166,16 +168,16 @@ if ( strpos( implode( ' ', get_option( 'active_plugins', array() ) ), '/extensio
 			// !isset($leafext_okay) end
 
 			// bei sgpx leaflet wird es 2x aufgerufen.
-			if ( $tag == 'sgpx' ) {
+			if ( $tag === 'sgpx' ) {
 				$output = do_shortcode( '[leaflet-map]' );
 				$text   = $form;
 			}
 
 			preg_match( '/linear-gradient|WPLeafletMap" style="height:1px;/', $output, $matches );
 
-			if ( count( $matches ) == 0 || $tag == 'sgpx' ) {
+			if ( count( $matches ) === 0 || $tag === 'sgpx' ) {
 				preg_match( '/style="[^"]+"/', $output, $matches );
-				if ( count( $matches ) == 0 ) {
+				if ( count( $matches ) === 0 ) {
 					$matches[0] = ' style=".';
 				}
 				$output = '<div data-nosnippet ' . substr( $matches[0], 0, -1 ) .
@@ -201,11 +203,11 @@ if ( is_admin() ) {
 			LEAFEXT_DSGVO_PLUGIN_NAME
 		);
 
-		//Set the branch that contains the stable release.
+		// Set the branch that contains the stable release.
 		$my_update_checker->setBranch( 'main' );
 
 		$setting = get_option( 'leafext_dsgvo', false );
-		if ( $setting && isset($setting['token']) && $setting['token'] != '' ) {
+		if ( $setting && isset( $setting['token'] ) && $setting['token'] !== '' ) {
 			// Optional: If you're using a private repository, specify the access token like this:
 			$my_update_checker->setAuthentication( $setting['token'] );
 		}

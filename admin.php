@@ -71,7 +71,7 @@ function leafext_dsgvo_init() {
 add_action( 'admin_init', 'leafext_dsgvo_init' );
 
 function leafext_dsgvo_form( $field ) {
-	//var_dump($field);
+	// var_dump($field);
 	$options  = leafext_dsgvo_params();
 	$option   = leafext_array_find3( $field, $options );
 	$settings = leafext_dsgvo_settings();
@@ -84,7 +84,7 @@ function leafext_dsgvo_form( $field ) {
 	}
 	switch ( $field ) {
 		case 'token':
-			if ( $setting == '' ) {
+			if ( $setting === '' ) {
 				echo sprintf(
 					__( 'Maybe you need a %1$sGithub token%2$s to receive updates successfully.', 'extensions-leaflet-map-dsgvo' ),
 					'<a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">',
@@ -140,7 +140,7 @@ function leafext_validate_dsgvo( $options ) {
 		foreach ( $params as $param ) {
 			$defaults[ $param['param'] ] = $param['default'];
 		}
-		if ( isset( $options['cookie'] ) && ( $options['cookie'] == '0' || $options['cookie'] == '' ) ) {
+		if ( isset( $options['cookie'] ) && ( $options['cookie'] === '0' || $options['cookie'] === '' ) ) {
 			$options['cookie'] = '365';
 		}
 		if ( isset( $options['text'] ) ) {
@@ -157,7 +157,7 @@ function leafext_validate_dsgvo( $options ) {
 		}
 		$change = array();
 		foreach ( $options as $key => $value ) {
-			if ( $value != $defaults[ $key ] ) {
+			if ( $value !== $defaults[ $key ] ) {
 				$change[ $key ] = $value;
 			}
 		}
@@ -262,7 +262,7 @@ function leafext_dsgvo_do_page() {
 // Suche bestimmten Wert in array im admin interface
 function leafext_array_find3( $needle, $haystack ) {
 	foreach ( $haystack as $item ) {
-		if ( $item['param'] == $needle ) {
+		if ( $item['param'] === $needle ) {
 			return $item;
 		}
 	}
