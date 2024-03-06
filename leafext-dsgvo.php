@@ -1,7 +1,6 @@
 <?php
 /**
  * Plugin Name:       DSGVO Snippet for Extensions for Leaflet Map
- * Description:       DSGVO Snippet for Extensions for Leaflet Map
  * Plugin URI:        https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch:    main
