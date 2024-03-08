@@ -5,7 +5,7 @@
  * Plugin URI:        https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch:    main
- * Version:           240306
+ * Version:           240308
  * Requires PHP:      7.4
  * Author:            hupe13
  * Author URI:        https://leafext.de/en/
@@ -33,7 +33,7 @@ add_action( 'init', 'leafext_dsgvo_textdomain' );
 
 // Add settings to plugin page
 function leafext_add_action_dsgvo_links( $actions ) {
-	$actions[] = '<a href="' . esc_url( get_admin_url( null, 'admin.php?page=' . LEAFEXT_DSGVO_PLUGIN_NAME ) ) . '">' . esc_html__( 'Settings' ) . '</a>';
+	$actions[] = '<a href="' . admin_url( 'admin.php' ) . '?page=' . LEAFEXT_DSGVO_PLUGIN_NAME . '">' . esc_html__( 'Settings' ) . '</a>';
 	return $actions;
 }
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'leafext_add_action_dsgvo_links' );
@@ -53,7 +53,7 @@ function leafext_dsgvo_params() {
 			'default' => '',
 		);
 	}
-	if ( defined( 'LEAFEXT_PLUGIN_DIR' ) ) {
+	if ( is_plugin_active( 'leaflet-map/leaflet-map.php' ) ) {
 		$params[] = array(
 			'param'   => 'text',
 			'desc'    => __( 'Text', 'extensions-leaflet-map-dsgvo' ),
@@ -165,7 +165,6 @@ if ( strpos( implode( ' ', get_option( 'active_plugins', array() ) ), '/extensio
 					$text = '';
 				}
 			}
-			// !isset($leafext_okay) end
 
 			// bei sgpx leaflet wird es 2x aufgerufen.
 			if ( $tag === 'sgpx' ) {
@@ -197,19 +196,45 @@ if ( is_admin() ) {
 	include_once LEAFEXT_DSGVO_PLUGIN_DIR . 'admin.php';
 	if ( is_main_site() ) {
 		require_once LEAFEXT_DSGVO_PLUGIN_DIR . '/pkg/plugin-update-checker/plugin-update-checker.php';
-		$my_update_checker = PucFactory::buildUpdateChecker(
-			'https://github.com/hupe13/extensions-leaflet-map-dsgvo/',
-			__FILE__,
-			LEAFEXT_DSGVO_PLUGIN_NAME
-		);
-
-		// Set the branch that contains the stable release.
-		$my_update_checker->setBranch( 'main' );
-
-		$setting = get_option( 'leafext_dsgvo', false );
+		$perm_denied = get_transient( 'leafext_github_403' );
+		$setting     = get_option( 'leafext_dsgvo', false );
 		if ( $setting && isset( $setting['token'] ) && $setting['token'] !== '' ) {
-			// Optional: If you're using a private repository, specify the access token like this:
-			$my_update_checker->setAuthentication( $setting['token'] );
+			$token = $setting['token'];
+		} else {
+			$token = '';
+		}
+		if ( false === $perm_denied || ( false !== $perm_denied && $token !== '' ) ) {
+			$my_update_checker = PucFactory::buildUpdateChecker(
+				'https://github.com/hupe13/extensions-leaflet-map-dsgvo/',
+				__FILE__,
+				LEAFEXT_DSGVO_PLUGIN_NAME
+			);
+
+			// Set the branch that contains the stable release.
+			$my_update_checker->setBranch( 'main' );
+
+			if ( $token !== '' ) {
+				// Optional: If you're using a private repository, specify the access token like this:
+				$my_update_checker->setAuthentication( $token );
+			}
+
+			function leafext_puc_error( $error, $response = null, $url = null, $slug = null ) {
+				if ( isset( $slug ) && $slug !== LEAFEXT_DSGVO_PLUGIN_NAME ) {
+					return;
+				}
+				// var_dump($error->errors);
+				// var_dump($error->errors["puc-github-http-error"]);
+				// var_dump($error->errors["puc-github-http-error"][0]);
+				if ( $error->errors &&
+				isset( $error->errors['puc-github-http-error'] ) &&
+				is_array( $error->errors['puc-github-http-error'] ) ) {
+					if ( str_contains( $error->errors['puc-github-http-error'][0], 'HTTP status code: 403' ) ) {
+						// var_dump("Permission denied");
+						set_transient( 'leafext_github_403', true, DAY_IN_SECONDS );
+					}
+				}
+			}
+			add_action( 'puc_api_error', 'leafext_puc_error', 10, 4 );
 		}
 	}
 }

@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: DSGVO Snippet for Extensions for Leaflet Map\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-15 15:43+0000\n"
-"PO-Revision-Date: 2024-03-05 18:47+0000\n"
+"PO-Revision-Date: 2024-03-07 21:45+0000\n"
 "Last-Translator: \n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -15,15 +15,15 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.3\n"
 "X-Domain: extensions-leaflet-map-dsgvo"
 
-#: admin.php:230
+#: admin.php:253
 msgid "and"
 msgstr "und"
 
-#: leafext-dsgvo.php:72
+#: leafext-dsgvo.php:74
 msgid "Cookie Lifetime"
 msgstr "Lebensdauer des Cookies"
 
-#: admin.php:111
+#: admin.php:131
 msgid "days"
 msgstr "Tage"
 
@@ -32,23 +32,23 @@ msgstr "Tage"
 msgid "DSGVO Snippet for Extensions for Leaflet Map"
 msgstr "DSGVO Snippet for Extensions for Leaflet Map"
 
-#: admin.php:117
+#: admin.php:137
 msgid "each map"
 msgstr "auf jeder Karte"
 
-#: admin.php:228
+#: admin.php:251
 msgid "enable"
 msgstr "aktiviere"
 
-#: admin.php:232
+#: admin.php:255
 msgid "fill in your text"
 msgstr "trage deinen Text ein"
 
-#: leafext-dsgvo.php:44 leafext-dsgvo.php:50
+#: leafext-dsgvo.php:46 leafext-dsgvo.php:52
 msgid "Github Token"
 msgstr "Github Token"
 
-#: admin.php:224
+#: admin.php:247
 msgid "Go to"
 msgstr "Gehe zu"
 
@@ -56,11 +56,15 @@ msgstr "Gehe zu"
 msgid "https://github.com/hupe13/extensions-leaflet-map-dsgvo"
 msgstr "https://github.com/hupe13/extensions-leaflet-map-dsgvo"
 
+#. Author URI of the plugin
+msgid "https://leafext.de/en/"
+msgstr "https://leafext.de/en/"
+
 #. Author of the plugin
 msgid "hupe13"
 msgstr "hupe13"
 
-#: admin.php:98
+#: admin.php:118
 #, php-format
 msgid ""
 "If you want to receive updates in WordPress way, go to the %1$smain site "
@@ -70,48 +74,52 @@ msgstr ""
 "%1$sDashboard der Main Site%2$s, aktiviere dort das Plugin und setze ggf. "
 "ein Github-Token."
 
-#: admin.php:237
+#: admin.php:260
 #, php-format
 #| msgid "If you wish to translate these strings in"
 msgid "If you wish to translate these strings in %s use"
 msgstr "Wenn du diese Texte in %s übersetzen möchtest, verwende"
 
-#: admin.php:222
+#: admin.php:245
 msgid "is active."
 msgstr "ist aktiviert."
 
-#: admin.php:18
+#: admin.php:17
 msgid "Leaflet Map GDPR"
 msgstr "Leaflet Map DSGVO"
 
-#: admin.php:17
+#: admin.php:231
+msgid "Leaflet Map is not active."
+msgstr "Leaflet Map ist nicht aktiviert."
+
+#: admin.php:16
 msgid "Leaflet Map Options GDPR"
 msgstr "Leaflet Map Options DSGVO"
 
-#: admin.php:88
+#: admin.php:107
 #, php-format
 msgid "Maybe you need a %1$sGithub token%2$s to receive updates successfully."
 msgstr ""
 "Es kann sein, dass du ein %1$sGithub-Token%2$s benötigst, um erfolgreich "
 "Updates zu erhalten."
 
-#: leafext-dsgvo.php:63
+#: leafext-dsgvo.php:65
 msgid "Okay"
 msgstr "Okay"
 
-#: admin.php:122
+#: admin.php:142
 msgid "only first"
 msgstr "nur auf der ersten Karte"
 
-#: admin.php:253
+#: admin.php:276
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: admin.php:206 admin.php:226
+#: admin.php:225 admin.php:249
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: leafext-dsgvo.php:77
+#: leafext-dsgvo.php:79
 msgid ""
 "Should the text be displayed on each map of the page or only on the first "
 "map?"
@@ -119,27 +127,27 @@ msgstr ""
 "Soll der Text auf jeder Karte der Seite angezeigt werden oder nur auf der "
 "ersten Karte?"
 
-#: leafext-dsgvo.php:62
+#: leafext-dsgvo.php:64
 msgid "Submit Button"
 msgstr "Formular absenden"
 
-#: admin.php:209
+#: admin.php:229
 msgid "Test it in a private browser window."
 msgstr "Teste es in einem privaten Browserfenster."
 
-#: leafext-dsgvo.php:57
+#: leafext-dsgvo.php:59
 msgid "Text"
 msgstr "Text"
 
-#: admin.php:41
+#: admin.php:50
 msgid "Update available"
 msgstr "Update vorhanden"
 
-#: leafext-dsgvo.php:67
+#: leafext-dsgvo.php:69
 msgid "URL to Background Image"
 msgstr "URL des Hintergrundbildes"
 
-#: leafext-dsgvo.php:58
+#: leafext-dsgvo.php:60
 #| msgid ""
 #| "When using the maps, content is loaded from third-party servers.\n"
 #| "    If you agree to this, a cookie will be set and this notice will be "
@@ -153,3 +161,8 @@ msgstr ""
 "Bei der Verwendung der Karten werden Inhalte von Drittservern geladen. Wenn "
 "Du dem zustimmst, wird ein Cookie gesetzt und dieser Hinweis ausgeblendet. "
 "Wenn nicht, werden Dir keine Karten angezeigt."
+
+#: admin.php:101
+#, php-format
+msgid "You need a %1$sGithub token%2$s to receive updates successfully."
+msgstr "Du benötigst einen %1$sGithub Token%2$s, um Updates zu erhalten."

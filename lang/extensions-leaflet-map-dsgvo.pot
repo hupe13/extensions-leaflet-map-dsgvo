@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DSGVO Snippet for Extensions for Leaflet Map\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-05 17:51+0000\n"
+"POT-Creation-Date: 2024-03-07 21:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,15 +16,15 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.1\n"
 "X-Domain: extensions-leaflet-map-dsgvo"
 
-#: admin.php:230
+#: admin.php:253
 msgid "and"
 msgstr ""
 
-#: leafext-dsgvo.php:72
+#: leafext-dsgvo.php:74
 msgid "Cookie Lifetime"
 msgstr ""
 
-#: admin.php:111
+#: admin.php:131
 msgid "days"
 msgstr ""
 
@@ -33,23 +33,23 @@ msgstr ""
 msgid "DSGVO Snippet for Extensions for Leaflet Map"
 msgstr ""
 
-#: admin.php:117
+#: admin.php:137
 msgid "each map"
 msgstr ""
 
-#: admin.php:228
+#: admin.php:251
 msgid "enable"
 msgstr ""
 
-#: admin.php:232
+#: admin.php:255
 msgid "fill in your text"
 msgstr ""
 
-#: leafext-dsgvo.php:44 leafext-dsgvo.php:50
+#: leafext-dsgvo.php:46 leafext-dsgvo.php:52
 msgid "Github Token"
 msgstr ""
 
-#: admin.php:224
+#: admin.php:247
 msgid "Go to"
 msgstr ""
 
@@ -57,84 +57,97 @@ msgstr ""
 msgid "https://github.com/hupe13/extensions-leaflet-map-dsgvo"
 msgstr ""
 
+#. Author URI of the plugin
+msgid "https://leafext.de/en/"
+msgstr ""
+
 #. Author of the plugin
 msgid "hupe13"
 msgstr ""
 
-#: admin.php:98
+#: admin.php:118
 #, php-format
 msgid ""
 "If you want to receive updates in WordPress way, go to the %1$smain site "
 "dashboard%2$s, activate the plugin there and set a Github token if necessary."
 msgstr ""
 
-#: admin.php:237
+#: admin.php:260
 #, php-format
 msgid "If you wish to translate these strings in %s use"
 msgstr ""
 
-#: admin.php:222
+#: admin.php:245
 msgid "is active."
 msgstr ""
 
-#: admin.php:18
+#: admin.php:17
 msgid "Leaflet Map GDPR"
 msgstr ""
 
-#: admin.php:17
+#: admin.php:231
+msgid "Leaflet Map is not active."
+msgstr ""
+
+#: admin.php:16
 msgid "Leaflet Map Options GDPR"
 msgstr ""
 
-#: admin.php:88
+#: admin.php:107
 #, php-format
 msgid "Maybe you need a %1$sGithub token%2$s to receive updates successfully."
 msgstr ""
 
-#: leafext-dsgvo.php:63
+#: leafext-dsgvo.php:65
 msgid "Okay"
 msgstr ""
 
-#: admin.php:122
+#: admin.php:142
 msgid "only first"
 msgstr ""
 
-#: admin.php:253
+#: admin.php:276
 msgid "Reset"
 msgstr ""
 
-#: admin.php:206 admin.php:226
+#: admin.php:225 admin.php:249
 msgid "Settings"
 msgstr ""
 
-#: leafext-dsgvo.php:77
+#: leafext-dsgvo.php:79
 msgid ""
 "Should the text be displayed on each map of the page or only on the first "
 "map?"
 msgstr ""
 
-#: leafext-dsgvo.php:62
+#: leafext-dsgvo.php:64
 msgid "Submit Button"
 msgstr ""
 
-#: admin.php:209
+#: admin.php:229
 msgid "Test it in a private browser window."
 msgstr ""
 
-#: leafext-dsgvo.php:57
+#: leafext-dsgvo.php:59
 msgid "Text"
 msgstr ""
 
-#: admin.php:41
+#: admin.php:50
 msgid "Update available"
 msgstr ""
 
-#: leafext-dsgvo.php:67
+#: leafext-dsgvo.php:69
 msgid "URL to Background Image"
 msgstr ""
 
-#: leafext-dsgvo.php:58
+#: leafext-dsgvo.php:60
 msgid ""
 "When using the maps, content is loaded from third-party servers. If you "
 "agree to this, a cookie will be set and this notice will be hidden. If not, "
 "no maps will be displayed."
+msgstr ""
+
+#: admin.php:101
+#, php-format
+msgid "You need a %1$sGithub token%2$s to receive updates successfully."
 msgstr ""
