@@ -5,7 +5,7 @@
  * Plugin URI:        https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch:    main
- * Version:           240308
+ * Version:           240314
  * Requires PHP:      7.4
  * Author:            hupe13
  * Author URI:        https://leafext.de/en/
@@ -39,21 +39,7 @@ function leafext_add_action_dsgvo_links( $actions ) {
 add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'leafext_add_action_dsgvo_links' );
 
 function leafext_dsgvo_params() {
-	$params = array();
-	if ( is_main_site() ) {
-		$params[] = array(
-			'param'   => 'token',
-			'desc'    => __( 'Github Token', 'extensions-leaflet-map-dsgvo' ),
-			'default' => '',
-		);
-	} else {
-		$params[] = array(
-			'param'   => 'null',
-			'desc'    => __( 'Github Token', 'extensions-leaflet-map-dsgvo' ),
-			'default' => '',
-		);
-	}
-	if ( is_plugin_active( 'leaflet-map/leaflet-map.php' ) ) {
+	$params       = array();
 		$params[] = array(
 			'param'   => 'text',
 			'desc'    => __( 'Text', 'extensions-leaflet-map-dsgvo' ),
@@ -79,8 +65,7 @@ function leafext_dsgvo_params() {
 			'desc'    => __( 'Should the text be displayed on each map of the page or only on the first map?', 'extensions-leaflet-map-dsgvo' ),
 			'default' => false,
 		);
-	}
-	return $params;
+		return $params;
 }
 
 function leafext_dsgvo_settings() {
@@ -191,19 +176,19 @@ if ( strpos( implode( ' ', get_option( 'active_plugins', array() ) ), '/extensio
 	add_filter( 'do_shortcode_tag', 'leafext_query_cookie', 10, 2 );
 }
 
+// Updates
 use YahnisElsts\PluginUpdateChecker\v5\PucFactory;
 if ( is_admin() ) {
 	include_once LEAFEXT_DSGVO_PLUGIN_DIR . 'admin.php';
+	include_once LEAFEXT_DSGVO_PLUGIN_DIR . 'check-update.php';
+
 	if ( is_main_site() ) {
 		require_once LEAFEXT_DSGVO_PLUGIN_DIR . '/pkg/plugin-update-checker/plugin-update-checker.php';
-		$perm_denied = get_transient( 'leafext_github_403' );
-		$setting     = get_option( 'leafext_dsgvo', false );
-		if ( $setting && isset( $setting['token'] ) && $setting['token'] !== '' ) {
-			$token = $setting['token'];
-		} else {
-			$token = '';
-		}
-		if ( false === $perm_denied || ( false !== $perm_denied && $token !== '' ) ) {
+
+		global $leafext_update_token;
+		global $leafext_github_denied;
+
+		if ( false === $leafext_github_denied || $leafext_update_token !== '' ) {
 			$my_update_checker = PucFactory::buildUpdateChecker(
 				'https://github.com/hupe13/extensions-leaflet-map-dsgvo/',
 				__FILE__,
@@ -213,28 +198,21 @@ if ( is_admin() ) {
 			// Set the branch that contains the stable release.
 			$my_update_checker->setBranch( 'main' );
 
-			if ( $token !== '' ) {
+			if ( $leafext_update_token !== '' ) {
 				// Optional: If you're using a private repository, specify the access token like this:
-				$my_update_checker->setAuthentication( $token );
+				$my_update_checker->setAuthentication( $leafext_update_token );
 			}
 
-			function leafext_puc_error( $error, $response = null, $url = null, $slug = null ) {
+			function leafext_dsgvo_puc_error( $error, $response = null, $url = null, $slug = null ) {
 				if ( isset( $slug ) && $slug !== LEAFEXT_DSGVO_PLUGIN_NAME ) {
 					return;
 				}
-				// var_dump($error->errors);
-				// var_dump($error->errors["puc-github-http-error"]);
-				// var_dump($error->errors["puc-github-http-error"][0]);
-				if ( $error->errors &&
-				isset( $error->errors['puc-github-http-error'] ) &&
-				is_array( $error->errors['puc-github-http-error'] ) ) {
-					if ( str_contains( $error->errors['puc-github-http-error'][0], 'HTTP status code: 403' ) ) {
-						// var_dump("Permission denied");
-						set_transient( 'leafext_github_403', true, DAY_IN_SECONDS );
-					}
+				if ( wp_remote_retrieve_response_code( $response ) === 403 ) {
+					// var_dump( 'Permission denied' );
+					set_transient( 'leafext_github_403', true, DAY_IN_SECONDS );
 				}
 			}
-			add_action( 'puc_api_error', 'leafext_puc_error', 10, 4 );
+			add_action( 'puc_api_error', 'leafext_dsgvo_puc_error', 10, 4 );
 		}
 	}
 }

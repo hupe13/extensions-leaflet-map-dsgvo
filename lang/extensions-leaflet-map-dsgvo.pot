@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DSGVO Snippet for Extensions for Leaflet Map\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-03-07 21:42+0000\n"
+"POT-Creation-Date: 2024-03-13 14:52+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,16 +16,24 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.1\n"
 "X-Domain: extensions-leaflet-map-dsgvo"
 
-#: admin.php:253
+#: check-update.php:147
+msgid "activate the plugin there"
+msgstr ""
+
+#: admin.php:187
 msgid "and"
 msgstr ""
 
-#: leafext-dsgvo.php:74
+#: leafext-dsgvo.php:60
 msgid "Cookie Lifetime"
 msgstr ""
 
-#: admin.php:131
+#: admin.php:71
 msgid "days"
+msgstr ""
+
+#: admin.php:153
+msgid "Description"
 msgstr ""
 
 #. Name of the plugin
@@ -33,23 +41,23 @@ msgstr ""
 msgid "DSGVO Snippet for Extensions for Leaflet Map"
 msgstr ""
 
-#: admin.php:137
+#: admin.php:77
 msgid "each map"
 msgstr ""
 
-#: admin.php:251
+#: admin.php:185
 msgid "enable"
 msgstr ""
 
-#: admin.php:255
+#: admin.php:189
 msgid "fill in your text"
 msgstr ""
 
-#: leafext-dsgvo.php:46 leafext-dsgvo.php:52
-msgid "Github Token"
+#: check-update.php:114
+msgid "Github token to receive updates in WordPress way"
 msgstr ""
 
-#: admin.php:247
+#: admin.php:181
 msgid "Go to"
 msgstr ""
 
@@ -65,19 +73,19 @@ msgstr ""
 msgid "hupe13"
 msgstr ""
 
-#: admin.php:118
+#: check-update.php:154
 #, php-format
 msgid ""
 "If you want to receive updates in WordPress way, go to the %1$smain site "
-"dashboard%2$s, activate the plugin there and set a Github token if necessary."
+"dashboard%2$s%3$s and set a Github token if necessary."
 msgstr ""
 
-#: admin.php:260
+#: admin.php:194
 #, php-format
 msgid "If you wish to translate these strings in %s use"
 msgstr ""
 
-#: admin.php:245
+#: admin.php:179
 msgid "is active."
 msgstr ""
 
@@ -85,7 +93,7 @@ msgstr ""
 msgid "Leaflet Map GDPR"
 msgstr ""
 
-#: admin.php:231
+#: admin.php:215
 msgid "Leaflet Map is not active."
 msgstr ""
 
@@ -93,61 +101,65 @@ msgstr ""
 msgid "Leaflet Map Options GDPR"
 msgstr ""
 
-#: admin.php:107
+#: check-update.php:126
 #, php-format
 msgid "Maybe you need a %1$sGithub token%2$s to receive updates successfully."
 msgstr ""
 
-#: leafext-dsgvo.php:65
+#: leafext-dsgvo.php:51
 msgid "Okay"
 msgstr ""
 
-#: admin.php:142
+#: admin.php:82
 msgid "only first"
 msgstr ""
 
-#: admin.php:276
+#: check-update.php:138 admin.php:225
 msgid "Reset"
 msgstr ""
 
-#: admin.php:225 admin.php:249
+#: admin.php:183 admin.php:209
 msgid "Settings"
 msgstr ""
 
-#: leafext-dsgvo.php:79
+#: leafext-dsgvo.php:65
 msgid ""
 "Should the text be displayed on each map of the page or only on the first "
 "map?"
 msgstr ""
 
-#: leafext-dsgvo.php:64
+#: leafext-dsgvo.php:50
 msgid "Submit Button"
 msgstr ""
 
-#: admin.php:229
+#: admin.php:213
 msgid "Test it in a private browser window."
 msgstr ""
 
-#: leafext-dsgvo.php:59
+#: leafext-dsgvo.php:45
 msgid "Text"
 msgstr ""
 
-#: admin.php:50
+#: check-update.php:64
 msgid "Update available"
 msgstr ""
 
-#: leafext-dsgvo.php:69
+#: leafext-dsgvo.php:55
 msgid "URL to Background Image"
 msgstr ""
 
-#: leafext-dsgvo.php:60
+#: leafext-dsgvo.php:46
 msgid ""
 "When using the maps, content is loaded from third-party servers. If you "
 "agree to this, a cookie will be set and this notice will be hidden. If not, "
 "no maps will be displayed."
 msgstr ""
 
-#: admin.php:101
+#: check-update.php:120
 #, php-format
 msgid "You need a %1$sGithub token%2$s to receive updates successfully."
+msgstr ""
+
+#: check-update.php:151
+msgid "You receive updates in WordPress way."
 msgstr ""

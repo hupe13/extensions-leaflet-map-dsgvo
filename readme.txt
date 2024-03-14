@@ -3,7 +3,7 @@
 Contributors: hupe13
 Tags: dsgvo, gdpr
 Tested up to: 6.5
-Stable tag: 240308
+Stable tag: 240314
 Requires at least: 6.0
 Requires PHP: 7.4
 License: GPLv2 or later
@@ -33,3 +33,17 @@ This little snippet gets the user's permission to load the maps.
 You can customize the text and use it on your own responsibility.
 
 Configure its settings at Leaflet Map -> Leaflet Map GDPR.
+
+== Installation ==
+
+- Download the [ZIP file](https://github.com/hupe13/extensions-leaflet-map-dsgvo/archive/refs/heads/main.zip).
+- Sign in to your WordPress installation.
+- In the left-hand menu, select Plugins > Add New.
+- Select Upload Plugin.
+- Select Choose File.
+- Locate and select the plugin .zip file on your local computer and then select Open.
+- Select Install Now.
+- Configure its settings at Leaflet Map -> Leaflet Map GDPR.
+
+You will get updates with the [Plugin Update Checker](https://github.com/YahnisElsts/plugin-update-checker).
+Maybe you need a Github token.
