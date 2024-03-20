@@ -79,7 +79,7 @@ function leafext_dsgvo_meta_links( $links, $file ) {
 			if ( $local['Version'] !== $remote['Version'] ) {
 				$links[] = '<a href="' . get_site_url() . '/wp-admin/admin.php?page=' . LEAFEXT_DSGVO_PLUGIN_NAME . '">' .
 				'<span class="update-message notice inline notice-warning notice-alt">' .
-				esc_html__( 'Update available', 'extensions-leaflet-map-dsgvo' ) .
+				esc_html__( 'New version available.' ) .
 				'</span>' .
 				'</a>';
 			}

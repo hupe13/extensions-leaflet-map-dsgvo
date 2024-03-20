@@ -169,7 +169,9 @@ function leafext_dsgvo_help() {
 	} else {
 		echo 'Error';
 	}
+}
 
+function leafext_dsgvo_ttfp_help() {
 	if ( is_plugin_active( 'polylang/polylang.php' ) && is_plugin_active( 'leaflet-map/leaflet-map.php' ) ) {
 		echo '<h3>Polylang</h3>';
 		$ttfp = '<a href="https://wordpress.org/plugins/theme-translation-for-polylang/">Theme and plugin translation for Polylang (TTfP)</a> ';
@@ -220,6 +222,7 @@ function leafext_dsgvo_do_page() {
 	}
 	echo '</p>';
 	if ( is_plugin_active( 'leaflet-map/leaflet-map.php' ) ) {
+		leafext_dsgvo_ttfp_help();
 		echo '<form method="post" action="options.php">';
 		settings_fields( 'leafext_settings_dsgvo' );
 		wp_nonce_field( 'leafext_dsgvo', 'leafext_dsgvo_nonce' );
