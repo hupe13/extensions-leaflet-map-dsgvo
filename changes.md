@@ -1,3 +1,7 @@
+###  240513
+
+* Error in check-update.php (is_plugin_active_for_network unknown)
+
 ###  240314
 
 * some Improvements for PUC
