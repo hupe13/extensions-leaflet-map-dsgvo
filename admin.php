@@ -67,6 +67,9 @@ function leafext_dsgvo_form( $field ) {
 			echo '<input type="url" size="80" name="leafext_dsgvo[mapurl]" value="' . esc_url( $setting ) .
 			'" />';
 			break;
+		case 'color':
+			leafext_dsgvo_colors( $option['default'], $setting );
+			break;
 		case 'cookie':
 			echo '<input type="number" size="5" min="1" max="365" name="leafext_dsgvo[cookie]" value=' . esc_textarea( $setting ) . '> ';
 			esc_html_e( 'days', 'extensions-leaflet-map-dsgvo' );
@@ -102,13 +105,16 @@ function leafext_validate_dsgvo( $options ) {
 			$defaults[ $param['param'] ] = $param['default'];
 		}
 		if ( isset( $options['cookie'] ) && ( $options['cookie'] === '0' || $options['cookie'] === '' ) ) {
-			$options['cookie'] = '365';
+			$options['cookie'] = $defaults['cookie'];
 		}
 		if ( isset( $options['text'] ) ) {
 			$options['text'] = wp_kses_normalize_entities( $options['text'] );
 		}
 		if ( isset( $options['mapurl'] ) ) {
 			$options['mapurl'] = sanitize_text_field( $options['mapurl'] );
+		}
+		if ( isset( $options['color'] ) ) {
+			$options['color'] = sanitize_text_field( $options['color'] );
 		}
 		if ( isset( $options['count'] ) ) {
 			$options['count'] = $options['count'];
@@ -122,7 +128,7 @@ function leafext_validate_dsgvo( $options ) {
 				$change[ $key ] = $value;
 			}
 		}
-		// var_dump($options,$defaults,$change); wp_die();
+		//var_dump($options,$defaults,$change); wp_die();
 		return $change;
 	}
 	if ( isset( $_POST['delete'] ) ) {
@@ -162,10 +168,6 @@ function leafext_dsgvo_help() {
 		// https://wp-mix.com/allowed-html-tags-wp_kses/
 		$allowed_tags = wp_kses_allowed_html( 'post' );
 		echo '<div style="width:80%">' . wp_kses( $text, $allowed_tags ) . '</div>';
-		// $update = leafext_dsgvo_meta_links( array(), LEAFEXT_DSGVO_PLUGIN_FILE );
-		// if ( count( $update ) > 0 ) {
-		// echo '<p>' . $update[0] . '</p>';
-		// }
 	} else {
 		echo 'Error';
 	}
@@ -197,6 +199,7 @@ function leafext_dsgvo_ttfp_help() {
 			echo '</li></ul>';
 		} else {
 			printf(
+				/* translators: %s is a link. */
 				esc_html__( 'If you wish to translate these strings in %s use', 'extensions-leaflet-map-dsgvo' ),
 				' <a href="https://wordpress.org/plugins/polylang/">Polylang</a> '
 			);
@@ -242,4 +245,30 @@ function leafext_array_find3( $needle, $haystack ) {
 			return $item;
 		}
 	}
+}
+
+// Baue Abfrage Farben
+function leafext_dsgvo_colors( $defcolor, $value ) {
+	wp_enqueue_style( 'wp-color-picker' );
+	wp_enqueue_script( 'wp-color-picker' );
+	wp_enqueue_script(
+		'wp-color-picker-alpha',
+		plugins_url( '/js/wp-color-picker-alpha.min.js', __FILE__ ),
+		array( 'wp-color-picker' ),
+		null,
+		true
+	);
+	wp_enqueue_script(
+		'leafext-picker',
+		plugins_url( '/js/colorpicker.js', __FILE__ ),
+		array( 'wp-color-picker-alpha', 'wp-color-picker' ),
+		null,
+		true
+	);
+
+	// phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped
+		echo '<input type="text" class="color-picker" id="leafext_dsgvo_color" name="leafext_dsgvo[color]"
+			data-alpha-enabled="true" data-default-color="' . $defcolor . '" value="' . $value . '">';
+
+	// phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
 }

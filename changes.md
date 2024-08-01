@@ -1,3 +1,11 @@
+###  240801
+
+* WordPress 6.6
+* dequeue unneeded scripts
+* leafext-dsgvo.css
+* background color
+* code improvement
+
 ###  240513
 
 * Error in check-update.php (is_plugin_active_for_network unknown)

@@ -2,8 +2,8 @@
 
 Contributors: hupe13  
 Tags: dsgvo, gdpr  
-Tested up to: 6.5  
-Stable tag: 240513  
+Tested up to: 6.6  
+Stable tag: 240801  
 Requires at least: 6.0  
 Requires PHP: 7.4  
 License: GPLv2 or later  

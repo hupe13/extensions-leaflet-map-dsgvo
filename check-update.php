@@ -146,12 +146,14 @@ function leafext_dsgvo_update_admin() {
 			// var_dump($leafext_github_denied);
 			if ( false !== $leafext_github_denied ) {
 				echo sprintf(
+					/* translators: %s is a link. */
 					esc_html__( 'You need a %1$sGithub token%2$s to receive updates successfully.', 'extensions-leaflet-map-dsgvo' ),
 					'<a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">',
 					'</a>'
 				) . '<br>';
 			} else {
 				echo sprintf(
+					/* translators: %s is a link. */
 					esc_html__( 'Maybe you need a %1$sGithub token%2$s to receive updates successfully.', 'extensions-leaflet-map-dsgvo' ),
 					'<a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">',
 					'</a>'
@@ -180,6 +182,7 @@ function leafext_dsgvo_update_admin() {
 			echo esc_html__( 'You receive updates in WordPress way.', 'extensions-leaflet-map-dsgvo' );
 		} else {
 			printf(
+				/* translators: %s is a link. */
 				esc_html__(
 					'If you want to receive updates in WordPress way, go to the %1$smain site dashboard%2$s%3$s and set a Github token if necessary.',
 					'extensions-leaflet-map-dsgvo'
@@ -206,12 +209,14 @@ if ( ! function_exists( 'leafext_updating_help' ) ) {
 			// var_dump($perm_denied);
 			if ( false !== $perm_denied ) {
 				echo sprintf(
+					/* translators: %s is a link. */
 					esc_html__( 'You need a %1$sGithub token%2$s to receive updates successfully.', 'extensions-leaflet-map' ),
 					'<a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">',
 					'</a>'
 				) . '<br>';
 			} else {
 				echo sprintf(
+					/* translators: %s is a link. */
 					esc_html__( 'Maybe you need a %1$sGithub token%2$s to receive updates successfully.', 'extensions-leaflet-map' ),
 					'<a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">',
 					'</a>'

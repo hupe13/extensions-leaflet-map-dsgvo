@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: DSGVO Snippet for Extensions for Leaflet Map\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-15 15:43+0000\n"
-"PO-Revision-Date: 2024-03-13 14:55+0000\n"
+"PO-Revision-Date: 2024-07-29 13:24+0000\n"
 "Last-Translator: \n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -15,23 +15,27 @@ msgstr ""
 "X-Loco-Version: 2.6.6; wp-6.4.3\n"
 "X-Domain: extensions-leaflet-map-dsgvo"
 
-#: check-update.php:147
+#: check-update.php:178
 msgid "activate the plugin there"
 msgstr "aktiviere das Plugin dort"
 
-#: admin.php:187
+#: admin.php:194
 msgid "and"
 msgstr "und"
 
 #: leafext-dsgvo.php:60
+msgid "Color of the background"
+msgstr "Hintergrundfarbe"
+
+#: leafext-dsgvo.php:66
 msgid "Cookie Lifetime"
 msgstr "Lebensdauer des Cookies"
 
-#: admin.php:71
+#: admin.php:75
 msgid "days"
 msgstr "Tage"
 
-#: admin.php:153
+#: admin.php:160
 msgid "Description"
 msgstr "Beschreibung"
 
@@ -40,23 +44,23 @@ msgstr "Beschreibung"
 msgid "DSGVO Snippet for Extensions for Leaflet Map"
 msgstr "DSGVO Snippet for Extensions for Leaflet Map"
 
-#: admin.php:77
+#: admin.php:81
 msgid "each map"
 msgstr "auf jeder Karte"
 
-#: admin.php:185
+#: admin.php:192
 msgid "enable"
 msgstr "aktiviere"
 
-#: admin.php:189
+#: admin.php:197
 msgid "fill in your text"
 msgstr "trage deinen Text ein"
 
-#: check-update.php:114
+#: check-update.php:143
 msgid "Github token to receive updates in WordPress way"
 msgstr "Github Token um Updates auf WordPress-Art zu erhalten"
 
-#: admin.php:181
+#: admin.php:187
 msgid "Go to"
 msgstr "Gehe zu"
 
@@ -72,7 +76,8 @@ msgstr "https://leafext.de/en/"
 msgid "hupe13"
 msgstr "hupe13"
 
-#: check-update.php:154
+#. %s is a link.
+#: check-update.php:186
 #, php-format
 #| msgid ""
 #| "If you want to receive updates in WordPress way, go to the %1$smain site "
@@ -85,13 +90,14 @@ msgstr ""
 "Um Updates auf WordPress-Art zu erhalten, gehe zum %1$sDashboard der Main "
 "Site%2$s%3$s und setze ggf. ein Github-Token."
 
-#: admin.php:194
+#. %s is a link.
+#: admin.php:203
 #, php-format
 #| msgid "If you wish to translate these strings in"
 msgid "If you wish to translate these strings in %s use"
 msgstr "Wenn du diese Texte in %s übersetzen möchtest, verwende"
 
-#: admin.php:179
+#: admin.php:185
 msgid "is active."
 msgstr "ist aktiviert."
 
@@ -99,7 +105,7 @@ msgstr "ist aktiviert."
 msgid "Leaflet Map GDPR"
 msgstr "Leaflet Map DSGVO"
 
-#: admin.php:215
+#: admin.php:224
 msgid "Leaflet Map is not active."
 msgstr "Leaflet Map ist nicht aktiviert."
 
@@ -107,7 +113,8 @@ msgstr "Leaflet Map ist nicht aktiviert."
 msgid "Leaflet Map Options GDPR"
 msgstr "Leaflet Map Options DSGVO"
 
-#: check-update.php:126
+#. %s is a link.
+#: check-update.php:157
 #, php-format
 msgid "Maybe you need a %1$sGithub token%2$s to receive updates successfully."
 msgstr ""
@@ -118,19 +125,19 @@ msgstr ""
 msgid "Okay"
 msgstr "Okay"
 
-#: admin.php:82
+#: admin.php:86
 msgid "only first"
 msgstr "nur auf der ersten Karte"
 
-#: check-update.php:138 admin.php:225
+#: check-update.php:169 admin.php:235
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: admin.php:183 admin.php:209
+#: admin.php:190 admin.php:218
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: leafext-dsgvo.php:65
+#: leafext-dsgvo.php:71
 msgid ""
 "Should the text be displayed on each map of the page or only on the first "
 "map?"
@@ -142,17 +149,13 @@ msgstr ""
 msgid "Submit Button"
 msgstr "Formular absenden"
 
-#: admin.php:213
+#: admin.php:222
 msgid "Test it in a private browser window."
 msgstr "Teste es in einem privaten Browserfenster."
 
 #: leafext-dsgvo.php:45
 msgid "Text"
 msgstr "Text"
-
-#: check-update.php:64
-msgid "Update available"
-msgstr "Update vorhanden"
 
 #: leafext-dsgvo.php:55
 msgid "URL to Background Image"
@@ -173,12 +176,13 @@ msgstr ""
 "Du dem zustimmst, wird ein Cookie gesetzt und dieser Hinweis ausgeblendet. "
 "Wenn nicht, werden Dir keine Karten angezeigt."
 
-#: check-update.php:120
+#. %s is a link.
+#: check-update.php:150
 #, php-format
 msgid "You need a %1$sGithub token%2$s to receive updates successfully."
 msgstr ""
 "Du benötigst ein %1$sGithub-Token%2$s, um erfolgreich Updates zu erhalten."
 
-#: check-update.php:151
+#: check-update.php:182
 msgid "You receive updates in WordPress way."
 msgstr "Updates werden auf WordPress-Art durchgeführt."

@@ -5,7 +5,7 @@
  * Plugin URI:        https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch:    main
- * Version:           240314
+ * Version:           240801
  * Requires PHP:      7.4
  * Author:            hupe13
  * Author URI:        https://leafext.de/en/
@@ -54,6 +54,12 @@ function leafext_dsgvo_params() {
 			'param'   => 'mapurl',
 			'desc'    => __( 'URL to Background Image', 'extensions-leaflet-map-dsgvo' ),
 			'default' => LEAFEXT_DSGVO_PLUGIN_URL . '/map.png',
+		);
+		$params[] = array(
+			'param'   => 'color',
+			'desc'    => __( 'Color of the background', 'extensions-leaflet-map-dsgvo' ),
+			'default' => 'rgba(255,255,255,0.7)',
+			//'default' => '#ffffffb3',
 		);
 		$params[] = array(
 			'param'   => 'cookie',
@@ -117,13 +123,17 @@ if ( strpos( implode( ' ', get_option( 'active_plugins', array() ) ), '/extensio
 			global $leafext_cookie;
 			if (
 				is_admin()
-				|| is_user_logged_in()
+				// || is_user_logged_in()
 				|| ( 'leaflet-map' !== $tag && 'sgpx' !== $tag )
 				|| isset( $_COOKIE['leafext'] )
 				|| $leafext_cookie
 			) {
 				return $output;
 			}
+			wp_enqueue_style(
+				'leafext-dsgvo-css',
+				plugins_url( 'css/leafext-dsgvo.css', LEAFEXT_DSGVO_PLUGIN_FILE )
+			);
 			$form     = '<form action="" method="post">';
 			$form     = $form . wp_nonce_field( 'leafext_dsgvo', 'leafext_dsgvo_okay' );
 			$settings = leafext_dsgvo_settings();
@@ -151,29 +161,79 @@ if ( strpos( implode( ' ', get_option( 'active_plugins', array() ) ), '/extensio
 				}
 			}
 
-			// bei sgpx leaflet wird es 2x aufgerufen.
+			$sgpxoptions = leafext_sgpx_settings();
 			if ( $tag === 'sgpx' ) {
-				$output = do_shortcode( '[leaflet-map]' );
-				$text   = $form;
-			}
-
-			preg_match( '/linear-gradient|WPLeafletMap" style="height:1px;/', $output, $matches );
-
-			if ( count( $matches ) === 0 || $tag === 'sgpx' ) {
-				preg_match( '/style="[^"]+"/', $output, $matches );
-				if ( count( $matches ) === 0 ) {
-					$matches[0] = ' style=".';
+				if ( defined( 'WPGPXMAPS_CURRENT_VERSION' ) && $sgpxoptions['sgpx'] === false ) {
+					return $output;
 				}
-				$output = '<div data-nosnippet ' . substr( $matches[0], 0, -1 ) .
-				';background: linear-gradient(rgba(255, 255, 255, 0.7), rgba(255, 255, 255, 0.7)), ' .
-				'url(' . $settings['mapurl'] . '); background-position: center; ' .
-				'border: gray 2px solid; display:flex; justify-content: center; ' .
-				'align-items: center;"><div style="width: 70%;">' . $text . '</div></div>';
+
+				if ( $sgpxoptions['sgpx'] === true ) {
+					$text   = $form;
+					$pos    = strpos( $output, '"></div><script>' );
+					$output = substr( $output, 0, $pos );
+					$output = str_replace( 'leaflet-map WPLeafletMap', 'leafext-dsgvo', $output );
+					$output = $output .
+					' background: linear-gradient(' . $settings['color'] . ',' . $settings['color'] . '), url(' . $settings['mapurl'] . ');" ><div style="width: 70%;">'
+					. $text . '</div></div>';
+				} else {
+					// search width and height
+					$search = 'style="width:';
+					$pos    = strpos( $output, $search );
+					if ( $pos === false ) {
+						$search = 'style="height:';
+						$pos    = strpos( $output, $search );
+					}
+					$style  = substr( $output, $pos - strlen( $output ) );
+					$search = 'position:relative';
+					$pos    = strpos( $style, $search );
+					if ( $pos === false ) {
+						$search = '"></div>';
+						$pos    = strpos( $style, $search );
+					}
+					$style  = substr( $style, 0, $pos );
+					$text   = $form;
+					$output = '<div class="leafext-dsgvo" ' . $style .
+					' background: linear-gradient(' . $settings['color'] . ',' . $settings['color'] . '), url(' . $settings['mapurl'] . ');" ><div style="width: 70%;">'
+					. $text . '</div></div>';
+				}
+			} else {
+				global $post;
+				if ( ! has_shortcode( $post->post_content, 'sgpx' ) ) {
+					$pos    = strpos( $output, '"></div><script>' );
+					$output = substr( $output, 0, $pos );
+					$output = str_replace( 'leaflet-map WPLeafletMap', 'leafext-dsgvo', $output );
+					$output = $output .
+					' background: linear-gradient(' . $settings['color'] . ',' . $settings['color'] . '), url(' . $settings['mapurl'] . ');" ><div style="width: 70%;">'
+					. $text . '</div></div>';
+				}
 			}
 			return $output;
 		}
 	}
 	add_filter( 'do_shortcode_tag', 'leafext_query_cookie', 10, 2 );
+
+	function leafext_dequeue_missing() {
+		leafext_dequeue_recursive( 'wp_leaflet_map' );
+	}
+	function leafext_dequeue_recursive( $dep ) {
+		global $wp_scripts;
+		foreach ( $wp_scripts->queue as $handle ) {
+			$obj = $wp_scripts->registered [ $handle ];
+			// var_dump("handle",$handle);
+			if ( is_array( $obj->deps ) ) {
+				if ( in_array( $dep, $obj->deps, true ) ) {
+					wp_dequeue_script( $handle );
+					foreach ( $obj->deps as $deeper ) {
+						if ( $deeper !== 'wp_leaflet_map' ) {
+							// var_dump("deeper",$deeper);
+							leafext_dequeue_recursive( $deeper );
+						}
+					}
+				}
+			}
+		}
+	}
+	add_action( 'wp_footer', 'leafext_dequeue_missing', 1000 );
 }
 
 // Updates
