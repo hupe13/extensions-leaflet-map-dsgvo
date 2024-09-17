@@ -1,3 +1,8 @@
+###  240917
+
+* It is now an official WordPress plugin! https://wordpress.org/plugins/dsgvo-leaflet-map/
+* textdomain changed, please check your TTfP settings for this plugin.
+
 ###  240801
 
 * WordPress 6.6

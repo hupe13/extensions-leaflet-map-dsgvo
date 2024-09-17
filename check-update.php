@@ -40,11 +40,11 @@ if ( is_multisite() ) {
 	if ( ! function_exists( 'is_plugin_active_for_network' ) ) {
 		require_once ABSPATH . '/wp-admin/includes/plugin.php';
 	}
-	if ( is_plugin_active_for_network( LEAFEXT_DSGVO_PLUGIN_NAME . '/leafext-dsgvo.php' ) ) {
+	if ( is_plugin_active_for_network( LEAFEXT_DSGVO_PLUGIN_NAME . '/dsgvo-leaflet-map.php' ) ) {
 		$leafext_dsgvo_main_active = true;
 	} else {
 		switch_to_blog( $main_site_id );
-		if ( is_plugin_active( LEAFEXT_DSGVO_PLUGIN_NAME . '/leafext-dsgvo.php' ) ) {
+		if ( is_plugin_active( LEAFEXT_DSGVO_PLUGIN_NAME . '/dsgvo-leaflet-map.php' ) ) {
 			$leafext_dsgvo_main_active = true;
 		} else {
 			$leafext_dsgvo_main_active = false;
@@ -53,7 +53,7 @@ if ( is_multisite() ) {
 	}
 } else {
 	include_once ABSPATH . 'wp-admin/includes/plugin.php';
-	if ( is_plugin_active( LEAFEXT_DSGVO_PLUGIN_NAME . '/leafext-dsgvo.php' ) ) {
+	if ( is_plugin_active( LEAFEXT_DSGVO_PLUGIN_NAME . '/dsgvo-leaflet-map.php' ) ) {
 		$leafext_dsgvo_main_active = true;
 	} else {
 		$leafext_dsgvo_main_active = false;
@@ -68,8 +68,9 @@ function leafext_dsgvo_meta_links( $links, $file ) {
 
 	if ( ! ( is_main_site() && ( false === $leafext_github_denied || $leafext_update_token !== '' ) ) || ! is_main_site() ) {
 		if ( strpos( LEAFEXT_DSGVO_PLUGIN_FILE, $file ) !== false ) {
-			$local  = get_file_data(
-				LEAFEXT_DSGVO_PLUGIN_DIR . '/leafext-dsgvo.php',
+			$local = get_file_data(
+				LEAFEXT_DSGVO_PLUGIN_DIR . '/dsgvo-leaflet-map.php',
+				// LEAFEXT_DSGVO_PLUGIN_DIR . '/leafext-dsgvo.php',
 				array(
 					'Version' => 'Version',
 				)
@@ -140,21 +141,21 @@ function leafext_dsgvo_update_admin() {
 
 	// var_dump( $leafext_dsgvo_main_active, $leafext_update_token, $leafext_github_denied );
 
-	echo '<h3>' . esc_html__( 'Github token to receive updates in WordPress way', 'extensions-leaflet-map-dsgvo' ) . '</h3>';
+	echo '<h3>' . esc_html__( 'Github token to receive updates in WordPress way', 'dsgvo-leaflet-map-github' ) . '</h3>';
 	if ( is_main_site() ) {
 		if ( $leafext_update_token === '' ) {
 			// var_dump($leafext_github_denied);
 			if ( false !== $leafext_github_denied ) {
 				echo sprintf(
 					/* translators: %s is a link. */
-					esc_html__( 'You need a %1$sGithub token%2$s to receive updates successfully.', 'extensions-leaflet-map-dsgvo' ),
+					esc_html__( 'You need a %1$sGithub token%2$s to receive updates successfully.', 'dsgvo-leaflet-map-github' ),
 					'<a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">',
 					'</a>'
 				) . '<br>';
 			} else {
 				echo sprintf(
 					/* translators: %s is a link. */
-					esc_html__( 'Maybe you need a %1$sGithub token%2$s to receive updates successfully.', 'extensions-leaflet-map-dsgvo' ),
+					esc_html__( 'Maybe you need a %1$sGithub token%2$s to receive updates successfully.', 'dsgvo-leaflet-map-github' ),
 					'<a href="https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens">',
 					'</a>'
 				) . '<br>';
@@ -166,7 +167,7 @@ function leafext_dsgvo_update_admin() {
 		if ( current_user_can( 'manage_options' ) ) {
 			wp_nonce_field( 'leafext_updating', 'leafext_updating_nonce' );
 			submit_button();
-			submit_button( esc_html__( 'Reset', 'extensions-leaflet-map-dsgvo' ), 'delete', 'delete', false );
+			submit_button( esc_html__( 'Reset', 'dsgvo-leaflet-map' ), 'delete', 'delete', false );
 		}
 		echo '</form>';
 	} else {
@@ -175,17 +176,17 @@ function leafext_dsgvo_update_admin() {
 		if ( $leafext_dsgvo_main_active ) {
 			$main_active = ' ';
 		} else {
-			$main_active = ', ' . esc_html__( 'activate the plugin there', 'extensions-leaflet-map-dsgvo' );
+			$main_active = ', ' . esc_html__( 'activate the plugin there', 'dsgvo-leaflet-map-github' );
 		}
 
 		if ( $leafext_dsgvo_main_active && ( false === $leafext_github_denied || $leafext_update_token !== '' ) ) {
-			echo esc_html__( 'You receive updates in WordPress way.', 'extensions-leaflet-map-dsgvo' );
+			echo esc_html__( 'You receive updates in WordPress way.', 'dsgvo-leaflet-map-github' );
 		} else {
 			printf(
 				/* translators: %s is a link. */
 				esc_html__(
 					'If you want to receive updates in WordPress way, go to the %1$smain site dashboard%2$s%3$s and set a Github token if necessary.',
-					'extensions-leaflet-map-dsgvo'
+					'dsgvo-leaflet-map-github'
 				),
 				'<a href="' . $main_site_url . '/wp-admin/plugins.php">', //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- string not changeable
 				'</a>',

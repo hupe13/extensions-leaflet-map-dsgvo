@@ -1,7 +1,7 @@
 /**
  * Loads the WordPress wpColorPicker
  *
- * @package Extensions for Leaflet Map DSGVO
+ * @package DSGVO snippet for Leaflet Map and its Extensions
  */
 
 jQuery( document ).ready(
