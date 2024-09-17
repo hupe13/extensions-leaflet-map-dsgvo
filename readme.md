@@ -61,3 +61,4 @@ Maybe you need a Github token.
 
 * It is now an official WordPress plugin! https://wordpress.org/plugins/dsgvo-leaflet-map/
 * textdomain changed, please check your TTfP settings for this plugin.
+* After updating the plugin will be deactivated. Please reactivate it!
