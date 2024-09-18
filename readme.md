@@ -14,7 +14,7 @@ Respect the DSGVO / GDPR when you use Leaflet Map and Extensions for Leaflet Map
 
 ### GDPR
 
-There is now an official [WordPress plugin](https://wordpress.org/plugins/dsgvo-leaflet-map/) and it is not necessary for you to use this one. Unless you have a suggestion for an improvement or a new function and I ask you to test it.
+There is now an official [WordPress plugin](https://wordpress.org/plugins/dsgvo-leaflet-map/) and it is not necessary for you to use this from Github. Unless you have a suggestion for an improvement or a new function and I ask you to test it.
 
 According to the GDPR, the user must actively agree if content is to be loaded from third-party servers.  
 The WordPress plugins <a href="https://wordpress.org/plugins/leaflet-map/">Leaflet Map</a> and <a href="https://wordpress.org/plugins/extensions-leaflet-map/">Extensions for Leaflet Map</a> are loading content from the defined tile servers as well as unpkg.com.  
