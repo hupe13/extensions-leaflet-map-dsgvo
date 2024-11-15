@@ -1,0 +1,79 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: DSGVO Snippet for Extensions for Leaflet Map\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2022-10-15 15:43+0000\n"
+"PO-Revision-Date: 2024-11-15 13:35+0000\n"
+"Last-Translator: \n"
+"Language-Team: Deutsch\n"
+"Language: de_DE\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.6.6; wp-6.4.3\n"
+"X-Domain: extensions-leaflet-map-dsgvo"
+
+#: check-update.php:179
+msgid "activate the plugin there"
+msgstr "aktiviere das Plugin dort"
+
+#: check-update.php:101
+msgid "Github token"
+msgstr "Github token"
+
+#: check-update.php:144 check-update.php:201
+msgid "Github token to receive updates in WordPress way"
+msgstr "Github Token um Updates auf WordPress-Art zu erhalten"
+
+#. %s is a link.
+#: check-update.php:187
+#, php-format
+#| msgid ""
+#| "If you want to receive updates in WordPress way, go to the %1$smain site "
+#| "dashboard%2$s, activate the plugin there and set a Github token if "
+#| "necessary."
+msgid ""
+"If you want to receive updates in WordPress way, go to the %1$smain site "
+"dashboard%2$s%3$s and set a Github token if necessary."
+msgstr ""
+"Um Updates auf WordPress-Art zu erhalten, gehe zum %1$sDashboard der Main "
+"Site%2$s%3$s und setze ggf. ein Github-Token."
+
+#: admin.php:188
+msgid "Leaflet Map is not active."
+msgstr "Leaflet Map ist nicht aktiviert."
+
+#. %s is a link.
+#: check-update.php:158 check-update.php:221
+#, php-format
+msgid "Maybe you need a %1$sGithub token%2$s to receive updates successfully."
+msgstr ""
+"Möglicherweise benötigst du ein %1$sGithub-Token%2$s, um erfolgreich Updates "
+"zu erhalten."
+
+#: check-update.php:87
+msgid "New version available."
+msgstr "Neue Version verfügbar."
+
+#. %s are plugin names.
+#: dsgvo-leaflet-map.php:250
+#, php-format
+msgid "Please install and activate %1$s before using %2$s."
+msgstr "Bitte installiere und aktiviere %1$s bevor Du %2$s verwenden kannst."
+
+#: check-update.php:170
+msgid "Reset"
+msgstr "Zurücksetzen"
+
+#. %s is a link.
+#: check-update.php:151 check-update.php:214
+#, php-format
+msgid "You need a %1$sGithub token%2$s to receive updates successfully."
+msgstr ""
+"Du benötigst ein %1$sGithub-Token%2$s, um erfolgreich Updates zu erhalten."
+
+#: check-update.php:183
+msgid "You receive updates in WordPress way."
+msgstr "Updates werden auf WordPress-Art durchgeführt."

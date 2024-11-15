@@ -1,9 +1,9 @@
-# DSGVO snippet for Leaflet Map and its Extensions
+# DSGVO snippet for Leaflet Map and its Extensions Github
 
 Contributors: hupe13  
 Tags: dsgvo, gdpr, leaflet  
-Tested up to: 6.6  
-Stable tag: 240917  
+Tested up to: 6.7  
+Stable tag: 241115  
 Requires at least: 6.0  
 Requires PHP: 7.4  
 License: GPLv2 or later  
@@ -57,8 +57,8 @@ Maybe you need a Github token.
 
 ## Changelog
 
-###  240917
+###  241115
 
-* It is now an official WordPress plugin! https://wordpress.org/plugins/dsgvo-leaflet-map/
-* textdomain changed, please check your TTfP settings for this plugin.
-* After updating the plugin will be deactivated. Please reactivate it!
+* Plugin Checks
+* textdomains
+* WordPress 6.7

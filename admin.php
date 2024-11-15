@@ -185,7 +185,7 @@ function leafext_dsgvo_do_page() {
 	if ( is_plugin_active( 'leaflet-map/leaflet-map.php' ) ) {
 		esc_html_e( 'Test it in a private browser window.', 'dsgvo-leaflet-map' );
 	} else {
-		esc_html_e( 'Leaflet Map is not active.', 'dsgvo-leaflet-map-github' );
+		esc_html_e( 'Leaflet Map is not active.', 'extensions-leaflet-map-dsgvo' );
 	}
 	echo '</p>';
 	if ( is_plugin_active( 'leaflet-map/leaflet-map.php' ) ) {

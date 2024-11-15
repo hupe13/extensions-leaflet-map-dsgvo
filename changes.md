@@ -1,3 +1,9 @@
+###  241115
+
+* Plugin Checks
+* textdomains
+* WordPress 6.7
+
 ###  240917
 
 * It is now an official WordPress plugin! https://wordpress.org/plugins/dsgvo-leaflet-map/
