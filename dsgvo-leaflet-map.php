@@ -171,7 +171,7 @@ function leafext_query_cookie( $output, $tag ) {
 			}
 		}
 
-			$sgpxoptions = leafext_sgpx_settings();
+		$sgpxoptions = leafext_sgpx_settings();
 
 		if ( $tag === 'sgpx' ) {
 			if ( defined( 'WPGPXMAPS_CURRENT_VERSION' ) && $sgpxoptions['sgpx'] === '0' ) {
@@ -216,10 +216,10 @@ function leafext_query_cookie( $output, $tag ) {
 				. ( $form ? $formbegin_safe . wp_kses_post( $formtext ) . $formend_safe : '' ) . '</div></div>';
 			}
 		}
-			return $output;
+		return $output;
 	}
 }
-	add_filter( 'do_shortcode_tag', 'leafext_query_cookie', 10, 2 );
+add_filter( 'do_shortcode_tag', 'leafext_query_cookie', 10, 2 );
 
 function leafext_dequeue_missing() {
 	leafext_dequeue_recursive( 'wp_leaflet_map' );
