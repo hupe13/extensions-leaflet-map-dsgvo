@@ -1,6 +1,6 @@
 <?php
 /**
- * Version:           241115
+ * Version:           241205
  *
  * @package Extensions for Leaflet Map DSGVO
  **/

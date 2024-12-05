@@ -1,3 +1,8 @@
+###  241205
+
+* fixed leafext_should_interpret_shortcode is not always defined for Github version
+* Honeypot
+
 ###  241115
 
 * Plugin Checks

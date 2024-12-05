@@ -57,8 +57,7 @@ Maybe you need a Github token.
 
 ## Changelog
 
-###  241115
+###  241205
 
-* Plugin Checks
-* textdomains
-* WordPress 6.7
+* fixed leafext_should_interpret_shortcode is not always defined for Github version
+* Honeypot

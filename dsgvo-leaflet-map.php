@@ -5,7 +5,7 @@
  * Plugin URI:        https://leafext.de/en/
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch:    main
- * Version:           241115
+ * Version:           241205
  * Requires PHP:      7.4
  * Author:            hupe13
  * Author URI:        https://leafext.de/en/
@@ -99,7 +99,10 @@ function leafext_setcookie() {
 		if ( isset( $_REQUEST['leafext_dsgvo_okay'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['leafext_dsgvo_okay'] ) ), 'leafext_dsgvo' ) ) {
 			wp_die( 'invalid', 404 );
 		}
-
+		if ( ! empty( $_REQUEST['a_password'] ) ) {
+			# treat as spambot
+			wp_die( 'invalid', 404 );
+		}
 		$settings = leafext_dsgvo_settings();
 		if ( $_POST['leafext_button'] === $settings['okay'] ) {
 			// https://www.php.net/manual/en/function.setcookie.php#125242
@@ -118,103 +121,105 @@ function leafext_setcookie() {
 }
 add_action( 'init', 'leafext_setcookie' );
 
-if ( function_exists( 'leafext_should_interpret_shortcode' ) ) {
-	function leafext_query_cookie( $output, $tag ) {
-		$text = leafext_should_interpret_shortcode( $tag, array() );
-		if ( $text !== '' ) {
-			return $output;
-		} else {
+require_once LEAFEXT_DSGVO_PLUGIN_DIR . 'functions.php';
+
+function leafext_query_cookie( $output, $tag ) {
+	$text = leafext_should_interpret_shortcode_dsgvo( $tag, array() );
+	if ( $text !== '' ) {
+		return $output;
+	} else {
 			global $leafext_cookie;
-			if (
+		if (
 			is_admin()
 			// || is_user_logged_in()
 			|| ( 'leaflet-map' !== $tag && 'sgpx' !== $tag )
 			|| isset( $_COOKIE['leafext'] )
 			|| $leafext_cookie
 			) {
-				return $output;
-			}
+			return $output;
+		}
 			wp_enqueue_style(
 				'leafext-dsgvo-css',
 				plugins_url( 'css/leafext-dsgvo.css', LEAFEXT_DSGVO_PLUGIN_FILE ),
 				array(),
 				LEAFEXT_DSGVO_PLUGIN_VERSION
 			);
+			// https://stackoverflow.com/questions/36227376/better-honeypot-implementation-form-anti-spam
 			$formbegin_safe = '<form action="" method="post">';
 			$formbegin_safe = $formbegin_safe . wp_nonce_field( 'leafext_dsgvo', 'leafext_dsgvo_okay' );
 			$settings       = leafext_dsgvo_settings();
 			$formtext       = $settings['text'];
 			$formend_safe   = '<p class="submit" style="display:flex; justify-content: center; align-items: center;">
+		<input type="text" name="a_password" size="8" style="display:none !important" tabindex="-1" autocomplete="off">
 		<input type="submit" value="' . esc_attr( $settings['okay'] ) . '" name="leafext_button" /></p>
 		</form>';
 
 			global $leafext_okay;
-			if ( ! isset( $leafext_okay ) ) {
-				$leafext_okay = true;
-				wp_dequeue_style( 'leaflet_stylesheet' );
-				wp_dequeue_script( 'wp_leaflet_map' );
-				wp_deregister_style( 'leaflet_stylesheet' );
-				wp_deregister_script( 'wp_leaflet_map' );
+		if ( ! isset( $leafext_okay ) ) {
+			$leafext_okay = true;
+			wp_dequeue_style( 'leaflet_stylesheet' );
+			wp_dequeue_script( 'wp_leaflet_map' );
+			wp_deregister_style( 'leaflet_stylesheet' );
+			wp_deregister_script( 'wp_leaflet_map' );
+			$form = true;
+		} else {
+			$count = filter_var( $settings['count'], FILTER_VALIDATE_BOOLEAN );
+			if ( $count ) {
 				$form = true;
 			} else {
-				$count = filter_var( $settings['count'], FILTER_VALIDATE_BOOLEAN );
-				if ( $count ) {
-					$form = true;
-				} else {
-					$form = false;
-				}
+				$form = false;
 			}
+		}
 
 			$sgpxoptions = leafext_sgpx_settings();
 
-			if ( $tag === 'sgpx' ) {
-				if ( defined( 'WPGPXMAPS_CURRENT_VERSION' ) && $sgpxoptions['sgpx'] === '0' ) {
-					return $output;
-				}
-
-				if ( $sgpxoptions['sgpx'] === '1' ) {
-					$pos    = strpos( $output, '"></div><script>' );
-					$output = substr( $output, 0, $pos );
-					$output = str_replace( 'leaflet-map WPLeafletMap', 'leafext-dsgvo', $output );
-					$output = $output .
-					' background: linear-gradient(' . esc_attr( $settings['color'] ) . ',' . esc_attr( $settings['color'] ) . '), url(' . esc_url( $settings['mapurl'] ) . ');" ><div style="width: 70%;">'
-					. ( $form ? $formbegin_safe . wp_kses_post( $formtext ) . $formend_safe : '' ) . '</div></div>';
-				} else {
-					// search width and height
-					$search = 'style="width:';
-					$pos    = strpos( $output, $search );
-					if ( $pos === false ) {
-						$search = 'style="height:';
-						$pos    = strpos( $output, $search );
-					}
-					$style  = substr( $output, $pos - strlen( $output ) );
-					$search = 'position:relative';
-					$pos    = strpos( $style, $search );
-					if ( $pos === false ) {
-						$search = '"></div>';
-						$pos    = strpos( $style, $search );
-					}
-					$style  = substr( $style, 0, $pos );
-					$output = '<div class="leafext-dsgvo" ' . $style .
-					' background: linear-gradient(' . esc_attr( $settings['color'] ) . ',' . esc_attr( $settings['color'] ) . '), url(' . esc_url( $settings['mapurl'] ) . ');" ><div style="width: 70%;">'
-					. ( $form ? $formbegin_safe . wp_kses_post( $formtext ) . $formend_safe : '' ) . '</div></div>';
-				}
-			} else {
-				global $post;
-				if ( ! has_shortcode( $post->post_content, 'sgpx' ) ) {
-					$pos    = strpos( $output, '"></div><script>' );
-					$output = substr( $output, 0, $pos );
-					$output = str_replace( 'leaflet-map WPLeafletMap', 'leafext-dsgvo', $output );
-					$output = $output .
-					' background: linear-gradient(' . esc_attr( $settings['color'] ) . ',' . esc_attr( $settings['color'] ) . '), url(' . esc_url( $settings['mapurl'] ) . ');" ><div style="width: 70%;">'
-					. ( $form ? $formbegin_safe . wp_kses_post( $formtext ) . $formend_safe : '' ) . '</div></div>';
-				}
+		if ( $tag === 'sgpx' ) {
+			if ( defined( 'WPGPXMAPS_CURRENT_VERSION' ) && $sgpxoptions['sgpx'] === '0' ) {
+				return $output;
 			}
-			return $output;
+
+			if ( $sgpxoptions['sgpx'] === '1' ) {
+				$pos    = strpos( $output, '"></div><script>' );
+				$output = substr( $output, 0, $pos );
+				$output = str_replace( 'leaflet-map WPLeafletMap', 'leafext-dsgvo', $output );
+				$output = $output .
+				' background: linear-gradient(' . esc_attr( $settings['color'] ) . ',' . esc_attr( $settings['color'] ) . '), url(' . esc_url( $settings['mapurl'] ) . ');" ><div style="width: 70%;">'
+				. ( $form ? $formbegin_safe . wp_kses_post( $formtext ) . $formend_safe : '' ) . '</div></div>';
+			} else {
+				// search width and height
+				$search = 'style="width:';
+				$pos    = strpos( $output, $search );
+				if ( $pos === false ) {
+					$search = 'style="height:';
+					$pos    = strpos( $output, $search );
+				}
+				$style  = substr( $output, $pos - strlen( $output ) );
+				$search = 'position:relative';
+				$pos    = strpos( $style, $search );
+				if ( $pos === false ) {
+					$search = '"></div>';
+					$pos    = strpos( $style, $search );
+				}
+				$style  = substr( $style, 0, $pos );
+				$output = '<div class="leafext-dsgvo" ' . $style .
+				' background: linear-gradient(' . esc_attr( $settings['color'] ) . ',' . esc_attr( $settings['color'] ) . '), url(' . esc_url( $settings['mapurl'] ) . ');" ><div style="width: 70%;">'
+				. ( $form ? $formbegin_safe . wp_kses_post( $formtext ) . $formend_safe : '' ) . '</div></div>';
+			}
+		} else {
+			global $post;
+			if ( ! has_shortcode( $post->post_content, 'sgpx' ) ) {
+				$pos    = strpos( $output, '"></div><script>' );
+				$output = substr( $output, 0, $pos );
+				$output = str_replace( 'leaflet-map WPLeafletMap', 'leafext-dsgvo', $output );
+				$output = $output .
+				' background: linear-gradient(' . esc_attr( $settings['color'] ) . ',' . esc_attr( $settings['color'] ) . '), url(' . esc_url( $settings['mapurl'] ) . ');" ><div style="width: 70%;">'
+				. ( $form ? $formbegin_safe . wp_kses_post( $formtext ) . $formend_safe : '' ) . '</div></div>';
+			}
 		}
+			return $output;
 	}
-	add_filter( 'do_shortcode_tag', 'leafext_query_cookie', 10, 2 );
 }
+	add_filter( 'do_shortcode_tag', 'leafext_query_cookie', 10, 2 );
 
 function leafext_dequeue_missing() {
 	leafext_dequeue_recursive( 'wp_leaflet_map' );
