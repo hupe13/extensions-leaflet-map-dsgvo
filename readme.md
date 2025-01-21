@@ -61,3 +61,7 @@ Maybe you need a Github token.
 
 * interpreting frontend / backend (Elementor)
 * new shortcode leafext-cookie
+
+### Previous
+
+[Changelog](https://github.com/hupe13/extensions-leaflet-map-dsgvo/blob/main/changes.md)
