@@ -1,7 +1,11 @@
+###  250122
+
+* interpreting frontend / backend (Elementor)
+* new shortcode leafext-cookie
+
 ###  241205
 
 * fixed leafext_should_interpret_shortcode is not always defined for Github version
-* Honeypot
 
 ###  241115
 

@@ -68,20 +68,19 @@ function leafext_dsgvo_meta_links( $links, $file ) {
 
 	if ( ! ( is_main_site() && ( false === $leafext_github_denied || $leafext_update_token !== '' ) ) || ! is_main_site() ) {
 		if ( strpos( LEAFEXT_DSGVO_PLUGIN_FILE, $file ) !== false ) {
-			$local = get_file_data(
+			$local  = get_file_data(
 				LEAFEXT_DSGVO_PLUGIN_DIR . '/dsgvo-leaflet-map.php',
-				// LEAFEXT_DSGVO_PLUGIN_DIR . '/leafext-dsgvo.php',
 				array(
 					'Version' => 'Version',
 				)
 			);
 			$remote = get_file_data(
-				'https://raw.githubusercontent.com/hupe13/extensions-leaflet-map-dsgvo/main/leafext-dsgvo.php',
+				'https://raw.githubusercontent.com/hupe13/extensions-leaflet-map-dsgvo/main/dsgvo-leaflet-map.php',
 				array( 'Version' => 'Version' )
 			);
-			// var_dump($local,$remote);
+			// var_dump( $local, $remote );
 
-			if ( $local['Version'] !== $remote['Version'] ) {
+			if ( $local['Version'] < $remote['Version'] ) {
 				$links[] = '<a href="' . get_site_url() . '/wp-admin/admin.php?page=' . LEAFEXT_DSGVO_PLUGIN_NAME . '">' .
 				'<span class="update-message notice inline notice-warning notice-alt">' .
 				esc_html__( 'New version available.', 'extensions-leaflet-map-dsgvo' ) .

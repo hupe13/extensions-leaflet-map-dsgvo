@@ -5,7 +5,7 @@
  * Plugin URI:        https://leafext.de/en/
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch:    main
- * Version:           241205
+ * Version:           250121
  * Requires PHP:      7.4
  * Author:            hupe13
  * Author URI:        https://leafext.de/en/
@@ -121,14 +121,9 @@ function leafext_setcookie() {
 }
 add_action( 'init', 'leafext_setcookie' );
 
-require_once LEAFEXT_DSGVO_PLUGIN_DIR . 'functions.php';
-
 function leafext_query_cookie( $output, $tag ) {
-	$text = leafext_should_interpret_shortcode_dsgvo( $tag, array() );
-	if ( $text !== '' ) {
-		return $output;
-	} else {
-			global $leafext_cookie;
+	if ( ( is_singular() || is_archive() || is_home() || is_front_page() ) && ! current_user_can( 'edit_post', get_the_ID() ) ) {
+		global $leafext_cookie;
 		if (
 			is_admin()
 			// || is_user_logged_in()
@@ -138,23 +133,21 @@ function leafext_query_cookie( $output, $tag ) {
 			) {
 			return $output;
 		}
-			wp_enqueue_style(
-				'leafext-dsgvo-css',
-				plugins_url( 'css/leafext-dsgvo.css', LEAFEXT_DSGVO_PLUGIN_FILE ),
-				array(),
-				LEAFEXT_DSGVO_PLUGIN_VERSION
-			);
-			// https://stackoverflow.com/questions/36227376/better-honeypot-implementation-form-anti-spam
-			$formbegin_safe = '<form action="" method="post">';
-			$formbegin_safe = $formbegin_safe . wp_nonce_field( 'leafext_dsgvo', 'leafext_dsgvo_okay' );
-			$settings       = leafext_dsgvo_settings();
-			$formtext       = $settings['text'];
-			$formend_safe   = '<p class="submit" style="display:flex; justify-content: center; align-items: center;">
-		<input type="text" name="a_password" size="8" style="display:none !important" tabindex="-1" autocomplete="off">
+		wp_enqueue_style(
+			'leafext-dsgvo-css',
+			plugins_url( 'css/leafext-dsgvo.css', LEAFEXT_DSGVO_PLUGIN_FILE ),
+			array(),
+			LEAFEXT_DSGVO_PLUGIN_VERSION
+		);
+		$formbegin_safe = '<form action="" method="post">';
+		$formbegin_safe = $formbegin_safe . wp_nonce_field( 'leafext_dsgvo', 'leafext_dsgvo_okay' );
+		$settings       = leafext_dsgvo_settings();
+		$formtext       = $settings['text'];
+		$formend_safe   = '<p class="submit" style="display:flex; justify-content: center; align-items: center;">
 		<input type="submit" value="' . esc_attr( $settings['okay'] ) . '" name="leafext_button" /></p>
 		</form>';
 
-			global $leafext_okay;
+		global $leafext_okay;
 		if ( ! isset( $leafext_okay ) ) {
 			$leafext_okay = true;
 			wp_dequeue_style( 'leaflet_stylesheet' );
@@ -216,8 +209,8 @@ function leafext_query_cookie( $output, $tag ) {
 				. ( $form ? $formbegin_safe . wp_kses_post( $formtext ) . $formend_safe : '' ) . '</div></div>';
 			}
 		}
-		return $output;
 	}
+	return $output;
 }
 add_filter( 'do_shortcode_tag', 'leafext_query_cookie', 10, 2 );
 
@@ -242,6 +235,8 @@ function leafext_dequeue_recursive( $dep ) {
 	}
 }
 add_action( 'wp_footer', 'leafext_dequeue_missing', 1000 );
+
+require_once LEAFEXT_DSGVO_PLUGIN_DIR . 'shortcode.php';
 
 // WP < 6.5 or Github
 global $wp_version;

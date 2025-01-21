@@ -141,6 +141,17 @@ function leafext_dsgvo_help() {
 	echo wp_kses_post( $text );
 }
 
+function leafext_dsgvo_help_what() {
+	$text = '<h3>' . __( 'Function of the plugin', 'dsgvo-leaflet-map' ) . '</h3>';
+	$text = $text . '<p>' . sprintf(
+		/* translators: %1$s is leaflet-map, %2$s is the cookie name */
+		__( 'The plugin prevents the shortcode %1$s from being executed. If the user agrees, the cookie %2$s is set and %1$s is executed.', 'dsgvo-leaflet-map' ),
+		'<code>[leaflet-map]</code>',
+		'<code>leafext</code>'
+	) . '</p>';
+	echo wp_kses_post( $text );
+}
+
 function leafext_dsgvo_ttfp_help() {
 	if ( defined( 'POLYLANG_VERSION' ) ) {
 		echo '<h3>Polylang</h3>';
@@ -178,6 +189,7 @@ function leafext_dsgvo_ttfp_help() {
 function leafext_dsgvo_do_page() {
 	leafext_dsgvo_help();
 	leafext_dsgvo_update_admin();
+	leafext_dsgvo_help_what();
 	echo '<h3>';
 	esc_html_e( 'Settings', 'dsgvo-leaflet-map' );
 	echo '</h3>';
@@ -200,6 +212,7 @@ function leafext_dsgvo_do_page() {
 		}
 		echo '</form>';
 	}
+	leafext_dsgvo_short_code_help();
 }
 
 // Suche bestimmten Wert in array im admin interface

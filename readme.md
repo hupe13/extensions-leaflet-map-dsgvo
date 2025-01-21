@@ -3,7 +3,7 @@
 Contributors: hupe13  
 Tags: dsgvo, gdpr, leaflet  
 Tested up to: 6.7  
-Stable tag: 241115  
+Stable tag: 250121
 Requires at least: 6.0  
 Requires PHP: 7.4  
 License: GPLv2 or later  
@@ -57,7 +57,7 @@ Maybe you need a Github token.
 
 ## Changelog
 
-###  241205
+###  250122
 
-* fixed leafext_should_interpret_shortcode is not always defined for Github version
-* Honeypot
+* interpreting frontend / backend (Elementor)
+* new shortcode leafext-cookie
