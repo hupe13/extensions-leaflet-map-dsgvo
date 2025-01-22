@@ -146,7 +146,7 @@ function leafext_dsgvo_help_what() {
 	$text = $text . '<p>' . sprintf(
 		/* translators: %1$s is leaflet-map, %2$s is the cookie name */
 		__( 'The plugin prevents the shortcode %1$s from being executed. If the user agrees, the cookie %2$s is set and %1$s is executed.', 'dsgvo-leaflet-map' ),
-		'<code>[leaflet-map]</code>',
+		'<code>&#091;leaflet-map]</code>',
 		'<code>leafext</code>'
 	) . '</p>';
 	echo wp_kses_post( $text );

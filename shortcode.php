@@ -8,7 +8,7 @@
 // Direktzugriff auf diese Datei verhindern.
 defined( 'ABSPATH' ) || die();
 
-function leafext_restricted( $atts, $content, $shortcode ) {
+function leafext_restricted( $atts, $content ) {
 	if ( is_singular() || is_archive() || is_home() || is_front_page() ) {
 		global $leafext_cookie;
 		if ( is_user_logged_in() || isset( $_COOKIE['leafext'] ) || $leafext_cookie ) {
@@ -59,7 +59,7 @@ function leafext_dsgvo_short_code_help() {
 	);
 
 	$text = $text . '<pre' . $codestyle . '><code' . $codestyle . '>[leafext-cookie text="..." okay="..."]</code></pre>';
-	$text = $text . __( 'any content', 'dsgvo-leaflet-map' );
+	$text = $text . '<p>' . __( 'any content', 'dsgvo-leaflet-map' ) . '</p>';
 	$text = $text . '<pre' . $codestyle . '><code' . $codestyle . '>[/leafext-cookie]</code></pre>';
 	$text = $text . sprintf(
 		/* translators: %s are options */
@@ -67,5 +67,9 @@ function leafext_dsgvo_short_code_help() {
 		'<code>text</code>',
 		'<code>okay</code>'
 	);
-	echo wp_kses_post( $text );
+	if ( is_singular() || is_archive() ) {
+		return $text;
+	} else {
+		echo wp_kses_post( $text );
+	}
 }

@@ -7,13 +7,13 @@
 
 * fixed leafext_should_interpret_shortcode is not always defined for Github version
 
-###  241115
+###  241115 / WordPress Version 1.1
 
 * Plugin Checks
 * textdomains
 * WordPress 6.7
 
-###  240917
+###  240917 / WordPress Version 1.0
 
 * It is now an official WordPress plugin! https://wordpress.org/plugins/dsgvo-leaflet-map/
 * textdomain changed, please check your TTfP settings for this plugin.
