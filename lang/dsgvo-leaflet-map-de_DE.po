@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - DSGVO snippet for Leaflet Map and its Extensions - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2024-11-15 13:41+0000\n"
+"PO-Revision-Date: 2025-01-22 07:16+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -11,17 +11,21 @@ msgstr ""
 "Language: de_DE\n"
 "Project-Id-Version: Plugins - DSGVO snippet for Leaflet Map and its "
 "Extensions - Stable (latest release)\n"
-"Language-Team: Deutsch"
+"Language-Team: German"
 
-#: admin.php:160
+#: admin.php:171
 msgid "and"
 msgstr "und"
 
-#: dsgvo-leaflet-map.php:68
+#: shortcode.php:62
+msgid "any content"
+msgstr "beliebiger Inhalt"
+
+#: dsgvo-leaflet-map.php:67
 msgid "Color of the background"
 msgstr "Hintergrundfarbe"
 
-#: dsgvo-leaflet-map.php:74
+#: dsgvo-leaflet-map.php:73
 msgid "Cookie Lifetime"
 msgstr "Lebensdauer des Cookies"
 
@@ -42,13 +46,17 @@ msgstr "DSGVO/GDPR Snippet für Leaflet Map und seine Extensions"
 msgid "each map"
 msgstr "auf jeder Karte"
 
-#: admin.php:158
+#: admin.php:169
 msgid "enable"
 msgstr "aktiviere"
 
-#: admin.php:162
+#: admin.php:173
 msgid "fill in your text"
 msgstr "trage deinen Text ein"
+
+#: admin.php:145
+msgid "Function of the plugin"
+msgstr "Funktion des Plugins"
 
 #: admin.php:17
 msgid "GDPR"
@@ -60,7 +68,7 @@ msgstr "DSGVO"
 msgid "GDPR (DSGVO) snippet for %s and its Extensions"
 msgstr "DSGVO Snippet für %s und seine Extensions"
 
-#: admin.php:154
+#: admin.php:165
 msgid "Go to"
 msgstr "Gehe zu"
 
@@ -74,16 +82,16 @@ msgid "hupe13"
 msgstr "hupe13"
 
 #. %s is a link.
-#: admin.php:168
+#: admin.php:179
 #, php-format
 msgid "If you wish to translate these strings in %s use"
 msgstr "Wenn du diese Texte in %s übersetzen möchtest, verwende"
 
-#: admin.php:152
+#: admin.php:163
 msgid "is active."
 msgstr "ist aktiviert."
 
-#: dsgvo-leaflet-map.php:59
+#: dsgvo-leaflet-map.php:58
 msgid "Okay"
 msgstr "Verstanden!"
 
@@ -95,15 +103,21 @@ msgstr "nur auf der ersten Karte"
 msgid "Options GDPR"
 msgstr "Optionen DSGVO"
 
-#: admin.php:199
+#: admin.php:211
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: dsgvo-leaflet-map.php:44 admin.php:156 admin.php:182
+#: dsgvo-leaflet-map.php:43 admin.php:167 admin.php:194
 msgid "Settings"
 msgstr "Einstellungen"
 
-#: dsgvo-leaflet-map.php:79
+#. %s is leafext_cookie
+#: shortcode.php:44
+#, php-format
+msgid "Shortcode %s"
+msgstr "Shortcode %s"
+
+#: dsgvo-leaflet-map.php:78
 msgid ""
 "Should the text be displayed on each map of the page or only on the first "
 "map?"
@@ -111,23 +125,40 @@ msgstr ""
 "Soll der Text auf jeder Karte der Seite angezeigt werden oder nur auf der "
 "ersten Karte?"
 
-#: dsgvo-leaflet-map.php:58
+#: dsgvo-leaflet-map.php:57
 msgid "Submit Button"
 msgstr "Formular absenden"
 
-#: admin.php:186
+#: admin.php:198
 msgid "Test it in a private browser window."
 msgstr "Teste es in einem privaten Browserfenster."
 
-#: dsgvo-leaflet-map.php:53
+#: dsgvo-leaflet-map.php:52
 msgid "Text"
 msgstr "Text"
 
-#: dsgvo-leaflet-map.php:63
+#. %s are options
+#: shortcode.php:66
+#, php-format
+msgid "The options %1$s and %2$s are optional. Default is the setting."
+msgstr ""
+"Die Optionen %1$s und %2$s sind optional. Standard sind die Einstellungen."
+
+#. %1$s is leaflet-map, %2$s is the cookie name
+#: admin.php:148
+#, php-format
+msgid ""
+"The plugin prevents the shortcode %1$s from being executed. If the user "
+"agrees, the cookie %2$s is set and %1$s is executed."
+msgstr ""
+"Das Plugin verhindert das Ausführen des Shortcodes %1$s. Erst wenn der "
+"Nutzer zustimmt, wird das Cookie %2$s gesetzt und %1$s wird ausgeführt."
+
+#: dsgvo-leaflet-map.php:62
 msgid "URL to background image. Leave it blank for no image."
 msgstr "URL des Hintergrundbildes. Lass das Feld leer, wenn du keins möchtest."
 
-#: dsgvo-leaflet-map.php:54
+#: dsgvo-leaflet-map.php:53
 msgid ""
 "When using the maps, content is loaded from third-party servers. If you "
 "agree to this, a cookie will be set and this notice will be hidden. If not, "
@@ -136,3 +167,14 @@ msgstr ""
 "Bei der Verwendung der Karten werden Inhalte von Drittservern geladen. Wenn "
 "Du dem zustimmst, wird ein Cookie gesetzt und dieser Hinweis ausgeblendet. "
 "Wenn nicht, werden Dir keine Karten angezeigt."
+
+#. %s are the shortcode
+#: shortcode.php:55
+#, php-format
+msgid ""
+"You can use this shortcode anywhere. All content between %1$s and %2$s will "
+"only be displayed if the user agrees. The cookie is the same as above %3$s."
+msgstr ""
+"Du kannst diesen Shortcode überall verwenden. Alle Inhalte zwischen %1$s und "
+"%2$s werden nur angezeigt, wenn der Nutzer zustimmt. Das Cookie ist das "
+"gleiche wie oben %3$s."

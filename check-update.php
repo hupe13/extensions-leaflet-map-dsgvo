@@ -1,8 +1,8 @@
 <?php
 /**
- *  Updates Extensions for Leaflet Map DSGVO
+ *  Updates for DSGVO snippet for Leaflet Map and its Extensions Github Version
  *
- * @package Extensions for Leaflet Map DSGVO
+ * @package Leaflet Map DSGVO
  **/
 
 // Direktzugriff auf diese Datei verhindern.

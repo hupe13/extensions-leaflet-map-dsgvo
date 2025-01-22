@@ -1,6 +1,6 @@
 <?php
 /**
- *  Shortcode DSGVO for Leaflet Map and its Extensions
+ *  Shortcode DSGVO snippet for Leaflet Map and its Extensions
  *
  * @package DSGVO snippet for Leaflet Map and its Extensions
  **/

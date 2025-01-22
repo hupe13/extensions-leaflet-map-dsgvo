@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DSGVO snippet for Leaflet Map and its Extensions Github\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-15 13:39+0000\n"
+"POT-Creation-Date: 2025-01-22 07:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -16,15 +16,19 @@ msgstr ""
 "X-Loco-Version: 2.6.11; wp-6.6.2\n"
 "X-Domain: dsgvo-leaflet-map"
 
-#: admin.php:160
+#: admin.php:171
 msgid "and"
 msgstr ""
 
-#: dsgvo-leaflet-map.php:68
+#: shortcode.php:62
+msgid "any content"
+msgstr ""
+
+#: dsgvo-leaflet-map.php:67
 msgid "Color of the background"
 msgstr ""
 
-#: dsgvo-leaflet-map.php:74
+#: dsgvo-leaflet-map.php:73
 msgid "Cookie Lifetime"
 msgstr ""
 
@@ -44,12 +48,16 @@ msgstr ""
 msgid "each map"
 msgstr ""
 
-#: admin.php:158
+#: admin.php:169
 msgid "enable"
 msgstr ""
 
-#: admin.php:162
+#: admin.php:173
 msgid "fill in your text"
+msgstr ""
+
+#: admin.php:145
+msgid "Function of the plugin"
 msgstr ""
 
 #: admin.php:17
@@ -62,7 +70,7 @@ msgstr ""
 msgid "GDPR (DSGVO) snippet for %s and its Extensions"
 msgstr ""
 
-#: admin.php:154
+#: admin.php:165
 msgid "Go to"
 msgstr ""
 
@@ -76,16 +84,16 @@ msgid "hupe13"
 msgstr ""
 
 #. %s is a link.
-#: admin.php:168
+#: admin.php:179
 #, php-format
 msgid "If you wish to translate these strings in %s use"
 msgstr ""
 
-#: admin.php:152
+#: admin.php:163
 msgid "is active."
 msgstr ""
 
-#: dsgvo-leaflet-map.php:59
+#: dsgvo-leaflet-map.php:58
 msgid "Okay"
 msgstr ""
 
@@ -97,39 +105,67 @@ msgstr ""
 msgid "Options GDPR"
 msgstr ""
 
-#: admin.php:199
+#: admin.php:211
 msgid "Reset"
 msgstr ""
 
-#: dsgvo-leaflet-map.php:44 admin.php:156 admin.php:182
+#: dsgvo-leaflet-map.php:43 admin.php:167 admin.php:194
 msgid "Settings"
 msgstr ""
 
-#: dsgvo-leaflet-map.php:79
+#. %s is leafext_cookie
+#: shortcode.php:44
+#, php-format
+msgid "Shortcode %s"
+msgstr ""
+
+#: dsgvo-leaflet-map.php:78
 msgid ""
 "Should the text be displayed on each map of the page or only on the first "
 "map?"
 msgstr ""
 
-#: dsgvo-leaflet-map.php:58
+#: dsgvo-leaflet-map.php:57
 msgid "Submit Button"
 msgstr ""
 
-#: admin.php:186
+#: admin.php:198
 msgid "Test it in a private browser window."
 msgstr ""
 
-#: dsgvo-leaflet-map.php:53
+#: dsgvo-leaflet-map.php:52
 msgid "Text"
 msgstr ""
 
-#: dsgvo-leaflet-map.php:63
+#. %s are options
+#: shortcode.php:66
+#, php-format
+msgid "The options %1$s and %2$s are optional. Default is the setting."
+msgstr ""
+
+#. %1$s is leaflet-map, %2$s is the cookie name
+#: admin.php:148
+#, php-format
+msgid ""
+"The plugin prevents the shortcode %1$s from being executed. If the user "
+"agrees, the cookie %2$s is set and %1$s is executed."
+msgstr ""
+
+#: dsgvo-leaflet-map.php:62
 msgid "URL to background image. Leave it blank for no image."
 msgstr ""
 
-#: dsgvo-leaflet-map.php:54
+#: dsgvo-leaflet-map.php:53
 msgid ""
 "When using the maps, content is loaded from third-party servers. If you "
 "agree to this, a cookie will be set and this notice will be hidden. If not, "
 "no maps will be displayed."
+msgstr ""
+
+#. %s are the shortcode
+#: shortcode.php:55
+#, php-format
+msgid ""
+"You can use this shortcode anywhere. All content between %1$s and %2$s will "
+"only be displayed if the user agrees. The cookie is the same as above %3$s."
 msgstr ""

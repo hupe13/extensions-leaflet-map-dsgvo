@@ -3,7 +3,7 @@
 Contributors: hupe13
 Tags: dsgvo, gdpr, leaflet
 Tested up to: 6.7
-Stable tag: 250121
+Stable tag: 1.1
 Requires at least: 6.0
 Requires PHP: 7.4
 License: GPLv2 or later
@@ -28,7 +28,7 @@ Configure its settings at Leaflet Map -> Leaflet Map GDPR.
 Es gibt nun ein offizielles [WordPress Plugin](https://de.wordpress.org/plugins/dsgvo-leaflet-map/) und es ist nicht nötig, dass du dieses hier verwendest. Es sei denn, du hast einen Vorschlag für eine Verbesserung bzw. eine neue Funktion und ich bitte dich, diese zu testen.
 
 Laut DSGVO muss der Nutzer aktiv zustimmen, wenn Inhalte von Drittservern geladen werden sollen.
-Die WordPress-Plugins [Leaflet Map](https://de.wordpress.org/plugins/leaflet-map/) und [Extensions for Leaflet Map](https://de.wordpress.org/plugins/extensions-leaflet-map/) laden Inhalte von den definierten Kachelservern sowie unpkg.com.
+Die WordPress-Plugins [Leaflet Map](https://de.wordpress.org/plugins/leaflet-map/) und [Erweiterungen für Leaflet Map](https://de.wordpress.org/plugins/extensions-leaflet-map/) laden Inhalte von den definierten Kachelservern sowie unpkg.com.
 Dieses kleine Snippet holt die Zustimmung des Nutzers zum Laden der Karten ein.
 Du kannst den Text anpassen und es auf eigene Verantwortung verwenden.
 
