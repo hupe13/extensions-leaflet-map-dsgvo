@@ -188,7 +188,9 @@ function leafext_dsgvo_ttfp_help() {
 // Draw the menu page itself
 function leafext_dsgvo_do_page() {
 	leafext_dsgvo_help();
-	leafext_dsgvo_update_admin();
+	if ( function_exists( 'leafext_dsgvo_update_admin' ) ) {
+		leafext_dsgvo_update_admin();
+	}
 	leafext_dsgvo_help_what();
 	echo '<h3>';
 	esc_html_e( 'Settings', 'dsgvo-leaflet-map' );
