@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DSGVO snippet for Leaflet Map and its Extensions Github\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-23 19:45+0000\n"
+"POT-Creation-Date: 2025-01-23 20:20+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -24,7 +24,13 @@ msgid ""
 "The cookie is the same as above %3$s."
 msgstr ""
 
-#: admin.php:171
+#. %s are hrefs.
+#: admin.php:155
+#, php-format
+msgid "An example is %1$shere%2$s"
+msgstr ""
+
+#: admin.php:181
 msgid "and"
 msgstr ""
 
@@ -56,11 +62,11 @@ msgstr ""
 msgid "each map"
 msgstr ""
 
-#: admin.php:169
+#: admin.php:179
 msgid "enable"
 msgstr ""
 
-#: admin.php:173
+#: admin.php:183
 msgid "fill in your text"
 msgstr ""
 
@@ -78,7 +84,7 @@ msgstr ""
 msgid "GDPR (DSGVO) snippet for %s and its Extensions"
 msgstr ""
 
-#: admin.php:165
+#: admin.php:175
 msgid "Go to"
 msgstr ""
 
@@ -92,7 +98,7 @@ msgid "hupe13"
 msgstr ""
 
 #. %s is a link.
-#: admin.php:179
+#: admin.php:189
 #, php-format
 msgid "If you wish to translate these strings in %s use"
 msgstr ""
@@ -105,7 +111,7 @@ msgid ""
 "anywhere in your pages / posts."
 msgstr ""
 
-#: admin.php:163
+#: admin.php:173
 msgid "is active."
 msgstr ""
 
@@ -121,11 +127,11 @@ msgstr ""
 msgid "Options GDPR"
 msgstr ""
 
-#: admin.php:213
+#: admin.php:223
 msgid "Reset"
 msgstr ""
 
-#: dsgvo-leaflet-map.php:43 admin.php:167 admin.php:196
+#: dsgvo-leaflet-map.php:43 admin.php:177 admin.php:206
 msgid "Settings"
 msgstr ""
 
@@ -145,7 +151,7 @@ msgstr ""
 msgid "Submit Button"
 msgstr ""
 
-#: admin.php:200
+#: admin.php:210
 msgid "Test it in a private browser window."
 msgstr ""
 

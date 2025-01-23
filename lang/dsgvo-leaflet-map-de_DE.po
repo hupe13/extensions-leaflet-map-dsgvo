@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - DSGVO snippet for Leaflet Map and its Extensions - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-01-23 19:50+0000\n"
+"PO-Revision-Date: 2025-01-23 20:21+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -23,7 +23,13 @@ msgstr ""
 "Alle Inhalte zwischen %1$s und %2$s werden nur angezeigt, wenn der Benutzer "
 "zustimmt. Das Cookie ist das gleiche wie oben %3$s."
 
-#: admin.php:171
+#. %s are hrefs.
+#: admin.php:155
+#, php-format
+msgid "An example is %1$shere%2$s"
+msgstr "%1$sHier%2$s ist ein Beispiel"
+
+#: admin.php:181
 msgid "and"
 msgstr "und"
 
@@ -55,11 +61,11 @@ msgstr "DSGVO/GDPR Snippet für Leaflet Map und seine Erweiterungen"
 msgid "each map"
 msgstr "auf jeder Karte"
 
-#: admin.php:169
+#: admin.php:179
 msgid "enable"
 msgstr "aktiviere"
 
-#: admin.php:173
+#: admin.php:183
 msgid "fill in your text"
 msgstr "trage deinen Text ein"
 
@@ -77,7 +83,7 @@ msgstr "DSGVO"
 msgid "GDPR (DSGVO) snippet for %s and its Extensions"
 msgstr "DSGVO Snippet für %s und seine Extensions"
 
-#: admin.php:165
+#: admin.php:175
 msgid "Go to"
 msgstr "Gehe zu"
 
@@ -91,7 +97,7 @@ msgid "hupe13"
 msgstr "hupe13"
 
 #. %s is a link.
-#: admin.php:179
+#: admin.php:189
 #, php-format
 msgid "If you wish to translate these strings in %s use"
 msgstr "Wenn du diese Texte in %s übersetzen möchtest, verwende"
@@ -106,7 +112,7 @@ msgstr ""
 "Darüber hinaus gibt es den Shortcode %1$s. Du kannst diesen Shortcode "
 "überall in deinen Seiten / Beiträgen verwenden."
 
-#: admin.php:163
+#: admin.php:173
 msgid "is active."
 msgstr "ist aktiviert."
 
@@ -122,11 +128,11 @@ msgstr "nur auf der ersten Karte"
 msgid "Options GDPR"
 msgstr "Optionen DSGVO"
 
-#: admin.php:213
+#: admin.php:223
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: dsgvo-leaflet-map.php:43 admin.php:167 admin.php:196
+#: dsgvo-leaflet-map.php:43 admin.php:177 admin.php:206
 msgid "Settings"
 msgstr "Einstellungen"
 
@@ -148,7 +154,7 @@ msgstr ""
 msgid "Submit Button"
 msgstr "Formular absenden"
 
-#: admin.php:200
+#: admin.php:210
 msgid "Test it in a private browser window."
 msgstr "Teste es in einem privaten Browserfenster."
 

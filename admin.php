@@ -149,6 +149,17 @@ function leafext_dsgvo_help_what() {
 		'<code>&#091;leaflet-map]</code>',
 		'<code>leafext</code>'
 	) . '</p>';
+	$text = $text . '<p>' .
+	sprintf(
+		/* translators: %s are hrefs. */
+		__(
+			'An example is %1$shere%2$s',
+			'dsgvo-leaflet-map'
+		),
+		'<a href="https://leafext.de/extra/dsgvo-example/">',
+		'</a>'
+	);
+	$text = $text . '.</p>';
 	echo wp_kses_post( $text );
 }
 
