@@ -49,18 +49,23 @@ function leafext_dsgvo_short_code_help() {
 		$codestyle = ' class="language-coffeescript"';
 	}
 	$text = $text . '<p>' . sprintf(
-		/* translators: %s are the shortcode */
+	/* translators: %s is the shortcode */
 		__(
-			'In addition, there is the shortcode %1$s. You can use this shortcode anywhere in your pages / posts.
-			All content between %2$s and %3$s will only be displayed if the user agrees. The cookie is the same as above %4$s.',
+			'In addition, there is the shortcode %1$s. You can use this shortcode anywhere in your pages / posts.',
 			'dsgvo-leaflet-map'
 		),
-		'<code>leafext-cookie</code>',
+		'<code>leafext-cookie</code>'
+	) . ' ';
+	$text = $text . ' ' . sprintf(
+	/* translators: %s are the shortcode */
+		__(
+			'All content between %1$s and %2$s will only be displayed if the user agrees. The cookie is the same as above %3$s.',
+			'dsgvo-leaflet-map'
+		),
 		'<code>&#091;leafext-cookie]</code>',
 		'<code>[/leafext-cookie]</code>',
 		'(<code>leafext</code>)'
 	) . '</p>';
-
 	$text = $text . '<pre' . $codestyle . '><code' . $codestyle . '>&#091;leafext-cookie text="..." okay="..."]</code></pre>';
 	$text = $text . '<p>' . __( 'any content', 'dsgvo-leaflet-map' ) . '</p>';
 	$text = $text . '<pre' . $codestyle . '><code' . $codestyle . '>&#091;/leafext-cookie]</code></pre>';
