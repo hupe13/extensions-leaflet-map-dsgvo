@@ -12,8 +12,7 @@ function leafext_restricted( $atts, $content ) {
 	if ( is_singular() || is_archive() || is_home() || is_front_page() ) {
 		global $leafext_cookie;
 		if ( is_user_logged_in() || isset( $_COOKIE['leafext'] ) || $leafext_cookie ) {
-			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo $content;
+			return $content;
 		} else {
 			if ( isset( $atts['text'] ) ) {
 				$atts['text'] = wp_kses_post( $atts['text'] );
@@ -31,18 +30,17 @@ function leafext_restricted( $atts, $content ) {
 			'<p class="submit" style="display:flex; justify-content: center; align-items: center;">
 			<input type="submit" value="' . $options['okay'] . '" name="leafext_button" /></p>
 			</form>';
-			// phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-			echo $form;
+			return $form;
 		}
 	}
 }
-add_shortcode( 'leafext_cookie', 'leafext_restricted' );
+add_shortcode( 'leafext-cookie', 'leafext_restricted' );
 
 function leafext_dsgvo_short_code_help() {
 	$text = '<h3>' . sprintf(
 		/* translators: %s is leafext_cookie */
 		__( 'Shortcode %s', 'dsgvo-leaflet-map' ),
-		'<code>leafext_cookie</code>'
+		'leafext-cookie'
 	) . '</h3>';
 	if ( is_singular() || is_archive() ) {
 		$codestyle = '';
@@ -50,17 +48,22 @@ function leafext_dsgvo_short_code_help() {
 		leafext_enqueue_admin();
 		$codestyle = ' class="language-coffeescript"';
 	}
-	$text = $text . sprintf(
+	$text = $text . '<p>' . sprintf(
 		/* translators: %s are the shortcode */
-		__( 'You can use this shortcode anywhere. All content between %1$s and %2$s will only be displayed if the user agrees. The cookie is the same as above %3$s.', 'dsgvo-leaflet-map' ),
-		'<code>[leafext-cookie]</code>',
+		__(
+			'In addition, there is the shortcode %1$s. You can use this shortcode anywhere in your pages / posts.
+			All content between %2$s and %3$s will only be displayed if the user agrees. The cookie is the same as above %4$s.',
+			'dsgvo-leaflet-map'
+		),
+		'<code>leafext-cookie</code>',
+		'<code>&#091;leafext-cookie]</code>',
 		'<code>[/leafext-cookie]</code>',
 		'(<code>leafext</code>)'
-	);
+	) . '</p>';
 
-	$text = $text . '<pre' . $codestyle . '><code' . $codestyle . '>[leafext-cookie text="..." okay="..."]</code></pre>';
+	$text = $text . '<pre' . $codestyle . '><code' . $codestyle . '>&#091;leafext-cookie text="..." okay="..."]</code></pre>';
 	$text = $text . '<p>' . __( 'any content', 'dsgvo-leaflet-map' ) . '</p>';
-	$text = $text . '<pre' . $codestyle . '><code' . $codestyle . '>[/leafext-cookie]</code></pre>';
+	$text = $text . '<pre' . $codestyle . '><code' . $codestyle . '>&#091;/leafext-cookie]</code></pre>';
 	$text = $text . sprintf(
 		/* translators: %s are options */
 		__( 'The options %1$s and %2$s are optional. Default is the setting.', 'dsgvo-leaflet-map' ),

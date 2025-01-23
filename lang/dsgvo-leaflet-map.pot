@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DSGVO snippet for Leaflet Map and its Extensions Github\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-22 07:11+0000\n"
+"POT-Creation-Date: 2025-01-23 16:57+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "and"
 msgstr ""
 
-#: shortcode.php:62
+#: shortcode.php:65
 msgid "any content"
 msgstr ""
 
@@ -34,14 +34,6 @@ msgstr ""
 
 #: admin.php:71
 msgid "days"
-msgstr ""
-
-#. Name of the plugin
-msgid "DSGVO snippet for Leaflet Map and its Extensions Github"
-msgstr ""
-
-#. Description of the plugin
-msgid "DSGVO/GDPR snippet for Leaflet Map and its Extensions"
 msgstr ""
 
 #: admin.php:77
@@ -74,19 +66,20 @@ msgstr ""
 msgid "Go to"
 msgstr ""
 
-#. URI of the plugin
-#. Author URI of the plugin
-msgid "https://leafext.de/en/"
-msgstr ""
-
-#. Author of the plugin
-msgid "hupe13"
-msgstr ""
-
 #. %s is a link.
 #: admin.php:179
 #, php-format
 msgid "If you wish to translate these strings in %s use"
+msgstr ""
+
+#. %s are the shortcode
+#: shortcode.php:53
+#, php-format
+msgid ""
+"In addition, there is the shortcode %1$s. You can use this shortcode "
+"anywhere in your pages / posts.\n"
+"\t\t\tAll content between %2$s and %3$s will only be displayed if the user "
+"agrees. The cookie is the same as above %4$s."
 msgstr ""
 
 #: admin.php:163
@@ -105,16 +98,16 @@ msgstr ""
 msgid "Options GDPR"
 msgstr ""
 
-#: admin.php:211
+#: admin.php:213
 msgid "Reset"
 msgstr ""
 
-#: dsgvo-leaflet-map.php:43 admin.php:167 admin.php:194
+#: dsgvo-leaflet-map.php:43 admin.php:167 admin.php:196
 msgid "Settings"
 msgstr ""
 
 #. %s is leafext_cookie
-#: shortcode.php:44
+#: shortcode.php:42
 #, php-format
 msgid "Shortcode %s"
 msgstr ""
@@ -129,7 +122,7 @@ msgstr ""
 msgid "Submit Button"
 msgstr ""
 
-#: admin.php:198
+#: admin.php:200
 msgid "Test it in a private browser window."
 msgstr ""
 
@@ -138,7 +131,7 @@ msgid "Text"
 msgstr ""
 
 #. %s are options
-#: shortcode.php:66
+#: shortcode.php:69
 #, php-format
 msgid "The options %1$s and %2$s are optional. Default is the setting."
 msgstr ""
@@ -160,12 +153,4 @@ msgid ""
 "When using the maps, content is loaded from third-party servers. If you "
 "agree to this, a cookie will be set and this notice will be hidden. If not, "
 "no maps will be displayed."
-msgstr ""
-
-#. %s are the shortcode
-#: shortcode.php:55
-#, php-format
-msgid ""
-"You can use this shortcode anywhere. All content between %1$s and %2$s will "
-"only be displayed if the user agrees. The cookie is the same as above %3$s."
 msgstr ""

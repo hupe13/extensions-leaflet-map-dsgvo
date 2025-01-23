@@ -5,7 +5,7 @@
  * Plugin URI:        https://leafext.de/en/
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch:    main
- * Version:           250122
+ * Version:           250123
  * Requires PHP:      7.4
  * Author:            hupe13
  * Author URI:        https://leafext.de/en/
@@ -99,24 +99,18 @@ function leafext_setcookie() {
 		if ( isset( $_REQUEST['leafext_dsgvo_okay'] ) && ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_REQUEST['leafext_dsgvo_okay'] ) ), 'leafext_dsgvo' ) ) {
 			wp_die( 'invalid', 404 );
 		}
-		if ( ! empty( $_REQUEST['a_password'] ) ) {
-			# treat as spambot
-			wp_die( 'invalid', 404 );
-		}
 		$settings = leafext_dsgvo_settings();
-		if ( $_POST['leafext_button'] === $settings['okay'] ) {
-			// https://www.php.net/manual/en/function.setcookie.php#125242
-			$arr_cookie_options = array(
-				'expires'  => time() + 3600 * 24 * $settings['cookie'],
-				'path'     => '/',
-				'domain'   => wp_parse_url( get_site_url(), PHP_URL_HOST ),
-				'secure'   => true,
-				'httponly' => true,
-				'samesite' => 'Strict', // None || Lax  || Strict
-			);
-			setcookie( 'leafext', 1, $arr_cookie_options );
-			$leafext_cookie = true;
-		}
+		// https://www.php.net/manual/en/function.setcookie.php#125242
+		$arr_cookie_options = array(
+			'expires'  => time() + 3600 * 24 * $settings['cookie'],
+			'path'     => '/',
+			'domain'   => wp_parse_url( get_site_url(), PHP_URL_HOST ),
+			'secure'   => true,
+			'httponly' => true,
+			'samesite' => 'Strict', // None || Lax  || Strict
+		);
+		setcookie( 'leafext', 1, $arr_cookie_options );
+		$leafext_cookie = true;
 	}
 }
 add_action( 'init', 'leafext_setcookie' );
