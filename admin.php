@@ -133,11 +133,9 @@ function leafext_validate_dsgvo( $options ) {
 
 // Erklaerung / Hilfe
 function leafext_dsgvo_help() {
-	$text = '<h3>' . sprintf(
-		/* translators: %s is Leaflet Map */
-		__( 'GDPR (DSGVO) snippet for %s and its Extensions', 'dsgvo-leaflet-map' ),
-		'Leaflet Map'
-	) . '</h3>';
+	$text = '<h3>' .
+		__( 'GDPR (DSGVO) snippet for Leaflet Map and its Extensions', 'dsgvo-leaflet-map' )
+		 . '</h3>';
 	echo wp_kses_post( $text );
 }
 

@@ -52,15 +52,17 @@ require_once LEAFEXT_DSGVO_PLUGIN_DIR . 'php/shortcode.php';
 global $wp_version;
 function leafext_dsgvo_require() {
 	if ( is_admin() ) {
-		if ( ! defined( 'LEAFEXT_PLUGIN_FILE' ) ) {
+		if ( ! defined( 'LEAFLET_MAP__PLUGIN_VERSION' ) ) {
 			if ( ( is_multisite() && ! is_main_site() ) || ! is_multisite() ) {
 				function leafext_require_leaflet_map_extensions() {
 					echo '<div class="notice notice-error" ><p> ';
 					printf(
-						/* translators: %s are plugin names. */
-						esc_html__( 'Please install and activate %1$s before using %2$s.', 'extensions-leaflet-map-dsgvo' ),
-						'<a href="https://wordpress.org/plugins/extensions-leaflet-map/">Extensions for Leaflet Map</a>',
-						'DSGVO snippet for Leaflet Map and its Extensions'
+						/* translators: %s is a plugin names. */
+						esc_html__(
+							'Please install and activate %s before using GDPR (DSGVO) snippet for Leaflet Map and its Extensions!',
+							'extensions-leaflet-map-dsgvo'
+						),
+						'<a href="https://wordpress.org/plugins/leaflet-map/">Leaflet Map</a>'
 					);
 					echo '</p></div>';
 				}

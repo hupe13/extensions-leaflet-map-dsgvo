@@ -2,7 +2,7 @@
 # This file is distributed under the same license as the Plugins - DSGVO snippet for Leaflet Map and its Extensions - Stable (latest release) package.
 msgid ""
 msgstr ""
-"PO-Revision-Date: 2025-01-24 11:04+0000\n"
+"PO-Revision-Date: 2025-01-24 22:01+0000\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Loco-Version: 2.6.14; wp-6.7.1"
 
 #. %s are the shortcode
-#: php/shortcode.php:61
+#: php/shortcode.php:77
 #, php-format
 msgid ""
 "All content between %1$s and %2$s will only be displayed if the user agrees. "
@@ -28,16 +28,16 @@ msgstr ""
 "zustimmt. Das Cookie ist das gleiche wie oben %3$s."
 
 #. %s are hrefs.
-#: admin.php:155
+#: admin.php:153
 #, php-format
 msgid "An example is %1$shere%2$s"
 msgstr "%1$sHier%2$s ist ein Beispiel"
 
-#: admin.php:182
+#: admin.php:180
 msgid "and"
 msgstr "und"
 
-#: php/shortcode.php:70
+#: php/shortcode.php:86
 msgid "any content, but not a shortcode"
 msgstr "beliebiger Inhalt, aber keinen Shortcode"
 
@@ -65,15 +65,15 @@ msgstr "DSGVO/GDPR Snippet für Leaflet Map und seine Erweiterungen"
 msgid "each map"
 msgstr "auf jeder Karte"
 
-#: admin.php:180
+#: admin.php:178
 msgid "enable"
 msgstr "aktiviere"
 
-#: admin.php:184
+#: admin.php:182
 msgid "fill in your text"
 msgstr "trage deinen Text ein"
 
-#: admin.php:145
+#: admin.php:143
 msgid "Function of the plugin"
 msgstr "Funktion des Plugins"
 
@@ -81,13 +81,12 @@ msgstr "Funktion des Plugins"
 msgid "GDPR"
 msgstr "DSGVO"
 
-#. %s is Leaflet Map
-#: admin.php:138
-#, php-format
-msgid "GDPR (DSGVO) snippet for %s and its Extensions"
-msgstr "DSGVO Snippet für %s und seine Extensions"
+#: dsgvo-leaflet-map.php:65 admin.php:137
+#| msgid "GDPR (DSGVO) snippet for %s and its Extensions"
+msgid "GDPR (DSGVO) snippet for Leaflet Map and its Extensions"
+msgstr "DSGVO Snippet für Leaflet Map und seine Erweiterungen"
 
-#: admin.php:176
+#: admin.php:174
 msgid "Go to"
 msgstr "Gehe zu"
 
@@ -101,13 +100,13 @@ msgid "hupe13"
 msgstr "hupe13"
 
 #. %s is a link.
-#: admin.php:190
+#: admin.php:188
 #, php-format
 msgid "If you wish to translate these strings in %s use"
 msgstr "Wenn du diese Texte in %s übersetzen möchtest, verwende"
 
 #. %s is the shortcode
-#: php/shortcode.php:53
+#: php/shortcode.php:69
 #, php-format
 msgid ""
 "In addition, there is the shortcode %1$s. You can use this shortcode "
@@ -116,7 +115,7 @@ msgstr ""
 "Darüber hinaus gibt es den Shortcode %1$s. Du kannst diesen Shortcode "
 "überall in deinen Seiten / Beiträgen verwenden."
 
-#: admin.php:174
+#: admin.php:172
 msgid "is active."
 msgstr "ist aktiviert."
 
@@ -132,16 +131,16 @@ msgstr "nur auf der ersten Karte"
 msgid "Options GDPR"
 msgstr "Optionen DSGVO"
 
-#: admin.php:224
+#: admin.php:218
 msgid "Reset"
 msgstr "Zurücksetzen"
 
-#: dsgvo-leaflet-map.php:43 admin.php:178 admin.php:207
+#: dsgvo-leaflet-map.php:43 admin.php:176 admin.php:205
 msgid "Settings"
 msgstr "Einstellungen"
 
 #. %s is leafext_cookie
-#: php/shortcode.php:42
+#: php/shortcode.php:58
 #, php-format
 msgid "Shortcode %s"
 msgstr "Shortcode %s"
@@ -158,7 +157,7 @@ msgstr ""
 msgid "Submit Button"
 msgstr "Formular absenden"
 
-#: admin.php:211
+#: admin.php:208
 msgid "Test it in a private browser window."
 msgstr "Teste es in einem privaten Browserfenster."
 
@@ -167,14 +166,14 @@ msgid "Text"
 msgstr "Text"
 
 #. %s are options
-#: php/shortcode.php:74
+#: php/shortcode.php:90
 #, php-format
 msgid "The options %1$s and %2$s are optional. Default is the setting."
 msgstr ""
 "Die Optionen %1$s und %2$s sind optional. Standard sind die Einstellungen."
 
 #. %1$s is leaflet-map, %2$s is the cookie name
-#: admin.php:148
+#: admin.php:146
 #, php-format
 msgid ""
 "The plugin prevents the shortcode %1$s from being executed. If the user "
@@ -198,7 +197,7 @@ msgstr ""
 "Wenn nicht, werden Dir keine Karten angezeigt."
 
 #. %s are options
-#: php/shortcode.php:80
+#: php/shortcode.php:96
 #, php-format
 msgid ""
 "You can’t write another shortcode in %s shortcode, because WordPress doesn’t "

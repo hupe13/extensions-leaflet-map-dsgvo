@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DSGVO snippet for Leaflet Map and its Extensions Github\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-24 10:58+0000\n"
+"POT-Creation-Date: 2025-01-24 22:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -17,7 +17,7 @@ msgstr ""
 "X-Domain: dsgvo-leaflet-map"
 
 #. %s are the shortcode
-#: php/shortcode.php:61
+#: php/shortcode.php:77
 #, php-format
 msgid ""
 "All content between %1$s and %2$s will only be displayed if the user agrees. "
@@ -25,16 +25,16 @@ msgid ""
 msgstr ""
 
 #. %s are hrefs.
-#: admin.php:155
+#: admin.php:153
 #, php-format
 msgid "An example is %1$shere%2$s"
 msgstr ""
 
-#: admin.php:182
+#: admin.php:180
 msgid "and"
 msgstr ""
 
-#: php/shortcode.php:70
+#: php/shortcode.php:86
 msgid "any content, but not a shortcode"
 msgstr ""
 
@@ -62,15 +62,15 @@ msgstr ""
 msgid "each map"
 msgstr ""
 
-#: admin.php:180
+#: admin.php:178
 msgid "enable"
 msgstr ""
 
-#: admin.php:184
+#: admin.php:182
 msgid "fill in your text"
 msgstr ""
 
-#: admin.php:145
+#: admin.php:143
 msgid "Function of the plugin"
 msgstr ""
 
@@ -78,13 +78,11 @@ msgstr ""
 msgid "GDPR"
 msgstr ""
 
-#. %s is Leaflet Map
-#: admin.php:138
-#, php-format
-msgid "GDPR (DSGVO) snippet for %s and its Extensions"
+#: dsgvo-leaflet-map.php:65 admin.php:137
+msgid "GDPR (DSGVO) snippet for Leaflet Map and its Extensions"
 msgstr ""
 
-#: admin.php:176
+#: admin.php:174
 msgid "Go to"
 msgstr ""
 
@@ -98,20 +96,20 @@ msgid "hupe13"
 msgstr ""
 
 #. %s is a link.
-#: admin.php:190
+#: admin.php:188
 #, php-format
 msgid "If you wish to translate these strings in %s use"
 msgstr ""
 
 #. %s is the shortcode
-#: php/shortcode.php:53
+#: php/shortcode.php:69
 #, php-format
 msgid ""
 "In addition, there is the shortcode %1$s. You can use this shortcode "
 "anywhere in your pages / posts."
 msgstr ""
 
-#: admin.php:174
+#: admin.php:172
 msgid "is active."
 msgstr ""
 
@@ -127,16 +125,16 @@ msgstr ""
 msgid "Options GDPR"
 msgstr ""
 
-#: admin.php:224
+#: admin.php:218
 msgid "Reset"
 msgstr ""
 
-#: dsgvo-leaflet-map.php:43 admin.php:178 admin.php:207
+#: dsgvo-leaflet-map.php:43 admin.php:176 admin.php:205
 msgid "Settings"
 msgstr ""
 
 #. %s is leafext_cookie
-#: php/shortcode.php:42
+#: php/shortcode.php:58
 #, php-format
 msgid "Shortcode %s"
 msgstr ""
@@ -151,7 +149,7 @@ msgstr ""
 msgid "Submit Button"
 msgstr ""
 
-#: admin.php:211
+#: admin.php:208
 msgid "Test it in a private browser window."
 msgstr ""
 
@@ -160,13 +158,13 @@ msgid "Text"
 msgstr ""
 
 #. %s are options
-#: php/shortcode.php:74
+#: php/shortcode.php:90
 #, php-format
 msgid "The options %1$s and %2$s are optional. Default is the setting."
 msgstr ""
 
 #. %1$s is leaflet-map, %2$s is the cookie name
-#: admin.php:148
+#: admin.php:146
 #, php-format
 msgid ""
 "The plugin prevents the shortcode %1$s from being executed. If the user "
@@ -185,7 +183,7 @@ msgid ""
 msgstr ""
 
 #. %s are options
-#: php/shortcode.php:80
+#: php/shortcode.php:96
 #, php-format
 msgid ""
 "You can’t write another shortcode in %s shortcode, because WordPress doesn’t "
