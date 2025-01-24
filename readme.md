@@ -57,7 +57,7 @@ Maybe you need a Github token.
 
 ## Changelog
 
-###  25012x / Version 2.0
+### 2.0 / 25012x
 
 * interpreting frontend / backend (Elementor)
 * new shortcode leafext-cookie
