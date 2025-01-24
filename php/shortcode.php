@@ -25,7 +25,7 @@ function leafext_restricted( $atts, $content ) {
 			$options['text'] = wp_kses_post( $options['text'] );
 			$form            = '<form action="" method="post">';
 			$form            = $form . wp_nonce_field( 'leafext_dsgvo', 'leafext_dsgvo_okay' );
-			$form            = $form . $options['text'];
+			$form            = $form . '<p style="display:flex; justify-content: center; align-items: center;">' . $options['text'] . '</p>';
 			$form            = $form .
 			'<p class="submit" style="display:flex; justify-content: center; align-items: center;">
 			<input type="submit" value="' . $options['okay'] . '" name="leafext_button" /></p>
@@ -67,13 +67,18 @@ function leafext_dsgvo_short_code_help() {
 		'(<code>leafext</code>)'
 	) . '</p>';
 	$text = $text . '<pre' . $codestyle . '><code' . $codestyle . '>&#091;leafext-cookie text="..." okay="..."]</code></pre>';
-	$text = $text . '<p>' . __( 'any content', 'dsgvo-leaflet-map' ) . '</p>';
+	$text = $text . '<p>' . __( 'any content, but not a shortcode', 'dsgvo-leaflet-map' ) . '</p>';
 	$text = $text . '<pre' . $codestyle . '><code' . $codestyle . '>&#091;/leafext-cookie]</code></pre>';
 	$text = $text . sprintf(
 		/* translators: %s are options */
 		__( 'The options %1$s and %2$s are optional. Default is the setting.', 'dsgvo-leaflet-map' ),
 		'<code>text</code>',
 		'<code>okay</code>'
+	);
+	$text = $text . ' ' . sprintf(
+		/* translators: %s are options */
+		__( 'You can’t write another shortcode in %s shortcode, because WordPress doesn’t allow to use nested shortcodes.', 'dsgvo-leaflet-map' ),
+		'<code>&#091;leafext-cookie]</code>'
 	);
 	if ( is_singular() || is_archive() ) {
 		return $text;

@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: DSGVO snippet for Leaflet Map and its Extensions Github\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-01-23 20:20+0000\n"
+"POT-Creation-Date: 2025-01-24 10:58+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: \n"
@@ -30,12 +30,12 @@ msgstr ""
 msgid "An example is %1$shere%2$s"
 msgstr ""
 
-#: admin.php:181
+#: admin.php:182
 msgid "and"
 msgstr ""
 
 #: php/shortcode.php:70
-msgid "any content"
+msgid "any content, but not a shortcode"
 msgstr ""
 
 #: php/leaflet-map.php:30
@@ -62,11 +62,11 @@ msgstr ""
 msgid "each map"
 msgstr ""
 
-#: admin.php:179
+#: admin.php:180
 msgid "enable"
 msgstr ""
 
-#: admin.php:183
+#: admin.php:184
 msgid "fill in your text"
 msgstr ""
 
@@ -84,7 +84,7 @@ msgstr ""
 msgid "GDPR (DSGVO) snippet for %s and its Extensions"
 msgstr ""
 
-#: admin.php:175
+#: admin.php:176
 msgid "Go to"
 msgstr ""
 
@@ -98,7 +98,7 @@ msgid "hupe13"
 msgstr ""
 
 #. %s is a link.
-#: admin.php:189
+#: admin.php:190
 #, php-format
 msgid "If you wish to translate these strings in %s use"
 msgstr ""
@@ -111,7 +111,7 @@ msgid ""
 "anywhere in your pages / posts."
 msgstr ""
 
-#: admin.php:173
+#: admin.php:174
 msgid "is active."
 msgstr ""
 
@@ -127,11 +127,11 @@ msgstr ""
 msgid "Options GDPR"
 msgstr ""
 
-#: admin.php:223
+#: admin.php:224
 msgid "Reset"
 msgstr ""
 
-#: dsgvo-leaflet-map.php:43 admin.php:177 admin.php:206
+#: dsgvo-leaflet-map.php:43 admin.php:178 admin.php:207
 msgid "Settings"
 msgstr ""
 
@@ -151,7 +151,7 @@ msgstr ""
 msgid "Submit Button"
 msgstr ""
 
-#: admin.php:210
+#: admin.php:211
 msgid "Test it in a private browser window."
 msgstr ""
 
@@ -182,4 +182,12 @@ msgid ""
 "When using the maps, content is loaded from third-party servers. If you "
 "agree to this, a cookie will be set and this notice will be hidden. If not, "
 "no maps will be displayed."
+msgstr ""
+
+#. %s are options
+#: php/shortcode.php:80
+#, php-format
+msgid ""
+"You can’t write another shortcode in %s shortcode, because WordPress doesn’t "
+"allow to use nested shortcodes."
 msgstr ""
