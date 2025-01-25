@@ -36,22 +36,6 @@ function leafext_restricted( $atts, $content ) {
 }
 add_shortcode( 'leafext-cookie', 'leafext_restricted' );
 
-function leafext_enqueue_prism() {
-	wp_enqueue_style(
-		'prism-css',
-		plugins_url( 'pkg/prism/prism.css', LEAFEXT_DSGVO_PLUGIN_FILE ),
-		array(),
-		LEAFEXT_DSGVO_PLUGIN_VERSION
-	);
-	wp_enqueue_script(
-		'prism-js',
-		plugins_url( 'pkg/prism/prism.js', LEAFEXT_DSGVO_PLUGIN_FILE ),
-		array(),
-		LEAFEXT_DSGVO_PLUGIN_VERSION,
-		true
-	);
-}
-
 function leafext_dsgvo_short_code_help() {
 	$text = '<h3>' . sprintf(
 		/* translators: %s is leafext_cookie */
@@ -61,7 +45,7 @@ function leafext_dsgvo_short_code_help() {
 	if ( is_singular() || is_archive() ) {
 		$codestyle = '';
 	} else {
-		leafext_enqueue_prism();
+		leafext_enqueue_admin();
 		$codestyle = ' class="language-coffeescript"';
 	}
 	$text = $text . '<p>' . sprintf(

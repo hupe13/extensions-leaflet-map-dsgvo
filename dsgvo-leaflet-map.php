@@ -5,7 +5,7 @@
  * Plugin URI:        https://leafext.de/en/
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch:    main
- * Version:           250124
+ * Version:           250125
  * Requires PHP:      7.4
  * Author:            hupe13
  * Author URI:        https://leafext.de/en/
@@ -52,17 +52,15 @@ require_once LEAFEXT_DSGVO_PLUGIN_DIR . 'php/shortcode.php';
 global $wp_version;
 function leafext_dsgvo_require() {
 	if ( is_admin() ) {
-		if ( ! defined( 'LEAFLET_MAP__PLUGIN_VERSION' ) ) {
+		if ( ! defined( 'LEAFEXT_PLUGIN_FILE' ) ) {
 			if ( ( is_multisite() && ! is_main_site() ) || ! is_multisite() ) {
 				function leafext_require_leaflet_map_extensions() {
 					echo '<div class="notice notice-error" ><p> ';
 					printf(
-						/* translators: %s is a plugin names. */
-						esc_html__(
-							'Please install and activate %s before using GDPR (DSGVO) snippet for Leaflet Map and its Extensions!',
-							'extensions-leaflet-map-dsgvo'
-						),
-						'<a href="https://wordpress.org/plugins/leaflet-map/">Leaflet Map</a>'
+						/* translators: %s is a link. */
+						esc_html__( 'Please install and activate %1$sExtensions for Leaflet Map%2$s before using DSGVO snippet for Leaflet Map and its Extensions.', 'extensions-leaflet-map-dsgvo' ),
+						'<a href="https://wordpress.org/plugins/extensions-leaflet-map/">',
+						'</a>'
 					);
 					echo '</p></div>';
 				}
