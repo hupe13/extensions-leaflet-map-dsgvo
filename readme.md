@@ -34,6 +34,10 @@ Du kannst den Text anpassen und es auf eigene Verantwortung verwenden.
 
 Das Plugin unterstützt <a href="https://wordpress.org/plugins/theme-translation-for-polylang/">Theme and plugin translation for Polylang (TTfP)</a>.
 
+## Documentation
+
+Documentation in <a href="https://leafext.de/doku/dsgvo/">German</a>, <a href="https://leafext.de/en/doku/dsgvo/">English</a> and an <a href="https://leafext.de/extra/dsgvo-example/">example</a>.
+
 ## Screenshots
 
 1. Settings <br>![Settings](.wordpress-org/screenshot-1.png)
