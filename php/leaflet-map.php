@@ -101,7 +101,7 @@ function leafext_query_cookie( $output, $tag ) {
 		$settings       = leafext_dsgvo_settings();
 		$formtext       = '<p style="display:flex; justify-content: center; align-items: center;">' . $settings['text'] . '</p>';
 		$formend_safe   = '<p class="submit" style="display:flex; justify-content: center; align-items: center;">
-		<input type="submit" value="' . esc_attr( $settings['okay'] ) . '" name="leafext_button" /></p>
+		<input type="submit" aria-label="Submit ' . esc_attr( $settings['okay'] ) . '" value="' . esc_attr( $settings['okay'] ) . '" name="leafext_button" /></p>
 		</form>';
 
 		global $leafext_okay;
@@ -124,7 +124,7 @@ function leafext_query_cookie( $output, $tag ) {
 		$sgpxoptions = leafext_sgpx_settings();
 
 		if ( $tag === 'sgpx' ) {
-			if ( defined( 'WPGPXMAPS_CURRENT_VERSION' ) && $sgpxoptions['sgpx'] === '0' ) {
+			if ( leafext_plugin_active( 'wp-gpx-maps' ) && $sgpxoptions['sgpx'] === '0' ) {
 				return $output;
 			}
 

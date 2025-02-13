@@ -28,7 +28,7 @@ function leafext_restricted( $atts, $content ) {
 			$form            = $form . '<p style="display:flex; justify-content: center; align-items: center;">' . $options['text'] . '</p>';
 			$form            = $form .
 			'<p class="submit" style="display:flex; justify-content: center; align-items: center;">
-			<input type="submit" value="' . $options['okay'] . '" name="leafext_button" /></p>
+			<input type="submit" aria-label="Submit ' . esc_attr( $options['okay'] ) . '" value="' . esc_attr( $options['okay'] ) . '" name="leafext_button" /></p>
 			</form>';
 			return $form;
 		}

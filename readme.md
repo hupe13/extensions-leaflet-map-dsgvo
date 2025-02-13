@@ -61,10 +61,9 @@ Maybe you need a Github token.
 
 ## Changelog
 
-### 2.0 / 250125
+###  2.1 / 2502xx
 
-* interpreting frontend / backend (Elementor)
-* new shortcode leafext-cookie
+* aria-label for submit button
 
 ### Previous
 

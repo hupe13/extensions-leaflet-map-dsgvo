@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: DSGVO Snippet for Extensions for Leaflet Map\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-15 15:43+0000\n"
-"PO-Revision-Date: 2025-01-24 22:08+0000\n"
+"PO-Revision-Date: 2025-02-13 17:27+0000\n"
 "Last-Translator: \n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -53,15 +53,15 @@ msgstr ""
 msgid "New version available."
 msgstr "Neue Version verfügbar."
 
-#. %s is a plugin names.
-#: dsgvo-leaflet-map.php:61
+#. %s is a link.
+#: dsgvo-leaflet-map.php:74
 #, php-format
 msgid ""
-"Please install and activate %s before using GDPR (DSGVO) snippet for Leaflet "
-"Map and its Extensions!"
+"Please install and activate %1$sExtensions for Leaflet Map%2$s before using "
+"DSGVO snippet for Leaflet Map and its Extensions."
 msgstr ""
-"Bitte installiere und aktiviere %s, bevor du DSGVO Snippet für Leaflet Map "
-"und seine Erweiterungen verwenden kannst!"
+"Bitte installiere und aktiviere %1$sErweiterungen für Leaflet Map%2$s bevor "
+"du das DSGVO Snippet für Leaflet Map und seine Erweiterungen verwendest."
 
 #: check-update.php:169
 msgid "Reset"

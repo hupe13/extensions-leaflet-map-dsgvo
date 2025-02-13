@@ -5,8 +5,9 @@
  * Plugin URI:        https://leafext.de/en/
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch:    main
- * Version:           250125
+ * Version:           250213
  * Requires PHP:      7.4
+ * Requires Plugins*:  extensions-leaflet-map
  * Author:            hupe13
  * Author URI:        https://leafext.de/en/
  * License:           GPL v2 or later
@@ -38,21 +39,33 @@ function leafext_dsgvo_textdomain() {
 }
 add_action( 'plugins_loaded', 'leafext_dsgvo_textdomain' );
 
-// Add settings to plugin page
-function leafext_add_action_dsgvo_links( $actions ) {
-	$actions[] = '<a href="' . esc_url( admin_url( 'admin.php' ) . '?page=' . LEAFEXT_DSGVO_PLUGIN_NAME ) . '">' . esc_html__( 'Settings', 'dsgvo-leaflet-map' ) . '</a>';
-	return $actions;
+if ( ! function_exists( 'leafext_plugin_active' ) ) {
+	function leafext_plugin_active( $plugin ) {
+		if ( ! ( strpos( implode( ' ', get_option( 'active_plugins', array() ) ), '/' . $plugin . '.php' ) === false ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
-add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'leafext_add_action_dsgvo_links' );
 
-require_once LEAFEXT_DSGVO_PLUGIN_DIR . 'php/leaflet-map.php';
-require_once LEAFEXT_DSGVO_PLUGIN_DIR . 'php/shortcode.php';
+if ( leafext_plugin_active( 'extensions-leaflet-map' ) ) {
+	// Add settings to plugin page
+	function leafext_add_action_dsgvo_links( $actions ) {
+		$actions[] = '<a href="' . esc_url( admin_url( 'admin.php' ) . '?page=' . LEAFEXT_DSGVO_PLUGIN_NAME ) . '">' . esc_html__( 'Settings', 'dsgvo-leaflet-map' ) . '</a>';
+		return $actions;
+	}
+	add_filter( 'plugin_action_links_' . plugin_basename( __FILE__ ), 'leafext_add_action_dsgvo_links' );
+
+	require_once LEAFEXT_DSGVO_PLUGIN_DIR . 'php/leaflet-map.php';
+	require_once LEAFEXT_DSGVO_PLUGIN_DIR . 'php/shortcode.php';
+}
 
 // WP < 6.5 or Github
 global $wp_version;
 function leafext_dsgvo_require() {
 	if ( is_admin() ) {
-		if ( ! defined( 'LEAFEXT_PLUGIN_FILE' ) ) {
+		if ( ! leafext_plugin_active( 'extensions-leaflet-map' ) ) {
 			if ( ( is_multisite() && ! is_main_site() ) || ! is_multisite() ) {
 				function leafext_require_leaflet_map_extensions() {
 					echo '<div class="notice notice-error" ><p> ';
