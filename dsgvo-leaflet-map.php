@@ -5,7 +5,7 @@
  * Plugin URI:        https://leafext.de/en/
  * GitHub Plugin URI: https://github.com/hupe13/extensions-leaflet-map-dsgvo
  * Primary Branch:    main
- * Version:           250213
+ * Version:           250214
  * Requires PHP:      7.4
  * Requires Plugins*:  extensions-leaflet-map
  * Author:            hupe13
@@ -41,7 +41,8 @@ add_action( 'plugins_loaded', 'leafext_dsgvo_textdomain' );
 
 if ( ! function_exists( 'leafext_plugin_active' ) ) {
 	function leafext_plugin_active( $plugin ) {
-		if ( ! ( strpos( implode( ' ', get_option( 'active_plugins', array() ) ), '/' . $plugin . '.php' ) === false ) ) {
+		if ( ! ( strpos( implode( ' ', get_option( 'active_plugins', array() ) ), '/' . $plugin . '.php' ) === false &&
+			strpos( implode( ' ', array_keys( get_site_option( 'active_sitewide_plugins', array() ) ) ), '/' . $plugin . '.php' ) === false ) ) {
 			return true;
 		} else {
 			return false;
