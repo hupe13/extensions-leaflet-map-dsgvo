@@ -1,9 +1,9 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: DSGVO Snippet for Extensions for Leaflet Map\n"
+"Project-Id-Version: extensions-leaflet-map-dsgvo\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-10-15 15:43+0000\n"
-"PO-Revision-Date: 2025-02-13 17:27+0000\n"
+"POT-Creation-Date: 2025-02-18 20:07+0000\n"
+"PO-Revision-Date: 2025-02-18 20:20+0000\n"
 "Last-Translator: \n"
 "Language-Team: Deutsch\n"
 "Language: de_DE\n"
@@ -12,68 +12,20 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Loco https://localise.biz/\n"
-"X-Loco-Version: 2.6.6; wp-6.4.3\n"
+"X-Loco-Version: 2.7.1; wp-6.7.2\n"
 "X-Domain: extensions-leaflet-map-dsgvo"
 
-#: check-update.php:178
-msgid "activate the plugin there"
-msgstr "aktiviere das Plugin dort"
-
-#: check-update.php:100
-msgid "Github token"
-msgstr "Github token"
-
-#: check-update.php:143 check-update.php:200
-msgid "Github token to receive updates in WordPress way"
-msgstr "Github Token um Updates auf WordPress-Art zu erhalten"
-
 #. %s is a link.
-#: check-update.php:186
+#: github-backend-dsgvo.php:41
 #, php-format
-#| msgid ""
-#| "If you want to receive updates in WordPress way, go to the %1$smain site "
-#| "dashboard%2$s, activate the plugin there and set a Github token if "
-#| "necessary."
 msgid ""
 "If you want to receive updates in WordPress way, go to the %1$smain site "
-"dashboard%2$s%3$s and set a Github token if necessary."
+"dashboard%2$s and activate %3$s here or install and activate %4$s."
 msgstr ""
-"Um Updates auf WordPress-Art zu erhalten, gehe zum %1$sDashboard der Main "
-"Site%2$s%3$s und setze ggf. ein Github-Token."
+"Um Updates auf Art und Weise von WordPress zu erhalten,, gehe zur "
+"%1$sDashboard der Main Site%2$s und aktiviere hier %3$s oder installiere und "
+"aktiviere %4$s."
 
-#. %s is a link.
-#: check-update.php:157 check-update.php:220
-#, php-format
-msgid "Maybe you need a %1$sGithub token%2$s to receive updates successfully."
-msgstr ""
-"Möglicherweise benötigst du ein %1$sGithub-Token%2$s, um erfolgreich Updates "
-"zu erhalten."
-
-#: check-update.php:86
-msgid "New version available."
-msgstr "Neue Version verfügbar."
-
-#. %s is a link.
-#: dsgvo-leaflet-map.php:74
-#, php-format
-msgid ""
-"Please install and activate %1$sExtensions for Leaflet Map%2$s before using "
-"DSGVO snippet for Leaflet Map and its Extensions."
-msgstr ""
-"Bitte installiere und aktiviere %1$sErweiterungen für Leaflet Map%2$s bevor "
-"du das DSGVO Snippet für Leaflet Map und seine Erweiterungen verwendest."
-
-#: check-update.php:169
-msgid "Reset"
-msgstr "Zurücksetzen"
-
-#. %s is a link.
-#: check-update.php:150 check-update.php:213
-#, php-format
-msgid "You need a %1$sGithub token%2$s to receive updates successfully."
-msgstr ""
-"Du benötigst ein %1$sGithub-Token%2$s, um erfolgreich Updates zu erhalten."
-
-#: check-update.php:182
-msgid "You receive updates in WordPress way."
-msgstr "Updates werden auf WordPress-Art durchgeführt."
+#: github-backend-dsgvo.php:38
+msgid "Updates in WordPress way"
+msgstr "Updates auf Art und Weise von WordPress"

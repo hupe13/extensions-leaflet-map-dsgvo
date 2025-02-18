@@ -198,8 +198,8 @@ if ( leafext_plugin_active( 'extensions-leaflet-map' ) ) {
 	// Draw the menu page itself
 	function leafext_dsgvo_do_page() {
 		leafext_dsgvo_help();
-		if ( function_exists( 'leafext_dsgvo_update_admin' ) ) {
-			leafext_dsgvo_update_admin();
+		if ( function_exists( 'leafext_dsgvo_goto_main_site' ) ) {
+			leafext_dsgvo_goto_main_site();
 		}
 		leafext_dsgvo_help_what();
 		echo '<h3>';

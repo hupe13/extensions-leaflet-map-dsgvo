@@ -3,7 +3,7 @@
 Contributors: hupe13  
 Tags: dsgvo, gdpr, leaflet  
 Tested up to: 6.7  
-Stable tag: 2.0  
+Stable tag: 2.1  
 Requires at least: 6.0  
 Requires PHP: 7.4  
 License: GPLv2 or later  
@@ -61,7 +61,7 @@ Maybe you need a Github token.
 
 ## Changelog
 
-###  2.1 / 2502xx
+###  2.1 / 250215
 
 * aria-label for submit button
 

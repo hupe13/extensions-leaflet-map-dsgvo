@@ -3,7 +3,7 @@
 Contributors: hupe13
 Tags: dsgvo, gdpr, leaflet
 Tested up to: 6.7
-Stable tag: 250213
+Stable tag: 250218
 Requires at least: 6.0
 Requires PHP: 7.4
 License: GPLv2 or later
@@ -33,7 +33,6 @@ Dieses kleine Snippet holt die Zustimmung des Nutzers zum Laden der Karten ein.
 Du kannst den Text anpassen und es auf eigene Verantwortung verwenden.
 
 Konfiguriere seine Einstellungen unter Leaflet Map -> Leaflet Map DSGVO.
-
 
 == Installation ==
 
